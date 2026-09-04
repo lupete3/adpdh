@@ -7,5 +7,7 @@
 @endif
 
 <span class="app-brand-text demo menu-text fw-bold ms-2" style="text-transform: uppercase;">
-    {{ $settings['site_name']->value ?? (config('variables.templateName') ?? 'WEZESHA') }}
+    {{-- {{ $settings['site_name']->value ?? (config('variables.templateName') ?? 'WEZESHA') }}
+    --}}
+    ADPDH
 </span>
