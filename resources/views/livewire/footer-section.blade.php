@@ -81,7 +81,7 @@
             <div class="footer-bottom-content">
               <p class="mb-0">© {{ date('Y') }} <span class="sitename">{{ $settings['site_name']->value ?? 'WEZESHA FOUNDATION' }}</span>. Tous droits réservés.</p>
               <div class="credits">
-                Conçu par <a href="https://pftechno.com" target="_blank" rel="noopener">PF TECHNO</a>
+                Conçu par <a href="https://adpdh.org" target="_blank" rel="noopener">ADPDH</a>
               </div>
             </div>
           </div>
