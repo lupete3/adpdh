@@ -405,6 +405,9 @@ h6 {
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
+    padding: 0;
+    border: 0;
+    background: transparent;
     cursor: pointer;
     transition: color 0.3s;
   }

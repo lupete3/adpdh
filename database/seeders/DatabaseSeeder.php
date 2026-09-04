@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'contact@adpdh.org'],
+            ['email' => 'admin@adpdh.org'],
             [
                 'name' => 'Admin ADPDH',
                 'password' => bcrypt('password'),

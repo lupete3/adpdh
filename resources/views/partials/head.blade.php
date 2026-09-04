@@ -7,7 +7,7 @@
 ])
 
 
-<title>@yield('title') | {{ $settings['site_name']->value ?? config('variables.templateName', 'WEZESHA FOUNDATION') }} - {{ $settings['slogan']->value ?? config('variables.templateSuffix', "ONG de Développement & Humanitaire") }}</title>
+<title>@yield('title') | {{ $settings['site_name']->value ?? config('variables.templateName', 'ADPDH') }} - {{ $settings['slogan']->value ?? config('variables.templateSuffix', "ONG de Développement & Humanitaire") }}</title>
 
 
 <meta name="description" content="{{ config('variables.templateDescription') ? config('variables.templateDescription') : '' }}" />
@@ -15,7 +15,7 @@
 <!-- laravel CRUD token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Canonical SEO -->
-<meta property="og:title" content="{{ config('variables.ogTitle', 'WEZESHA FOUNDATION | Transformer l\'avenir de la RDC') }}" />
+<meta property="og:title" content="{{ config('variables.ogTitle', 'ADPDH | Transformer l\'avenir de la RDC') }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ url('/') }}" />
 <meta property="og:image" content="{{ config('variables.ogImage', '') }}" />
