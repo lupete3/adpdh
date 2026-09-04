@@ -15,7 +15,7 @@ class SliderSeeder extends Seeder
     {
         Slider::query()->delete();
         Slider::create([
-            'title' => 'WEZESHA FOUNDATION',
+            'title' => 'ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS',
             'subtitle' => 'TRANSFORMING THE FUTURE OF DRC',
             'description' => 'Promouvoir une éducation de qualité et le bien-être social des orphelins et familles défavorisées en RDC.',
             'image' => 'flexbiz/assets/img/hero-bg.jpg',

@@ -12,11 +12,11 @@ class SettingSeeder extends Seeder
      */
     public function run(): void
     {
-        Setting::create(['key' => 'site_name', 'value' => 'WEZESHA FOUNDATION']);
+        Setting::create(['key' => 'site_name', 'value' => 'ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS']);
         Setting::create(['key' => 'slogan', 'value' => "TRANSFORMING THE FUTURE OF DRC"]);
         Setting::create(['key' => 'logo', 'value' => '']);
         Setting::create(['key' => 'address', 'value' => 'Nord et Sud Kivu, RD Congo']);
-        Setting::create(['key' => 'email', 'value' => 'contact@wezesha-foundation.org']);
+        Setting::create(['key' => 'email', 'value' => 'contact@adpdh.org']);
         Setting::create(['key' => 'phone', 'value' => '+243 978 654 321']);
         Setting::create(['key' => 'twitter_url', 'value' => '#']);
         Setting::create(['key' => 'facebook_url', 'value' => '#']);
