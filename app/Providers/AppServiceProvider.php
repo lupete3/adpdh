@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        \Livewire\Livewire::addPersistentMiddleware([\App\Http\Middleware\EnsureAdministrator::class]);
         if (Schema::hasTable('settings')) {
             $settings = Setting::all()->keyBy('key');
             view()->share('settings', $settings);

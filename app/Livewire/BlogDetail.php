@@ -11,7 +11,7 @@ class BlogDetail extends Component
 
     public function mount($id)
     {
-        $this->post = Post::findOrFail($id);
+        $this->post = Post::where('status', 'published')->findOrFail($id);
     }
 
     public function render()

@@ -8,6 +8,8 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1" style="overflow-y: auto; overflow-x: hidden;">
+    <li class="menu-item {{ request()->routeIs('admin.cms.*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.titles') }}">Pages et titres ADPDH</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.home') }}">Accueil — sections et données</a></li>
     <!-- Dashboards -->
     <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
       <a class="menu-link" href="{{ route('dashboard') }}" wire:navigate>{{ __('Tableau de bord') }}</a>
@@ -120,7 +122,7 @@
     <li class="menu-item {{ request()->routeIs('admin.cta.edit') ? 'active' : '' }}">
         <a class="menu-link" href="{{ route('admin.cta.edit') }}" wire:navigate>
             <i class="menu-icon tf-icons bx bx-bullseye"></i>
-            <div class="text-truncate">Appel à l'action</div>
+            <div class="text-truncate">Appel Ã  l'action</div>
         </a>
     </li>
     <li class="menu-item {{ request()->routeIs('admin.why-us.edit') ? 'active' : '' }}">
