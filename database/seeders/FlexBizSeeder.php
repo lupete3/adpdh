@@ -30,7 +30,7 @@ class FlexBizSeeder extends Seeder
         // 1. Sliders (Hero)
         Slider::query()->delete();
         Slider::create([
-            'title' => 'WEZESHA FOUNDATION',
+            'title' => 'ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS',
             'subtitle' => 'TRANSFORMING THE FUTURE OF DRC',
             'description' => 'Promouvoir une éducation de qualité et le bien-être social des orphelins et familles défavorisées en RDC.',
             'image' => 'flexbiz/assets/img/illustration/illustration-8.webp',
@@ -52,7 +52,7 @@ class FlexBizSeeder extends Seeder
         About::create([
             'title' => 'Une génération d’enfants orphelins éduqués, autonomes et résiliants',
             'subtitle' => 'Qui sommes-nous ?',
-            'content' => "WEZESHA FOUNDATION est dédiée à la promotion d’une éducation de qualité et équitable pour tous les enfants orphelins, ainsi qu’au bien-être social des familles économiquement défavorisées en RDC. Nous œuvrons pour transformer durablement la société à travers l'autonomisation et le développement communautaire.",
+            'content' => "ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS est dédiée à la promotion d’une éducation de qualité et équitable pour tous les enfants orphelins, ainsi qu’au bien-être social des familles économiquement défavorisées en RDC. Nous œuvrons pour transformer durablement la société à travers l'autonomisation et le développement communautaire.",
             'image' => 'flexbiz/assets/img/about.jpg',
             'kicker' => 'Notre Vision',
             'badge_title' => '10+ ans',

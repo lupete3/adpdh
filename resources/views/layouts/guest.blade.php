@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', ($settings['site_name']->value ?? 'WEZESHA FOUNDATION') . ' - ' . ($settings['slogan']->value ?? 'Transformer l\'avenir de la RDC'))</title>
+    <title>@yield('title', ($settings['site_name']->value ?? 'ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS') . ' - ' . ($settings['slogan']->value ?? 'Transformer l\'avenir de la RDC'))</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="WEZESHA FOUNDATION, ONG, Éducation, Développement durable, Humanitaire, RDC" name="keywords">
-    <meta content="WEZESHA FOUNDATION est une organisation dédiée à la promotion de l'éducation et du bien-être social en République Démocratique du Congo." name="description">
+    <meta content="ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS, ONG, Éducation, Développement durable, Humanitaire, RDC" name="keywords">
+    <meta content="ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS est une organisation dédiée à la promotion de l'éducation et du bien-être social en République Démocratique du Congo." name="description">
 
     <!-- Favicon -->
     <link href="{{ asset('flexbiz/assets/img/favicon.png') }}" rel="icon">

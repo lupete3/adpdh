@@ -1,8 +1,8 @@
 <!-- Menu -->
 <aside id="fbs__net-navbars" class="layout-menu menu-vertical menu bg-menu-theme offcanvas-xl offcanvas-start">
-  <div class="app-brand demo">
+    <div class="app-brand demo">
     <a href="{{ url('/') }}" class="app-brand-link"><x-app-logo /></a>
-    <button type="button" class="btn-close text-reset d-xl-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close text-reset d-xl-none" data-bs-dismiss="offcanvas" data-bs-target="#fbs__net-navbars" aria-label="Fermer le menu"></button>
   </div>
 
   <div class="menu-inner-shadow"></div>
@@ -90,12 +90,12 @@
             <div class="text-truncate">Publications</div>
         </a>
     </li>
-    <li class="menu-item {{ request()->routeIs('admin.job-openings.*') ? 'active' : '' }}">
+    {{-- <li class="menu-item {{ request()->routeIs('admin.job-openings.*') ? 'active' : '' }}">
         <a class="menu-link" href="{{ route('admin.job-openings.index') }}" wire:navigate>
             <i class="menu-icon tf-icons bx bx-id-card"></i>
             <div class="text-truncate">Carrières</div>
         </a>
-    </li>
+    </li> --}}
     <li class="menu-item {{ request()->routeIs('admin.gallery-photos.*') ? 'active' : '' }}">
         <a class="menu-link" href="{{ route('admin.gallery-photos.index') }}" wire:navigate>
             <i class="menu-icon tf-icons bx bx-photo-album"></i>
@@ -163,7 +163,14 @@
 <!-- / Menu -->
 
 <script>
-  // Toggle the 'open' class when the menu-toggle is clicked
+    document.addEventListener('click', function (event) {
+        const closeButton = event.target.closest('[data-bs-dismiss="offcanvas"][data-bs-target="#fbs__net-navbars"]');
+        const menu = document.getElementById('fbs__net-navbars');
+        if (!closeButton || !menu || !window.bootstrap) return;
+
+        window.bootstrap.Offcanvas.getOrCreateInstance(menu).hide();
+    });
+
   document.querySelectorAll('.menu-toggle').forEach(function(menuToggle) {
     menuToggle.addEventListener('click', function() {
       const menuItem = menuToggle.closest('.menu-item');

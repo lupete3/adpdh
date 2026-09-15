@@ -16,8 +16,8 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         $user = User::first() ?? User::create([
-            'name' => 'Admin Wezesha',
-            'email' => 'admin@wezesha-foundation.org',
+            'name' => 'Admin ADPDH',
+            'email' => 'admin@adpdh.org',
             'password' => bcrypt('password'),
         ]);
 

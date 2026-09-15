@@ -16,7 +16,7 @@ class AboutSeeder extends Seeder
         About::create([
             'title' => 'Une génération d’enfants orphelins éduqués, autonomes et résiliants',
             'subtitle' => 'Qui sommes-nous ?',
-            'content' => "WEZESHA FOUNDATION est dédiée à la promotion d’une éducation de qualité et équitable pour tous les enfants orphelins, ainsi qu’au bien-être social des familles économiquement défavorisées en RDC. Nous œuvrons pour transformer durablement la société à travers l'autonomisation et le développement communautaire.",
+            'content' => "ACTION POUR LE DEVELOPPEMENT ET LA PROMOTION DES DROITS HUMAINS est dédiée à la promotion d’une éducation de qualité et équitable pour tous les enfants orphelins, ainsi qu’au bien-être social des familles économiquement défavorisées en RDC. Nous œuvrons pour transformer durablement la société à travers l'autonomisation et le développement communautaire.",
             'image' => 'flexbiz/assets/img/about.jpg',
             'kicker' => 'Notre Vision',
             'badge_title' => '10+ ans',

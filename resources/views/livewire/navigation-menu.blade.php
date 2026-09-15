@@ -7,7 +7,7 @@
             @if(isset($settings['logo']) && $settings['logo']->value)
                 <img src="{{ asset('storage/' . $settings['logo']->value) }}" alt="{{ $settings['site_name']->value ?? 'WEZESHA FOUNDATION' }}">
             @else
-                <h1 class="sitename">{{ $settings['site_name']->value ?? 'WEZESHA FOUNDATION' }}</h1>
+                <h1 class="sitename">{{ $settings['site_name']->value ?? 'ADPDH' }}</h1>
             @endif
         </a>
 
@@ -121,14 +121,14 @@
                   </ul>
                 </li>
                 <li><a href="{{ route('gallery') }}">Galerie Photos</a></li>
-                <li><a href="{{ route('careers') }}">Carrières</a></li>
+                {{-- <li><a href="{{ route('careers') }}">Carrières</a></li> --}}
                 <li><a href="{{ url('/') }}#faq">FAQ</a></li>
               </ul>
             </li>
             <li><a href="{{ url('/') }}#contact">Contact</a></li>
-            <li class="ms-xl-3"><a href="{{ url('/') }}#contact" class="btn-brand-orange text-white px-4 py-2" style="border-radius: 50px; color: #fff !important;"><i class="bi bi-heart-fill me-2"></i> Faire un don</a></li>
+            <li class="ms-xl-3"><a href="{{ url('/') }}#contact" class="btn btn-success text-white px-4 py-2" style="border-radius: 50px; color: #fff !important;"><i class="bi bi-heart-fill me-2"></i> Faire un don</a></li>
             @auth
-                <li><a href="{{ url('/dashboard') }}" style="color: #6f42c1; font-weight: bold;">Espace Admin</a></li>
+                <li><a href="{{ url('/dashboard') }}" style="color: #3B8E32; font-weight: bold;">Espace Admin</a></li>
             @endauth
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

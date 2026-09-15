@@ -206,7 +206,7 @@ new class extends Component {
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            {{-- <div class="col-xl-3 col-md-6">
                 <div class="card bg-info text-white mb-4" style="background-color: #20c997 !important;">
                     <div class="card-body d-flex align-items-center">
                         <i class="fa fa-id-badge fa-3x me-3"></i>
@@ -222,7 +222,7 @@ new class extends Component {
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row mt-4">
