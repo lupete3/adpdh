@@ -20,6 +20,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     public function register(): void
     {
+        abort(403, "Les comptes sont créés par un administrateur.");
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -152,9 +153,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
     </form>
 
     <p class="text-center">
-        <span>{{ __('Vous avez déjà un compte ?') }}</span>
+        <span>{{ __('Vous avez dÃ©jÃ  un compte ?') }}</span>
         <a href="{{ route('login') }}" wire:navigate>
-            <span>{{ __('Connectez-vous à la place') }}</span>
+            <span>{{ __('Connectez-vous Ã  la place') }}</span>
         </a>
     </p>
 </div>

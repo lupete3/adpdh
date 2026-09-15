@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\CmsHomeController::class, 'show'])->name('home');
 
 // Section Pages
 Route::get('/about', \App\Livewire\AboutPage::class)->name('about');
@@ -24,7 +22,7 @@ Route::get('/blog/{id}', \App\Livewire\BlogDetail::class)->name('blog.detail');
 Route::get('/achievements/{id}', \App\Livewire\AchievementDetail::class)->name('achievement.detail');
 
 Volt::route('dashboard', 'admin.dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', \App\Http\Middleware\EnsureAdministrator::class])
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
@@ -36,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'verified', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin')->name('admin.')->group(function () {
     // Posts
     Volt::route('posts', 'admin.posts.index')->name('posts.index');
     Volt::route('posts/create', 'admin.posts.create')->name('posts.create');
@@ -134,3 +132,30 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('messages/{message}', \App\Livewire\ShowContactMessage::class)->name('messages.show');
 });
 
+
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms')->name('admin.cms.')->group(function () {
+ Route::get('titles', [\App\Http\Controllers\CmsTitlesController::class, 'index'])->name('titles');
+ Route::get('titles/{page}', [\App\Http\Controllers\CmsTitlesController::class, 'edit'])->name('titles.edit');
+ Route::put('titles/{page}', [\App\Http\Controllers\CmsTitlesController::class, 'update'])->name('titles.update');
+ Route::get('preview/{page}', [\App\Http\Controllers\CmsTitlesController::class, 'preview'])->name('preview');
+});
+
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/home')->name('admin.cms.home')->group(function () {
+ Route::get('/', [\App\Http\Controllers\CmsHomeController::class, 'edit']);
+ Route::put('/sections/{section}', [\App\Http\Controllers\CmsHomeController::class, 'updateSection'])->name('.section');
+ Route::put('/collections/{kind}/{id}', [\App\Http\Controllers\CmsHomeController::class, 'collection'])->name('.collection');
+ Route::put('/contact', [\App\Http\Controllers\CmsHomeController::class, 'contact'])->name('.contact');
+ Route::put('/seo', [\App\Http\Controllers\CmsHomeController::class, 'updateSeo'])->name('.seo');
+ Route::post('/indicators/{indicator}', [\App\Http\Controllers\CmsHomeController::class, 'indicator'])->name('.indicator');
+});
+
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/sections')->name('admin.cms.sections.')->group(function () {
+ Route::get('/', [\App\Http\Controllers\CmsSectionContentController::class,'index'])->name('index');
+ Route::get('/{section}', [\App\Http\Controllers\CmsSectionContentController::class,'section'])->name('edit');
+ Route::post('/{section}/indicators', [\App\Http\Controllers\CmsSectionContentController::class,'createIndicator'])->name('indicator.create');
+ Route::get('/{section}/contents/create', [\App\Http\Controllers\CmsSectionContentController::class,'edit'])->name('create');
+ Route::get('/{section}/contents/{content}/edit', [\App\Http\Controllers\CmsSectionContentController::class,'edit'])->name('content.edit');
+ Route::post('/{section}/contents', [\App\Http\Controllers\CmsSectionContentController::class,'save'])->name('store');
+ Route::put('/{section}/contents/{content}', [\App\Http\Controllers\CmsSectionContentController::class,'save'])->name('update');
+ Route::delete('/{section}/contents/{content}', [\App\Http\Controllers\CmsSectionContentController::class,'destroy'])->name('destroy');
+});

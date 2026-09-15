@@ -13,6 +13,6 @@ class Faq extends Model
     protected $fillable = [
         'question',
         'answer',
-        'order',
+        'order','cms_key','context','is_visible',
     ];
 }

@@ -1,0 +1,2694 @@
+{
+  "sections": [
+    {
+      "page": "index",
+      "key": "hero",
+      "label": "Ensemble,\nfaire grandir\nl’autonomie.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-38",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          },
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-5",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "La dignité humaine au cœur de chaque action.\nNous accompagnons les communautés vers un avenir plus solidaire, résilient et juste."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir notre action",
+          "url": "#piliers"
+        },
+        {
+          "label": "Qui sommes-nous ?",
+          "url": "qui-sommes-nous.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "chiffres-cles",
+      "label": "chiffres-cles",
+      "template": "collection",
+      "collection": "indicators",
+      "fields": {
+        "eyebrow": [],
+        "title": [],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": ""
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "index",
+      "key": "organisation",
+      "label": "Le changement se construit\navec les communautés.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-39",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-6",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Les solidarités locales sont le point de départ de notre engagement."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Créée en 2010, ADPDH contribue à l’autonomisation des populations vulnérables, à la protection de leurs droits et à leur résilience durable dans la région des Grands Lacs."
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "label": "Découvrir notre organisation",
+          "url": "qui-sommes-nous.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "piliers",
+      "label": "Quatre piliers.\nUn même engagement.",
+      "template": "collection",
+      "collection": "pillars",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-40",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-8",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-9",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Des actions complémentaires, reliées par un principe : placer la dignité humaine au centre de chaque intervention."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "index",
+      "key": "activites",
+      "label": "Des actions pour\navancer ensemble.",
+      "template": "collection",
+      "collection": "activities",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-41",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-14",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-15",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Épargne, leadership et réintégration économique : trois formes concrètes de notre engagement."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir l’activité",
+          "url": "activite-avec-agr.html"
+        },
+        {
+          "label": "Découvrir l’activité",
+          "url": "activite-resilience.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "impact",
+      "label": "Des progrès concrets.\nDes résultats documentés.",
+      "template": "collection",
+      "collection": "indicators",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-42",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-20",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-21",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Au-delà de la formation, nous suivons la mise en pratique des acquis et la continuité des activités économiques."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Consulter les indicateurs et leurs sources",
+          "url": "impact.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "temoignages",
+      "label": "Derrière chaque action,\nun parcours.",
+      "template": "collection",
+      "collection": "testimonials",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-43",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-22",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-23",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Les premiers témoignages réels sont en cours de collecte. Cet exemple présente le futur format des récits."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir les témoignages",
+          "url": "temoignages.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "partenariat",
+      "label": "Ensemble, donnons plus\nde portée à l’action.",
+      "template": "collection",
+      "collection": "partnership_types",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-44",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-24",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          },
+          {
+            "legacy": "text-25",
+            "prefix": "",
+            "suffix": " "
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-26",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Institutions, bailleurs, organisations et partenaires techniques : construisons des collaborations au service des communautés."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Échanger sur un partenariat",
+          "url": "devenir-partenaire.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "actualites",
+      "label": "La vie de nos actions.",
+      "template": "collection",
+      "collection": "posts",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-45",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-27",
+            "prefix": "",
+            "suffix": " "
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-28",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Contenus de démonstration en attendant les premières publications validées par ADPDH."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Toutes les actualités",
+          "url": "actualites.html"
+        },
+        {
+          "label": "Lire l’article",
+          "url": "actualite.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "ressources",
+      "label": "Comprendre notre engagement.",
+      "template": "collection",
+      "collection": "publications",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-48",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-31",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Présentation institutionnelle, plan stratégique et rapports : les documents seront accessibles dès leur mise à disposition."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Voir les ressources",
+          "url": "ressources.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "soutenir",
+      "label": "Soutenir l’autonomie.\nFaire grandir la solidarité.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-49",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-32",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-33",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Contribuez aux actions menées auprès des communautés que nous accompagnons."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Faire un don",
+          "url": "faire-un-don.html"
+        }
+      ]
+    },
+    {
+      "page": "index",
+      "key": "contact",
+      "label": "Un lien direct\navec ADPDH.",
+      "template": "collection",
+      "collection": "contact_settings",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-50",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-34",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-35",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "305, avenue Patrice Emery Lumumba\nCommune d’Ibanda, Bukavu\nSud-Kivu, République démocratique du Congo"
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Accéder au formulaire",
+          "url": "contact.html"
+        }
+      ]
+    },
+    {
+      "page": "activites",
+      "key": "hero",
+      "label": "Des actions.\nDes communautés qui avancent.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-8",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Découvrez les activités en cours et le projet THIMO / STEP achevé en 2023–2024."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "actualites",
+      "key": "hero",
+      "label": "La vie de\nnos actions.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Formations, initiatives communautaires et étapes de notre engagement : un espace pour suivre les nouvelles d’ADPDH."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "contact",
+      "key": "hero",
+      "label": "Un lien direct\navec ADPDH.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-10",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Une question, une information ou un premier échange : retrouvez ici les coordonnées de notre équipe à Bukavu."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "devenir-partenaire",
+      "key": "hero",
+      "label": "Ensemble, donner plus\nde portée à l’action.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-13",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Institutions, bailleurs, organisations et partenaires techniques : construisons des collaborations au service des communautés."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "faire-un-don",
+      "key": "hero",
+      "label": "Soutenir l’autonomie.\nFaire grandir la solidarité.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Votre soutien contribue aux actions auprès des communautés accompagnées par ADPDH."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "impact",
+      "key": "hero",
+      "label": "Des repères concrets.\nUne action qui se mesure.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-19",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Les indicateurs communiqués par ADPDH éclairent le travail accompli. Chaque résultat est présenté avec son\n        périmètre et les informations disponibles."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "mentions-legales",
+      "key": "hero",
+      "label": "Les informations\ndu site.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-9",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Identification de l’organisation, état du formulaire et crédits de la maquette."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "que-faisons-nous",
+      "key": "hero",
+      "label": "Quatre piliers.\nUne même dignité.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-19",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Le Plan stratégique 2026–2030 articule neuf axes d’intervention autour de quatre piliers complémentaires."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "hero",
+      "label": "Ancrés dans nos communautés.\nEngagés pour leur avenir.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-36",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Action pour le Développement et la Promotion des Droits Humains.\nUne organisation née à Bukavu, guidée par la dignité humaine."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "ressources",
+      "key": "hero",
+      "label": "Comprendre notre action.\nPartager les savoirs.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-10",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Retrouvez les documents de référence et les publications destinés à présenter l’organisation et ses méthodes d’accompagnement."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "temoignages",
+      "key": "hero",
+      "label": "Derrière chaque action,\nun parcours.",
+      "template": "hero",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-3",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-4",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Les récits donnent une place aux expériences individuelles, aux changements du quotidien et aux perspectives des personnes accompagnées."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "histoire",
+      "label": "Une conviction\ndevenue action.",
+      "template": "collection",
+      "collection": "history_events",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-37",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-5",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          },
+          {
+            "legacy": "text-6",
+            "prefix": "",
+            "suffix": " "
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Construire des ponts entre les communautés et faire grandir les solidarités qui existent déjà."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "L’histoire d’ADPDH commence par une conviction partagée par deux jeunes de Bukavu : le développement doit partir des forces des communautés."
+          },
+          {
+            "type": "paragraph",
+            "text": "Daniel Uwezo et Docile Utashi grandissent dans une région marquée par les conflits. Ils s’interrogent sur ce qui manque pour bâtir une paix durable : une cohésion sociale réelle et des initiatives qui placent l’être humain au centre."
+          },
+          {
+            "type": "paragraph",
+            "text": "Leur engagement civique, puis leurs rencontres avec d’autres communautés, renforcent cette intuition. Les mécanismes d’épargne collective, de médiation et de solidarité constituent déjà une base sur laquelle construire."
+          },
+          {
+            "type": "paragraph",
+            "text": "Le récit fondateur situe cet engagement dans l’histoire de Bukavu, marquée par les bouleversements de 1996, la rébellion de 1998 et les violences de 2004. Ces expériences nourrissent chez les fondateurs une réflexion sur les liens entre cohésion sociale, richesse culturelle et développement."
+          },
+          {
+            "type": "paragraph",
+            "text": "Les voyages et les rencontres qui suivent leur montrent des communautés capables de s’appuyer sur leurs propres pratiques de solidarité. ADPDH naît de cette volonté de relier les ressources humaines et culturelles de la région, plutôt que de les laisser se fragmenter."
+          }
+        ]
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "valeurs",
+      "label": "Ce qui guide\nnotre manière d’agir.",
+      "template": "collection",
+      "collection": "organization_values",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-40",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-16",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-17",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Des principes partagés dans nos relations avec les communautés et nos partenaires."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "statut",
+      "label": "Une association\nau service des communautés.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-41",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-23",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-24",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": ""
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "zones",
+      "label": "Un ancrage local.\nUne ambition régionale.",
+      "template": "collection",
+      "collection": "intervention_zones",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-42",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-25",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-26",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "ADPDH intervient dans la région des Grands Lacs, principalement au Nord-Kivu et au Sud-Kivu."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir les activités",
+          "url": "activites.html"
+        }
+      ]
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "equipe",
+      "label": "Les personnes qui portent l’action.",
+      "template": "collection",
+      "collection": "team_members",
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-44",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-29",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Coordonnateur"
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "vision",
+      "label": "La dignité,\nla paix, la sécurité.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-38",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-11",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          },
+          {
+            "legacy": "text-12",
+            "prefix": "",
+            "suffix": " "
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-13",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Une région des Grands Lacs où chaque personne, en particulier les plus vulnérables, vit dans la dignité, la paix et la sécurité, et jouit pleinement de ses droits fondamentaux."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "qui-sommes-nous",
+      "key": "mission",
+      "label": "Accompagner\nl’autonomie durable.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-39",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-14",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-15",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Contribuer à l’autonomisation des populations et communautés vulnérables, à la protection de leurs droits et à leur résilience durable, à travers des actions intégrées de développement, d’urgence humanitaire, de protection et de plaidoyer."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "que-faisons-nous",
+      "key": "complementarite",
+      "label": "Un projet peut relier plusieurs piliers.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-24",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-18",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Les AVEC associent épargne et activités économiques, inclusion, prévention des violences et cohésion sociale. Les travaux THIMO relient revenus et protection des personnes vulnérables."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir nos activités",
+          "url": "activites.html"
+        }
+      ]
+    },
+    {
+      "page": "impact",
+      "key": "section-heading",
+      "label": "Des solidarités.\nDes activités qui durent.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-21",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-6",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Indicateurs AVEC et AGR transmis par ADPDH. Leur date de référence n’est pas précisée dans le document\n          source."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "impact",
+      "key": "institutional-section",
+      "label": "Lire les chiffres avec leur contexte.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-22",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-13",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Source : document institutionnel ADPDH, rubrique « Notre impact ». Les rapports de suivi du projet et la\n              CSPP sont identifiés comme sources complémentaires ; ils n’ont pas encore été rapprochés de cet\n              indicateur."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Source : même document institutionnel. La période de collecte, les effectifs de référence et les\n              modalités de calcul restent à documenter, notamment pour le taux de remboursement."
+          },
+          {
+            "type": "paragraph",
+            "text": "Ces chiffres décrivent des groupes et des mesures différents. Ils ne sont pas additionnés en un total de\n              personnes accompagnées : certains publics peuvent se recouper."
+          },
+          {
+            "type": "paragraph",
+            "text": "Les chiffres présentés proviennent du contenu institutionnel fourni par ADPDH. Ils ne\n          constituent pas une évaluation indépendante ni une mesure causale de l’impact."
+          }
+        ]
+      },
+      "buttons": []
+    },
+    {
+      "page": "impact",
+      "key": "about-cta",
+      "label": "Faire place\naux parcours.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-23",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-17",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-18",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": ""
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Nos succès et témoignages",
+          "url": "temoignages.html"
+        }
+      ]
+    },
+    {
+      "page": "temoignages",
+      "key": "cross-action",
+      "label": "Consulter les indicateurs disponibles.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-9",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-6",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "La page Impact rassemble les chiffres communiqués par ADPDH, avec leurs périodes et leurs limites."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir notre impact",
+          "url": "impact.html"
+        }
+      ]
+    },
+    {
+      "page": "devenir-partenaire",
+      "key": "partnership-intro",
+      "label": "Un premier échange\npour construire ensemble.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-14",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-9",
+            "prefix": "",
+            "suffix": ""
+          },
+          {
+            "literal": "\n"
+          }
+        ],
+        "title_accent": [
+          {
+            "legacy": "text-10",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "introduction": [
+          {
+            "literal": "Présentez votre organisation, le domaine qui vous intéresse et la forme de contribution envisagée. Notre équipe pourra échanger avec vous sur les possibilités de collaboration."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "+243 896 263 558"
+          },
+          {
+            "type": "paragraph",
+            "text": "Vision, mission et quatre piliers : les repères essentiels pour préparer un échange."
+          },
+          {
+            "type": "paragraph",
+            "text": "Le document de présentation n’est pas encore disponible au téléchargement."
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "label": "Écrire à l’équipe partenariat",
+          "url": "mailto:contact@adpdh.org?subject=Partenariat%20avec%20ADPDH"
+        },
+        {
+          "label": "+243 896 263 558",
+          "url": "tel:+243896263558"
+        }
+      ]
+    },
+    {
+      "page": "devenir-partenaire",
+      "key": "cross-action",
+      "label": "Vous souhaitez faire un don ?",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [
+          {
+            "legacy": "text-16",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title": [
+          {
+            "legacy": "text-12",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Retrouvez les modalités de soutien et le contact dédié aux dons."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Faire un don",
+          "url": "faire-un-don.html"
+        }
+      ]
+    },
+    {
+      "page": "faire-un-don",
+      "key": "donation-purpose",
+      "label": "Accompagner des initiatives concrètes.",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [],
+        "title": [
+          {
+            "legacy": "text-5",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Épargne communautaire, activités génératrices de revenus, protection et cohésion sociale : découvrez les domaines dans lesquels ADPDH agit."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": [
+        {
+          "label": "Découvrir les activités",
+          "url": "activites.html"
+        }
+      ]
+    },
+    {
+      "page": "mentions-legales",
+      "key": "legal-0",
+      "label": "Organisation",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [],
+        "title": [
+          {
+            "legacy": "text-5",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Action pour le Développement et la Promotion des Droits Humains (ADPDH), association sans but lucratif, apolitique, de développement communautaire et des droits humains, créée le 10 janvier 2010 à Bukavu."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": []
+      },
+      "buttons": []
+    },
+    {
+      "page": "mentions-legales",
+      "key": "confidentialite",
+      "label": "Formulaire et confidentialité",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [],
+        "title": [
+          {
+            "legacy": "text-6",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Le formulaire de contact est une démonstration locale : les champs saisis ne sont pas transmis ni stockés par le site. Son bouton vérifie les champs et affiche un message de démonstration."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Les liens e-mail et téléphone ouvrent les applications correspondantes pour contacter ADPDH."
+          },
+          {
+            "type": "paragraph",
+            "text": "Avant l’activation du formulaire connecté au backend, les finalités du traitement, les destinataires, les durées de conservation et les modalités de contact relatives aux données personnelles devront être précisés ici."
+          }
+        ]
+      },
+      "buttons": []
+    },
+    {
+      "page": "mentions-legales",
+      "key": "legal-2",
+      "label": "Crédits visuels",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [],
+        "title": [
+          {
+            "legacy": "text-7",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Identité : logo et favicon ADPDH fournis pour le projet."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Les scènes communautaires et d’atelier sont des illustrations générées par IA, signalées dans leurs légendes. Elles ne représentent pas des événements réels d’ADPDH."
+          },
+          {
+            "type": "paragraph",
+            "text": "Les avatars de l’équipe et les couvertures des publications sont des éléments graphiques provisoires de la maquette. Les crédits des futures photographies seront complétés à leur intégration."
+          }
+        ]
+      },
+      "buttons": []
+    },
+    {
+      "page": "mentions-legales",
+      "key": "legal-3",
+      "label": "Contenus de démonstration",
+      "template": "editorial",
+      "collection": null,
+      "fields": {
+        "eyebrow": [],
+        "title": [
+          {
+            "legacy": "text-8",
+            "prefix": "",
+            "suffix": ""
+          }
+        ],
+        "title_accent": [],
+        "introduction": [
+          {
+            "literal": "Les articles et le récit de témoignage portant la mention « Exemple fictif — à remplacer » servent à présenter la mise en page. Ils ne constituent ni des témoignages recueillis ni des résultats documentés."
+          }
+        ]
+      },
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Les chiffres de la page Impact reprennent le document institutionnel fourni par ADPDH, avec les périodes et limites disponibles."
+          }
+        ]
+      },
+      "buttons": [
+        {
+          "label": "Consulter les indicateurs",
+          "url": "impact.html"
+        }
+      ]
+    }
+  ],
+  "pillars": [
+    {
+      "key": "developpement",
+      "page": "que-faisons-nous",
+      "title_parts": [
+        {
+          "legacy": "text-5",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Construire dans la durée les capacités, les savoirs et les revenus des communautés.",
+      "axes": [
+        {
+          "key": "axe-1",
+          "title_parts": [
+            {
+              "legacy": "text-6",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Former les comités, associations et coopératives à la gestion organisationnelle et à la redevabilité. Accompagner les femmes et les jeunes vers un leadership qui rassemble."
+        },
+        {
+          "key": "axe-2",
+          "title_parts": [
+            {
+              "legacy": "text-7",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Accompagner les plans de développement participatifs et les comités locaux chargés des infrastructures et services partagés : eau, marchés et écoles. Préparer leur continuité après le retrait de l’organisation."
+        },
+        {
+          "key": "axe-3",
+          "title_parts": [
+            {
+              "legacy": "text-8",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Soutenir les enfants non scolarisés, les jeunes déscolarisés et les femmes adultes non alphabétisées. Ouvrir des perspectives par les formations professionnelles, notamment en couture et en menuiserie."
+        },
+        {
+          "key": "axe-4",
+          "title_parts": [
+            {
+              "legacy": "text-9",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Accompagner la création, la structuration et la maturation des AVEC, AGR, mutuelles de solidarité et entreprises communautaires. Donner la priorité aux activités ancrées dans l’économie locale, notamment l’agroalimentaire et l’élevage."
+        }
+      ]
+    },
+    {
+      "key": "protection",
+      "page": "que-faisons-nous",
+      "title_parts": [
+        {
+          "legacy": "text-10",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Répondre à l’urgence, puis accompagner la reconstruction dans la durée.",
+      "axes": [
+        {
+          "key": "axe-5",
+          "title_parts": [
+            {
+              "legacy": "text-11",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Sauver des vies, préserver l’intégrité physique et la dignité des populations vulnérables. Orienter les personnes à risque vers une prise en charge adaptée grâce aux mécanismes de référencement."
+        },
+        {
+          "key": "axe-6",
+          "title_parts": [
+            {
+              "legacy": "text-12",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Prévenir les violences basées sur le genre et accompagner les personnes affectées par les violences, l’extrême pauvreté ou les catastrophes. Soutenir leur santé mentale au-delà de l’urgence immédiate."
+        }
+      ]
+    },
+    {
+      "key": "gouvernance",
+      "page": "que-faisons-nous",
+      "title_parts": [
+        {
+          "legacy": "text-13",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Préserver les ressources partagées et porter la voix des communautés.",
+      "axes": [
+        {
+          "key": "axe-7",
+          "title_parts": [
+            {
+              "legacy": "text-14",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Favoriser le dialogue et la médiation pour prévenir ou résoudre les conflits. Porter les préoccupations collectives des communautés."
+        },
+        {
+          "key": "axe-8",
+          "title_parts": [
+            {
+              "legacy": "text-15",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Préserver les ressources naturelles, restaurer les terres dégradées et améliorer l’accès à l’eau et à l’assainissement pour un cadre de vie sain."
+        }
+      ]
+    },
+    {
+      "key": "droits",
+      "page": "que-faisons-nous",
+      "title_parts": [
+        {
+          "legacy": "text-16",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Garantir la dignité des personnes détenues et accompagner leur réinsertion.",
+      "axes": [
+        {
+          "key": "axe-9",
+          "title_parts": [
+            {
+              "legacy": "text-17",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Promouvoir les droits des personnes en détention préventive ou condamnées, accompagner l’examen de leur situation judiciaire et faciliter leur réinsertion sociale et économique."
+        }
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "key": "avec-agr",
+      "page": "activite-avec-agr",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Épargner, entreprendre et gagner en autonomie.",
+      "objective": "Créer des Associations Villageoises d’Épargne et de Crédit, puis les accompagner jusqu’à leur\n          maturation : gouvernance, épargne, crédit et gestion rentable des activités génératrices de revenus.",
+      "audience": "Membres des AVEC et des mutuelles de solidarité, en particulier les femmes ; priorité aux personnes peu ou\n            pas alphabétisées.",
+      "location": "Bukavu et zones rurales appuyées, Sud-Kivu",
+      "activity_status": "ongoing",
+      "period_label": null,
+      "start_year": null,
+      "end_year": null,
+      "results_note": null,
+      "source_note": "",
+      "steps": [
+        {
+          "key": "1",
+          "title_parts": [
+            {
+              "legacy": "text-6",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Apprentissage en français, swahili et mashi pour faciliter l’accès à la formation."
+        },
+        {
+          "key": "2",
+          "title_parts": [
+            {
+              "legacy": "text-7",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Organisation, gouvernance, sécurité de la caisse, mécanismes d’épargne et de crédit, coût de revient,\n              prix de vente, gestion financière et marketing."
+        },
+        {
+          "key": "3",
+          "title_parts": [
+            {
+              "legacy": "text-8",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Appui intellectuel et matériel aux initiatives des femmes et des jeunes. La maturation associe inclusion\n              des membres non lettrés, prévention des discours de haine et lutte contre les VBG."
+        }
+      ],
+      "cover": "workshop",
+      "axes": [
+        "axe-4",
+        "axe-6",
+        "axe-7"
+      ]
+    },
+    {
+      "key": "resilience",
+      "page": "activite-resilience",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Renforcer les capacités et faire vivre le dialogue.",
+      "objective": "Contribuer à la résilience et à l’autonomisation par des formations au leadership, des espaces\n          de dialogue et des activités de cohésion sociale.",
+      "audience": "Personnes à faibles revenus, avec une priorité aux femmes et aux jeunes.",
+      "location": "Sud-Kivu",
+      "activity_status": "ongoing",
+      "period_label": null,
+      "start_year": null,
+      "end_year": null,
+      "results_note": "Les résultats chiffrés de cette activité ne sont pas encore renseignés dans le document\n        institutionnel.",
+      "source_note": "Source : contenu institutionnel ADPDH. Calendrier détaillé et résultats à compléter.",
+      "steps": [
+        {
+          "key": "1",
+          "title_parts": [
+            {
+              "legacy": "text-6",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Des formations au leadership communautaire sont mentionnées dans le programme."
+        },
+        {
+          "key": "2",
+          "title_parts": [
+            {
+              "legacy": "text-7",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Des espaces de dialogue permettent aux communautés de se rencontrer."
+        },
+        {
+          "key": "3",
+          "title_parts": [
+            {
+              "legacy": "text-8",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "L’activité comprend des actions de cohésion sociale au Sud-Kivu."
+        }
+      ],
+      "cover": "community",
+      "axes": [
+        "axe-1",
+        "axe-7"
+      ]
+    },
+    {
+      "key": "thimo-step",
+      "page": "activite-thimo-step",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Des travaux publics au service de la réintégration économique.",
+      "objective": "Faciliter des travaux publics à haute intensité de main-d’œuvre, selon une approche de travail\n          rémunéré, dans le cadre de la réintégration socio-économique communautaire.",
+      "audience": "En priorité les femmes, les jeunes filles et les couches vulnérables.",
+      "location": "Kamituga, Bukavu et Uvira, Sud-Kivu",
+      "activity_status": "completed",
+      "period_label": "2023–2024",
+      "start_year": 2023,
+      "end_year": 2024,
+      "results_note": null,
+      "source_note": "Source : indicateur du document institutionnel ADPDH. Les données complémentaires sont à\n        rechercher dans les rapports du projet ou auprès de la CSPP ; leur vérification externe reste à effectuer.",
+      "steps": [
+        {
+          "key": "1",
+          "title_parts": [
+            {
+              "legacy": "text-6",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "ADPDH intervient comme partenaire facilitateur du projet STEP."
+        },
+        {
+          "key": "2",
+          "title_parts": [
+            {
+              "legacy": "text-7",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Financement de la Banque mondiale via le Projet pour la Stabilisation de l’Est de la RDC pour la Paix,\n              sous tutelle du Ministère des Finances, Cellule de Suivi des Projets et Programmes (CSPP)."
+        },
+        {
+          "key": "3",
+          "title_parts": [
+            {
+              "legacy": "text-8",
+              "prefix": "",
+              "suffix": ""
+            }
+          ],
+          "description": "Kamituga, territoire de Mwenga ; Mulambula et Kanoshi à Bagira, Bukavu ; Mulongwe et Kasenga à Uvira."
+        }
+      ],
+      "cover": "community",
+      "axes": [
+        "axe-4",
+        "axe-5"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "key": "1",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-8",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Au Parlement des Enfants du Sud-Kivu, Daniel et Docile participent à un espace civique qui leur permet de porter la voix de leur génération.",
+      "period_label": "2006"
+    },
+    {
+      "key": "2",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-9",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Le 10 janvier, ils fondent ADPDH à Bukavu avec un cercle d’amis et de connaissances engagés dans la même cause.",
+      "period_label": "2010"
+    },
+    {
+      "key": "3",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-10",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "À travers les AVEC, l’accompagnement des initiatives économiques et le travail de cohésion sociale, ADPDH soutient une autonomie qui se construit depuis les communautés.",
+      "period_label": "Aujourd’hui"
+    }
+  ],
+  "values": [
+    {
+      "key": "1",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-18",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Respect de la dignité et des droits de chaque personne."
+    },
+    {
+      "key": "2",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-19",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Envers les communautés et les partenaires."
+    },
+    {
+      "key": "3",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-20",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Une action humanitaire impartiale et indépendante."
+    },
+    {
+      "key": "4",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-21",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Égalité de genre et participation de toutes et tous."
+    },
+    {
+      "key": "5",
+      "page": "qui-sommes-nous",
+      "title_parts": [
+        {
+          "legacy": "text-22",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Des principes au cœur de l’action collective."
+    }
+  ],
+  "zones": [
+    {
+      "key": "sud-kivu",
+      "title": "Sud-Kivu",
+      "zone_status": "current",
+      "description": "Province d’intervention mentionnée dans le document institutionnel ADPDH."
+    },
+    {
+      "key": "nord-kivu",
+      "title": "Nord-Kivu",
+      "zone_status": "current",
+      "description": "Province d’intervention mentionnée dans le document institutionnel ADPDH."
+    },
+    {
+      "key": "tanganyika",
+      "title": "Tanganyika",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    },
+    {
+      "key": "ituri",
+      "title": "Ituri",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    },
+    {
+      "key": "haut-uele",
+      "title": "Haut-Uele",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    },
+    {
+      "key": "maniema",
+      "title": "Maniema",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    },
+    {
+      "key": "kasaï",
+      "title": "Kasaï",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    },
+    {
+      "key": "lualaba",
+      "title": "Lualaba",
+      "zone_status": "planned",
+      "description": "Perspective d’extension selon les capacités et financements disponibles."
+    }
+  ],
+  "partnerships": [
+    {
+      "key": "1",
+      "page": "devenir-partenaire",
+      "title_parts": [
+        {
+          "legacy": "text-5",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Soutenir un axe, un pilier ou un projet : autonomisation économique, protection, cohésion sociale ou droits humains."
+    },
+    {
+      "key": "2",
+      "page": "devenir-partenaire",
+      "title_parts": [
+        {
+          "legacy": "text-6",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Apporter un appui en suivi-évaluation, andragogie, gestion financière communautaire ou protection."
+    },
+    {
+      "key": "3",
+      "page": "devenir-partenaire",
+      "title_parts": [
+        {
+          "legacy": "text-7",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Contribuer avec du matériel de formation, des kits AVEC ou des équipements pour les entreprises des femmes et des jeunes."
+    },
+    {
+      "key": "4",
+      "page": "devenir-partenaire",
+      "title_parts": [
+        {
+          "legacy": "text-8",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Collaborer à la mise en œuvre de dispositifs publics ou multilatéraux, à l’image du rôle de partenaire facilitateur d’ADPDH sur le projet STEP."
+    }
+  ],
+  "publications": [
+    {
+      "key": "presentation",
+      "page": "ressources",
+      "title_parts": [
+        {
+          "legacy": "text-5",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Vision, mission, objectif et quatre piliers d’intervention.",
+      "category": "organisation"
+    },
+    {
+      "key": "strategie",
+      "page": "ressources",
+      "title_parts": [
+        {
+          "legacy": "text-6",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Les orientations et priorités stratégiques de l’organisation.",
+      "category": "strategie"
+    },
+    {
+      "key": "modules",
+      "page": "ressources",
+      "title_parts": [
+        {
+          "legacy": "text-7",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Des supports dont la diffusion publique reste à confirmer par la coordination.",
+      "category": "formation"
+    },
+    {
+      "key": "rapports",
+      "page": "ressources",
+      "title_parts": [
+        {
+          "legacy": "text-8",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "description": "Les rapports pourront être mis à disposition une fois produits et validés.",
+      "category": "rapports"
+    }
+  ],
+  "news": [
+    {
+      "key": "actualite",
+      "page": "actualite",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "content": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Cet exemple illustre le futur récit d’une séance consacrée à la gestion d’une activité génératrice de revenus."
+          },
+          {
+            "type": "paragraph",
+            "text": "Dans ce scénario fictif, les participants découvrent la tenue d’une caisse, la distinction entre dépenses professionnelles et dépenses du foyer, ainsi que la préparation des achats."
+          },
+          {
+            "type": "paragraph",
+            "text": "La publication finale pourra présenter les objectifs de la séance, les exercices réellement réalisés et les observations validées par l’équipe. Aucun effectif ni résultat de formation n’est attribué à cet exemple."
+          },
+          {
+            "type": "paragraph",
+            "text": "La fiche AVEC & AGR présente les informations communiquées par ADPDH sur son accompagnement."
+          }
+        ]
+      },
+      "category": "formation",
+      "cover": "workshop"
+    },
+    {
+      "key": "actualite-cycle-avec",
+      "page": "actualite-cycle-avec",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "content": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Cet exemple présente le format d’une future actualité sur la vie d’un groupe d’épargne communautaire."
+          },
+          {
+            "type": "paragraph",
+            "text": "Dans ce scénario fictif, une rencontre permet d’échanger sur les objectifs d’épargne, les règles communes et la participation de chaque membre."
+          },
+          {
+            "type": "paragraph",
+            "text": "Un article validé pourra préciser le contexte de la rencontre, les décisions prises et les prochaines étapes. Aucun groupe réel, montant épargné ou résultat n’est décrit ici."
+          },
+          {
+            "type": "paragraph",
+            "text": "La fiche AVEC & AGR présente les informations communiquées par ADPDH sur son accompagnement."
+          }
+        ]
+      },
+      "category": "avec",
+      "cover": "community"
+    }
+  ],
+  "testimonials": [
+    {
+      "key": "demo-parcours",
+      "page": "temoignage-exemple",
+      "title_parts": [
+        {
+          "legacy": "text-3",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "literal": "\n"
+        },
+        {
+          "legacy": "text-4",
+          "prefix": "",
+          "suffix": ""
+        }
+      ],
+      "body": {
+        "version": 1,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Portrait à venir\nAucun bénéficiaire réel représenté"
+          },
+          {
+            "type": "paragraph",
+            "text": "Personnage de démonstration · portrait non fourni"
+          },
+          {
+            "type": "paragraph",
+            "text": "UN PARCOURS ILLUSTRATIF"
+          },
+          {
+            "type": "paragraph",
+            "text": "Dans cet exemple fictif, une personne qui développe une petite activité utilise la même caisse pour ses achats professionnels et les dépenses de son foyer. Il lui est difficile de savoir ce qui reste disponible pour renouveler ses produits."
+          },
+          {
+            "type": "paragraph",
+            "text": "Le récit imagine l’apprentissage d’une distinction entre dépenses de l’activité et besoins du ménage, puis la mise en place d’un suivi simple des entrées et des sorties."
+          },
+          {
+            "type": "paragraph",
+            "text": "Dans ce scénario de démonstration, ces repères facilitent la préparation des prochains achats. Aucun revenu, montant épargné ou changement familial réel n’est attribué à cette personne fictive."
+          }
+        ]
+      }
+    }
+  ],
+  "media": [
+    {
+      "key": "logo-small",
+      "name": "logo-small.webp",
+      "path": "adpdh/assets/logo-small.webp",
+      "mime_type": "image/webp",
+      "size": 24178,
+      "width": 200,
+      "height": 200,
+      "is_illustration": false,
+      "credit": "Identité ADPDH / graphisme de maquette",
+      "variants": []
+    },
+    {
+      "key": "favicon",
+      "name": "favicon.png",
+      "path": "adpdh/assets/favicon.png",
+      "mime_type": "image/png",
+      "size": 6577,
+      "width": 45,
+      "height": 45,
+      "is_illustration": false,
+      "credit": "Identité ADPDH / graphisme de maquette",
+      "variants": []
+    },
+    {
+      "key": "community",
+      "name": "community-1200.webp",
+      "path": "adpdh/assets/community-1200.webp",
+      "mime_type": "image/webp",
+      "size": 185300,
+      "width": 1200,
+      "height": 675,
+      "is_illustration": true,
+      "credit": "Illustration générée par IA — ne représente pas une activité réelle ADPDH",
+      "variants": [
+        {
+          "name": "640",
+          "path": "adpdh/assets/community-640.webp",
+          "mime_type": "image/webp",
+          "size": 74946,
+          "width": 640,
+          "height": 360
+        },
+        {
+          "name": "1680",
+          "path": "adpdh/assets/community-1680.webp",
+          "mime_type": "image/webp",
+          "size": 274956,
+          "width": 1680,
+          "height": 946
+        }
+      ]
+    },
+    {
+      "key": "workshop",
+      "name": "workshop-1200.webp",
+      "path": "adpdh/assets/workshop-1200.webp",
+      "mime_type": "image/webp",
+      "size": 154204,
+      "width": 1200,
+      "height": 900,
+      "is_illustration": true,
+      "credit": "Illustration générée par IA — ne représente pas une activité réelle ADPDH",
+      "variants": [
+        {
+          "name": "640",
+          "path": "adpdh/assets/workshop-640.webp",
+          "mime_type": "image/webp",
+          "size": 66348,
+          "width": 640,
+          "height": 480
+        },
+        {
+          "name": "1680",
+          "path": "adpdh/assets/workshop-1680.webp",
+          "mime_type": "image/webp",
+          "size": 232760,
+          "width": 1680,
+          "height": 1260
+        }
+      ]
+    },
+    {
+      "key": "avatar-default",
+      "name": "avatar-default.svg",
+      "path": "adpdh/assets/avatar-default.svg",
+      "mime_type": "image/svg+xml",
+      "size": 355,
+      "width": null,
+      "height": null,
+      "is_illustration": true,
+      "credit": "Identité ADPDH / graphisme de maquette",
+      "variants": []
+    }
+  ],
+  "faq": [
+    {
+      "key": "don-1",
+      "question": "Comment préciser l’action que je souhaite soutenir ?",
+      "answer": "Indiquez votre domaine ou votre projet d’intérêt dans votre message à ADPDH. L’équipe pourra préciser avec vous les modalités d’affectation."
+    },
+    {
+      "key": "don-2",
+      "question": "Puis-je apporter du matériel ou une expertise ?",
+      "answer": "Oui, ces formes de contribution sont présentées dans les types de partenariat recherchés."
+    },
+    {
+      "key": "don-3",
+      "question": "Comment obtenir des informations sur les résultats ?",
+      "answer": "Les indicateurs disponibles et leurs sources sont regroupés sur la page Impact."
+    }
+  ]
+}

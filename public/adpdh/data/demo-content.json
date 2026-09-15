@@ -1,0 +1,20 @@
+{
+  "mode": "demonstration",
+  "notice": "Exemples fictifs pour la maquette, à remplacer avant publication.",
+  "news": [
+    {"id":"demo-formation","is_demo":true,"label":"Exemple fictif — à remplacer","title":"Une journée pour apprendre à gérer son activité","category":"Formation","date":null,"excerpt":"Exemple de contenu : des exercices pratiques permettent de découvrir la tenue d’une caisse et la distinction entre dépenses du foyer et dépenses de l’activité.","image":null},
+    {"id":"demo-cycle-avec","is_demo":true,"label":"Exemple fictif — à remplacer","title":"Un nouveau cycle d’épargne communautaire","category":"AVEC","date":null,"excerpt":"Exemple de contenu : une rencontre de groupe autour des objectifs d’épargne, des règles communes et de la participation de chaque membre.","image":null}
+  ],
+  "testimonials": [
+    {"id":"demo-parcours","is_demo":true,"label":"Témoignage fictif — à remplacer","display_name":"Personnage de démonstration","quote":"Je distingue mieux les besoins de mon activité de ceux de mon foyer. Cette organisation m’aide à préparer les prochaines étapes.","story":"Ce récit sert uniquement à présenter la mise en page d’un parcours avant/après. Il ne décrit pas une personne accompagnée par ADPDH.","image":null}
+  ],
+  "resources": [
+    {"id":"demo-presentation","is_demo":true,"label":"Document de démonstration","title":"Présentation institutionnelle","category":"Organisation","file":null,"download_enabled":false},
+    {"id":"demo-rapport","is_demo":true,"label":"Document de démonstration","title":"Rapport annuel — exemple de couverture","category":"Rapports","file":null,"download_enabled":false}
+  ],
+  "image_slots": [
+    {"id":"home-hero","ratio":"16:9","brief":"Scène de coopération communautaire, cadrage large avec espace pour le titre","source":null,"credit":null,"is_illustration":true},
+    {"id":"about-context","ratio":"4:3","brief":"Contexte géographique ou action collective, image documentaire vérifiée","source":null,"credit":null,"is_illustration":true},
+    {"id":"story-portrait","ratio":"3:4","brief":"Portrait de démonstration, jamais présenté comme un bénéficiaire réel","source":null,"credit":null,"is_illustration":true}
+  ]
+}

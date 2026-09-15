@@ -8,8 +8,7 @@ Route::middleware('guest')->group(function () {
     Volt::route('login', 'auth.login')
         ->name('login');
 
-    Volt::route('register', 'auth.register')
-        ->name('register');
+    // Public account registration is disabled for this institutional CMS.
 
     Volt::route('forgot-password', 'auth.forgot-password')
         ->name('password.request');

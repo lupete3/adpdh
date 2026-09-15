@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Daniel Uwezo",
+    "role": "Coordonnateur",
+    "photo": null,
+    "phone": "+243 812 438 762",
+    "email": "danieluwezo@adpdh.org"
+  },
+  {
+    "name": "Solange Mulinganya",
+    "role": "Chargée de programmes",
+    "photo": null,
+    "phone": "+243 897 440 440",
+    "email": "solangemulinganya@adpdh.org"
+  },
+  {
+    "name": "Joachin Kaharanyi",
+    "role": "Animateur social",
+    "photo": null,
+    "phone": "+243 977 720 122",
+    "email": null
+  },
+  {
+    "name": "Landrine Zihalirwa",
+    "role": "Animatrice sociale et formatrice",
+    "photo": null,
+    "phone": "+243 906 188 784",
+    "email": null
+  }
+]
