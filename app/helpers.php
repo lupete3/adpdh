@@ -1,5 +1,19 @@
 <?php
 
+if (!function_exists('adpdh_url')) {
+    function adpdh_url(string $path): string
+    {
+        if (preg_match('~^/?(?:adpdh/)?que-faisons-nous(?:\.html)?([?#].*)?$~D', $path, $match)) {
+            return route('work').($match[1] ?? '');
+        }
+        if (preg_match('~^(?:/?(?:adpdh/)?)?qui-sommes-nous(?:\.html)?([?#].*)?$~D', $path, $match)) {
+            return route('organization').($match[1] ?? '');
+        }
+        if (preg_match('~^[a-z0-9-]+\.html(?:[?#].*)?$~D', $path)) return asset('adpdh/'.$path);
+        return $path;
+    }
+}
+
 if (!function_exists('media_url')) {
     /**
      * Resolve a media path to a public URL.

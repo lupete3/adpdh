@@ -1,6 +1,6 @@
 @php($editing=(string)old('section_id')===(string)$section->id)
 <div class="card mb-4">
-<form class="card-body" method="post" action="{{ route('admin.cms.home.section',$section) }}">@csrf @method('PUT')
+<form class="card-body" method="post" action="{{ route($sectionUpdateRoute ?? ($section->page->key === 'qui-sommes-nous' ? 'admin.cms.about.section.update' : 'admin.cms.home.section'),$section) }}">@csrf @method('PUT')
 <input type="hidden" name="section_id" value="{{ $section->id }}"><input type="hidden" name="version" value="{{ $editing?old('version',$section->version):$section->version }}">
 <div class="row"><div class="col-md-8">
 @foreach(['eyebrow'=>'Surtitre','title'=>'Titre','title_accent'=>'Partie du titre en couleur','introduction'=>'Introduction'] as $field=>$label)
@@ -14,13 +14,24 @@
 
 
 
-</div><div class="col-md-4"><label class="form-label" for="visible-{{ $section->id }}">Affichage</label><select class="form-select mb-3" name="is_visible" id="visible-{{ $section->id }}"><option value="1" @selected($editing?old('is_visible'):$section->is_visible)>Visible</option><option value="0" @selected(!($editing?old('is_visible'):$section->is_visible))>Masquée</option></select><label class="form-label" for="order-{{ $section->id }}">Ordre d’affichage</label><input class="form-control mb-3" id="order-{{ $section->id }}" type="number" name="sort_order" min="0" max="1000" value="{{ $editing?old('sort_order'):$section->sort_order }}" required>
-@if($section->key==='hero')<label class="form-label" for="media-{{ $section->id }}">Image principale</label><select class="form-select mb-3" id="media-{{ $section->id }}" name="media_asset_id"><option value="">Image actuelle de la maquette</option>
+</div><div class="col-md-4"><label class="form-label" for="visible-{{ $section->id }}">Affichage</label><select class="form-select mb-3" name="is_visible" id="visible-{{ $section->id }}"><option value="1" @selected($editing?old('is_visible'):$section->is_visible)>Visible</option><option value="0" @selected(!($editing?old('is_visible'):$section->is_visible))>Masquée</option></select>@if($section->page->key==='que-faisons-nous')<input type="hidden" name="sort_order" value="{{ $section->sort_order }}">@else<label class="form-label" for="order-{{ $section->id }}">Ordre d’affichage</label><input class="form-control mb-3" id="order-{{ $section->id }}" type="number" name="sort_order" min="0" max="1000" value="{{ $editing?old('sort_order'):$section->sort_order }}" required>@endif
+@if($section->key==='hero' || in_array($section->page->key,['qui-sommes-nous','que-faisons-nous']))<label class="form-label" for="media-{{ $section->id }}">Image de la section</label><select class="form-select mb-3" id="media-{{ $section->id }}" name="media_asset_id"><option value="">Aucune image sélectionnée</option>
 @foreach($media as $asset)<option value="{{ $asset->id }}" @selected(($editing?old('media_asset_id'):$section->media_asset_id)==$asset->id)>{{ $asset->name }}</option>
 @endforeach
 
 
 </select>
+@if(in_array($section->page->key,['qui-sommes-nous','que-faisons-nous']))
+<label class="form-label" for="image-caption-{{ $section->id }}">Légende en bas de l’image</label>
+<textarea class="form-control mb-3" id="image-caption-{{ $section->id }}" name="image_caption" maxlength="1000" rows="3">{{ $editing?old('image_caption',$section->image_caption):$section->image_caption }}</textarea>
+<p class="text-muted">Ce texte concerne uniquement l’image de cette section. Laissez vide pour ne pas afficher de légende.</p>
+@if($section->key==='hero' && $section->page->key==='qui-sommes-nous')
+<label class="form-label" for="image-note-title-{{ $section->id }}">Encart sur l’image — titre</label>
+<input class="form-control mb-3" id="image-note-title-{{ $section->id }}" name="image_note_title" maxlength="255" value="{{ $editing?old('image_note_title',$section->image_note_title):$section->image_note_title }}">
+<label class="form-label" for="image-note-text-{{ $section->id }}">Encart sur l’image — texte</label>
+<textarea class="form-control mb-3" id="image-note-text-{{ $section->id }}" name="image_note_text" maxlength="500" rows="3">{{ $editing?old('image_note_text',$section->image_note_text):$section->image_note_text }}</textarea>
+@endif
+@endif
 @endif
 
 
@@ -37,5 +48,3 @@
 
 <button class="btn btn-primary">Enregistrer cette section</button><small class="d-block mt-2">{{ $section->revisions()->count() }} version(s) précédente(s) conservée(s).</small>
 </form></div>
-
-

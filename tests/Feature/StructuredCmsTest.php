@@ -15,13 +15,13 @@ test('structured content seeds preserve editorial changes and accounts', functio
     $admin = User::factory()->create(['is_admin' => true]);
     $password = $admin->password;
     $this->seed(DatabaseSeeder::class);
-    expect(CmsSection::count())->toBe(43);
+    expect(CmsSection::count())->toBe(44);
     expect(Project::forCms()->count())->toBe(3);
     expect(Indicator::count())->toBe(6);
     $section = CmsSection::first();
     $section->update(['title' => 'Titre choisi par administration']);
     $this->seed(DatabaseSeeder::class);
-    expect(CmsSection::count())->toBe(43);
+    expect(CmsSection::count())->toBe(44);
     expect($section->fresh()->title)->toBe('Titre choisi par administration');
     expect($admin->fresh()->password)->toBe($password);
     expect(User::count())->toBe(1);

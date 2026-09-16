@@ -82,10 +82,10 @@ class StructuredCmsSeeder extends Seeder
                 $this->mapped($section, $entry['page'], $entry['fields']);
             }
             foreach ($data['pillars'] as $i => $entry) {
-                $pillar = Pillar::firstOrCreate(['key' => $entry['key']], ['title' => $this->resolveParts($entry['page'], $entry['title_parts']), 'description' => $entry['description'], 'sort_order' => $i + 1]);
+                $pillar = Pillar::withTrashed()->firstOrCreate(['key' => $entry['key']], ['title' => $this->resolveParts($entry['page'], $entry['title_parts']), 'description' => $entry['description'], 'sort_order' => $i + 1]);
                 $this->mapped($pillar, $entry['page'], ['title' => $entry['title_parts']]);
                 foreach ($entry['axes'] as $j => $axis) {
-                    $model = InterventionAxis::firstOrCreate(['key' => $axis['key']], ['pillar_id' => $pillar->id, 'title' => $this->resolveParts($entry['page'], $axis['title_parts']), 'description' => $axis['description'], 'sort_order' => (int) str_replace('axe-', '', $axis['key'])]);
+                    $model = InterventionAxis::withTrashed()->firstOrCreate(['key' => $axis['key']], ['pillar_id' => $pillar->id, 'title' => $this->resolveParts($entry['page'], $axis['title_parts']), 'description' => $axis['description'], 'sort_order' => (int) str_replace('axe-', '', $axis['key'])]);
                     $this->mapped($model, $entry['page'], ['title' => $axis['title_parts']]);
                 }
             }

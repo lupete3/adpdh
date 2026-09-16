@@ -173,7 +173,7 @@
                 @else
                     @foreach ($section->buttons ?? [] as $button)
                         <a class="{{ in_array($section->key, ['hero', 'soutenir', 'partenariat']) ? 'button button-green' : 'text-link' }}"
-                            href="{{ str_ends_with(explode('#', $button['url'])[0], '.html') ? asset('adpdh/' . $button['url']) : $button['url'] }}">{{ $button['label'] }}
+                            href="{{ adpdh_url($button['url']) }}">{{ $button['label'] }}
                             <span aria-hidden="true">↗</span></a>
                     @endforeach
                 @endif

@@ -129,8 +129,9 @@ if (contactDemo) {
 // Keep optional team photos usable when an image fails to load.
 document.querySelectorAll('[data-team-photo]').forEach(photo => {
   function useDefaultAvatar() {
-    if (photo.getAttribute('src') === 'assets/avatar-default.svg') return;
-    photo.src = 'assets/avatar-default.svg';
+    const fallback = photo.dataset.fallback || '/adpdh/assets/avatar-default.svg';
+    if (photo.getAttribute('src') === fallback) return;
+    photo.src = fallback;
     photo.alt = '';
   }
   photo.addEventListener('error', useDefaultAvatar);
