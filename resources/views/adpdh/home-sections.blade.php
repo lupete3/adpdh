@@ -57,7 +57,6 @@
             @if (in_array($section->key, ['hero', 'activites', 'impact', 'partenariat']))
                 <div class="container {{ $section->key === 'hero' ? 'photo-hero-copy' : '' }}">
             @endif
-
             <div
                 class="home-section-heading {{ in_array($section->key, ['piliers', 'activites', 'partenariat', 'actualites']) ? 'section-heading' : '' }}">
                 <div>
@@ -78,7 +77,6 @@
                     @else
                         </h2>
                     @endif
-
                 </div>
                 <p style="white-space:pre-line">{{ $section->introduction }}</p>
             </div>
