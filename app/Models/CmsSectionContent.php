@@ -38,6 +38,8 @@ class CmsSectionContent extends Model
         if (! $this->link_url) {
             return null;
         }
+        $resolved = adpdh_url($this->link_url);
+        if ($resolved !== $this->link_url) return $resolved;
         if (preg_match('~^(?:https?://|mailto:|tel:|/|#)~', $this->link_url)) {
             return $this->link_url;
         }

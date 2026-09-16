@@ -4,6 +4,10 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteRule ^(?:adpdh/)?que-faisons-nous\.html$ /que-faisons-nous [R=301,L]
+
+    # Old organization bookmarks now resolve to the Laravel page.
+    RewriteRule ^(?:adpdh/)?qui-sommes-nous\.html$ /qui-sommes-nous [R=301,L]
 
     # The former static homepage now opens the CMS homepage.
     RewriteRule ^adpdh/index\.html$ / [R=302,L]

@@ -1,0 +1,15 @@
+.about-copy { white-space: pre-line; }
+.about-heading h1, .history-layout h2 { white-space: pre-line; }
+.history-layout h2 em { color: var(--blue); }
+.geography h2 em { color: var(--blue); }
+.about-cta h2 em { color: #c3df9f; }
+.about-cta .about-copy { color: white; }
+.team-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.team-grid article { min-width: 0; }
+.team-contact-links a { overflow-wrap: anywhere; }
+.territory-panel > h3:not(:first-child) { margin-top: 2rem; }
+.section.container > h2 { margin-bottom: 24px; }
+.section.container > .about-copy { margin-bottom: 28px; }
+.page-subnav { overflow-x: auto; }
+.page-subnav .container { min-width: min-content; }
+@media(max-width: 640px) { .team-grid { grid-template-columns: 1fr; } }

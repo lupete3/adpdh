@@ -16,7 +16,7 @@ class CmsSectionContentController extends Controller
 {
     private function guard(CmsSection $section): void
     {
-        abort_unless($section->page->key === 'index', 404);
+        abort_unless($section->page->key === 'index' || ($section->page->key === 'qui-sommes-nous' && $section->key === 'statut'), 404);
     }
 
     public function index()
@@ -28,6 +28,7 @@ class CmsSectionContentController extends Controller
     {
         $this->guard($section);
 
+        if ($section->page->key === 'qui-sommes-nous') return redirect()->route('admin.cms.about.section', $section);
         return view('cms.home.section', ['section' => $section, 'media' => MediaAsset::all()->filter(fn ($m) => $m->kind === 'image' && $m->isPubliclyAvailable())]);
     }
 
