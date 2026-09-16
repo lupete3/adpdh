@@ -1,4 +1,5 @@
 <x-layouts.app>
+@php($isLegal = $section->page->key === 'qui-sommes-nous' && $section->key === 'statut')
 <a href="{{ route('admin.cms.sections.edit',$section) }}">← Données de la section</a><h1 class="h3 mt-3">{{ $content->exists?'Modifier un élément':'Ajouter un élément' }}</h1><p>{{ $section->label }}</p>
 @if($errors->any())<div class="alert alert-danger" role="alert"><ul>
 @foreach($errors->all() as $error)<li>{{ $error }}</li>
@@ -14,16 +15,18 @@
 
 
 <div class="card"><div class="card-body">
-@foreach(['title'=>'Titre de l’élément','subtitle'=>($section->key==='footer'?'Groupe du pied de page':'Sous-titre / statut / catégorie'),'description'=>'Description','detail_title'=>'Intitulé du texte dépliable','detail_text'=>'Texte dépliable','link_label'=>'Texte du lien','link_url'=>'Destination du lien'] as $field=>$label)
+@foreach(($isLegal ? ['title'=>'Libellé (ex. Statut ou Siège)', 'description'=>'Information à afficher'] : ['title'=>'Titre de l’élément','subtitle'=>($section->key==='footer'?'Groupe du pied de page':'Sous-titre / statut / catégorie'),'description'=>'Description','detail_title'=>'Intitulé du texte dépliable','detail_text'=>'Texte dépliable','link_label'=>'Texte du lien','link_url'=>'Destination du lien']) as $field=>$label)
 <div class="mb-3"><label class="form-label" for="{{ $field }}">{{ $label }}</label><textarea class="form-control" name="{{ $field }}" id="{{ $field }}" rows="{{ in_array($field,['description','detail_text'])?4:1 }}" @required($field==='title')>{{ old($field,$content->$field) }}</textarea></div>
 @endforeach
 
 
+@unless($isLegal)
 <label class="form-label" for="media_asset_id">Image facultative</label><select class="form-select mb-3" id="media_asset_id" name="media_asset_id"><option value="">Sans image</option>
 @foreach($media as $asset)<option value="{{ $asset->id }}" @selected(old('media_asset_id',$content->media_asset_id)==$asset->id)>{{ $asset->name }}</option>
 @endforeach
 
 </select>
+@endunless
 @if(in_array($section->key,['chiffres-cles','impact']))
 <label class="form-label" for="indicator_id">Indicateur à afficher</label><select class="form-select mb-3" id="indicator_id" name="indicator_id" required><option value="">Choisir un indicateur</option>
 @foreach($indicators as $indicator)<option value="{{ $indicator->id }}" @selected(old('indicator_id',$content->indicator_id)==$indicator->id)>{{ $indicator->title }}</option>

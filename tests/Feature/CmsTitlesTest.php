@@ -31,7 +31,7 @@ test('admin can edit titles and preview escaped text with concurrency control', 
  $this->withoutVite();
  $this->seed(DatabaseSeeder::class);
  $admin=User::factory()->create(['is_admin'=>true]);
- $page=CmsPage::where('key','qui-sommes-nous')->firstOrFail();
+ $page=CmsPage::where('key','activites')->firstOrFail();
  $values=$page->titles()->pluck('value','id')->all();
  $id=array_key_first($values); $values[$id]='<script>alert(1)</script> Nouveau titre';
  $this->actingAs($admin)->put(route('admin.cms.titles.update',$page),['version'=>1,'titles'=>$values])->assertRedirect();

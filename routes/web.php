@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', [\App\Http\Controllers\CmsHomeController::class, 'show'])->name('home');
+Route::get('/que-faisons-nous', [\App\Http\Controllers\CmsWorkController::class, 'show'])->name('work');
+Route::redirect('/que-faisons-nous.html', '/que-faisons-nous', 301);
+Route::redirect('/adpdh/que-faisons-nous.html', '/que-faisons-nous', 301);
+Route::get('/qui-sommes-nous', [\App\Http\Controllers\CmsAboutController::class, 'show'])->name('organization');
+Route::redirect('/qui-sommes-nous.html', '/qui-sommes-nous', 301);
+Route::redirect('/adpdh/qui-sommes-nous.html', '/qui-sommes-nous', 301);
 
 // Section Pages
 Route::get('/about', \App\Livewire\AboutPage::class)->name('about');
@@ -134,6 +140,29 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\EnsureAdministrator:
 
 
 Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms')->name('admin.cms.')->group(function () {
+ Route::get('work', [\App\Http\Controllers\CmsWorkController::class, 'index'])->name('work');
+ Route::put('work/seo', [\App\Http\Controllers\CmsWorkController::class, 'seo'])->name('work.seo');
+ Route::get('work/sections/{section}', [\App\Http\Controllers\CmsWorkController::class, 'section'])->name('work.section');
+ Route::put('work/sections/{section}', [\App\Http\Controllers\CmsHomeController::class, 'updateSection'])->name('work.section.update');
+ Route::get('work/pillars/create', [\App\Http\Controllers\CmsWorkController::class, 'editPillar'])->name('work.pillars.create');
+ Route::post('work/pillars', [\App\Http\Controllers\CmsWorkController::class, 'savePillar'])->name('work.pillars.store');
+ Route::get('work/pillars/{pillar}/edit', [\App\Http\Controllers\CmsWorkController::class, 'editPillar'])->name('work.pillars.edit');
+ Route::put('work/pillars/{pillar}', [\App\Http\Controllers\CmsWorkController::class, 'savePillar'])->name('work.pillars.update');
+ Route::delete('work/pillars/{pillar}', [\App\Http\Controllers\CmsWorkController::class, 'destroyPillar'])->name('work.pillars.destroy');
+ Route::get('work/pillars/{pillar}/axes/create', [\App\Http\Controllers\CmsWorkController::class, 'editAxis'])->name('work.axes.create');
+ Route::post('work/pillars/{pillar}/axes', [\App\Http\Controllers\CmsWorkController::class, 'saveAxis'])->name('work.axes.store');
+ Route::get('work/pillars/{pillar}/axes/{axis}/edit', [\App\Http\Controllers\CmsWorkController::class, 'editAxis'])->name('work.axes.edit');
+ Route::put('work/pillars/{pillar}/axes/{axis}', [\App\Http\Controllers\CmsWorkController::class, 'saveAxis'])->name('work.axes.update');
+ Route::delete('work/pillars/{pillar}/axes/{axis}', [\App\Http\Controllers\CmsWorkController::class, 'destroyAxis'])->name('work.axes.destroy');
+ Route::get('about', [\App\Http\Controllers\CmsAboutController::class, 'index'])->name('about');
+ Route::put('about/seo', [\App\Http\Controllers\CmsAboutController::class, 'seo'])->name('about.seo');
+ Route::get('about/sections/{section}', [\App\Http\Controllers\CmsAboutController::class, 'section'])->name('about.section');
+ Route::put('about/sections/{section}', [\App\Http\Controllers\CmsHomeController::class, 'updateSection'])->name('about.section.update');
+ Route::get('about/{kind}/create', [\App\Http\Controllers\CmsAboutController::class, 'editRecord'])->name('about.create');
+ Route::get('about/{kind}/{id}/edit', [\App\Http\Controllers\CmsAboutController::class, 'editRecord'])->whereNumber('id')->name('about.edit');
+ Route::post('about/{kind}', [\App\Http\Controllers\CmsAboutController::class, 'saveRecord'])->name('about.store');
+ Route::put('about/{kind}/{id}', [\App\Http\Controllers\CmsAboutController::class, 'saveRecord'])->whereNumber('id')->name('about.update');
+ Route::delete('about/{kind}/{id}', [\App\Http\Controllers\CmsAboutController::class, 'destroyRecord'])->whereNumber('id')->name('about.destroy');
  Route::get('titles', [\App\Http\Controllers\CmsTitlesController::class, 'index'])->name('titles');
  Route::get('titles/{page}', [\App\Http\Controllers\CmsTitlesController::class, 'edit'])->name('titles.edit');
  Route::put('titles/{page}', [\App\Http\Controllers\CmsTitlesController::class, 'update'])->name('titles.update');

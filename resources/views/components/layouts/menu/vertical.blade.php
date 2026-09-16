@@ -10,6 +10,8 @@
   <ul class="menu-inner py-1" style="overflow-y: auto; overflow-x: hidden;">
     <li class="menu-item {{ request()->routeIs('admin.cms.*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.titles') }}">Pages et titres ADPDH</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.home') }}">Accueil — sections et données</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.about') }}">Qui sommes-nous — sections et données</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.work') }}">Que faisons-nous — piliers et axes</a></li>
     <!-- Dashboards -->
     <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
       <a class="menu-link" href="{{ route('dashboard') }}" wire:navigate>{{ __('Tableau de bord') }}</a>

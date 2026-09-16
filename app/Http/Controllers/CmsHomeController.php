@@ -44,12 +44,21 @@ class CmsHomeController extends Controller
 
     public function updateSection(Request $request, CmsSection $section)
     {
-        abort_unless($section->page->key === 'index', 404);
+        $isAbout = $request->routeIs('admin.cms.about.section.update');
+        $isWork = $request->routeIs('admin.cms.work.section.update');
+        abort_unless($section->page->key === ($isWork ? 'que-faisons-nous' : ($isAbout ? 'qui-sommes-nous' : 'index')), 404);
         $data = $request->validate(['version' => 'required|integer', 'eyebrow' => 'nullable|string|max:500', 'title' => 'nullable|string|max:500', 'title_accent' => 'nullable|string|max:500', 'introduction' => 'nullable|string|max:4000', 'body_text' => 'nullable|string|max:20000', 'is_visible' => 'required|boolean', 'sort_order' => 'required|integer|min:0|max:1000', 'media_asset_id' => 'nullable|integer|exists:media_assets,id', 'buttons' => 'nullable|array|max:2', 'buttons.*.label' => 'nullable|string|max:200', 'buttons.*.url' => ['nullable', 'string', 'max:500', function ($a, $v, $fail) {
             if (! preg_match('~^(?:#[a-zA-Z][a-zA-Z0-9_-]*|/(?!/)[a-zA-Z0-9/_\\-.#?=&%]*|[a-z0-9-]+\\.html(?:#[a-zA-Z0-9_-]+)?)$~D', $v)) {
                 $fail('Utilisez un lien vers une page du site ou une ancre.');
             }
         }]]);
+        if ($isAbout || $isWork) {
+            $data += $request->validate([
+                'image_caption' => 'nullable|string|max:1000',
+                'image_note_title' => 'nullable|string|max:255',
+                'image_note_text' => 'nullable|string|max:500',
+            ]);
+        }
         if (! empty($data['media_asset_id']) && ! MediaAsset::findOrFail($data['media_asset_id'])->isPubliclyAvailable()) {
             throw ValidationException::withMessages(['media_asset_id' => 'Cette image ne peut pas être diffusée.']);
         }
@@ -71,7 +80,7 @@ class CmsHomeController extends Controller
             $locked->save();
         });
 
-        return redirect()->to(route('admin.cms.sections.edit',$section).'?tab=titles')->with('status', 'Section enregistrée et affichée sur l’accueil.');
+        return redirect()->to(route($isWork ? 'admin.cms.work.section' : ($isAbout ? 'admin.cms.about.section' : 'admin.cms.sections.edit'), $section).'?tab=titles')->with('status', 'Présentation enregistrée.');
     }
 
     public function updateSeo(Request $request)
