@@ -3,6 +3,70 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
+Route::get('/devenir-partenaire', [\App\Http\Controllers\CmsPartnershipController::class, 'show'])->name('partnership');
+Route::get('/devenir-partenaire/presentation.pdf', [\App\Http\Controllers\CmsPartnershipController::class, 'download'])->name('partnership.download');
+Route::redirect('/devenir-partenaire.html', '/devenir-partenaire', 301);
+Route::redirect('/adpdh/devenir-partenaire.html', '/devenir-partenaire', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/partnership')->name('admin.cms.partnership')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsPartnershipController::class, 'index']);
+    Route::get('/create', [\App\Http\Controllers\CmsPartnershipController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsPartnershipController::class, 'save'])->name('.store');
+    Route::put('/presentation', [\App\Http\Controllers\CmsPartnershipController::class, 'presentation'])->name('.presentation');
+    Route::post('/document', [\App\Http\Controllers\CmsPartnershipController::class, 'document'])->name('.document');
+    Route::delete('/document', [\App\Http\Controllers\CmsPartnershipController::class, 'removeDocument'])->name('.document.remove');
+    Route::get('/{reason}/edit', [\App\Http\Controllers\CmsPartnershipController::class, 'edit'])->name('.edit');
+    Route::put('/{reason}', [\App\Http\Controllers\CmsPartnershipController::class, 'save'])->name('.update');
+});
+
+Route::get('/devenir-partenaire', [\App\Http\Controllers\CmsPartnershipController::class, 'show'])->name('partnership');
+Route::get('/devenir-partenaire/presentation.pdf', [\App\Http\Controllers\CmsPartnershipController::class, 'download'])->name('partnership.download');
+Route::redirect('/devenir-partenaire.html', '/devenir-partenaire', 301);
+Route::redirect('/adpdh/devenir-partenaire.html', '/devenir-partenaire', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/partnership')->name('admin.cms.partnership')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsPartnershipController::class, 'index']);
+    Route::get('/create', [\App\Http\Controllers\CmsPartnershipController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsPartnershipController::class, 'save'])->name('.store');
+    Route::put('/presentation', [\App\Http\Controllers\CmsPartnershipController::class, 'presentation'])->name('.presentation');
+    Route::post('/document', [\App\Http\Controllers\CmsPartnershipController::class, 'document'])->name('.document');
+    Route::delete('/document', [\App\Http\Controllers\CmsPartnershipController::class, 'removeDocument'])->name('.document.remove');
+    Route::get('/{reason}/edit', [\App\Http\Controllers\CmsPartnershipController::class, 'edit'])->name('.edit');
+    Route::put('/{reason}', [\App\Http\Controllers\CmsPartnershipController::class, 'save'])->name('.update');
+});
+
+Route::get('/notre-impact', [\App\Http\Controllers\CmsImpactController::class, 'show'])->name('impact');
+Route::redirect('/impact.html', '/notre-impact', 301);
+Route::redirect('/adpdh/impact.html', '/notre-impact', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/impact')->name('admin.cms.impact')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsImpactController::class, 'index']);
+    Route::put('/presentation', [\App\Http\Controllers\CmsImpactController::class, 'presentation'])->name('.presentation');
+    Route::get('/create', [\App\Http\Controllers\CmsImpactController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsImpactController::class, 'save'])->name('.store');
+    Route::get('/{indicator}/edit', [\App\Http\Controllers\CmsImpactController::class, 'edit'])->name('.edit');
+    Route::put('/{indicator}', [\App\Http\Controllers\CmsImpactController::class, 'save'])->name('.update');
+});
+
+Route::get('/nos-succes', [\App\Http\Controllers\CmsSuccessController::class, 'show'])->name('success');
+Route::redirect('/temoignages.html', '/nos-succes', 301);
+Route::redirect('/adpdh/temoignages.html', '/nos-succes', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/success')->name('admin.cms.success')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsSuccessController::class, 'edit']);
+    Route::put('/', [\App\Http\Controllers\CmsSuccessController::class, 'save'])->name('.save');
+});
+
+Route::get('/activites', [\App\Http\Controllers\CmsActivityController::class, 'index'])->name('activities');
+Route::get('/activites/{slug}', [\App\Http\Controllers\CmsActivityController::class, 'show'])->name('activities.show');
+Route::get('/activite-{key}.html', [\App\Http\Controllers\CmsActivityController::class, 'legacy']);
+Route::get('/adpdh/activite-{key}.html', [\App\Http\Controllers\CmsActivityController::class, 'legacy']);
+Route::redirect('/activites.html', '/activites', 301);
+Route::redirect('/adpdh/activites.html', '/activites', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/activities')->name('admin.cms.activities')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsActivityController::class, 'manage']);
+    Route::get('/create', [\App\Http\Controllers\CmsActivityController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsActivityController::class, 'save'])->name('.store');
+    Route::get('/{activity}/edit', [\App\Http\Controllers\CmsActivityController::class, 'edit'])->name('.edit');
+    Route::put('/{activity}', [\App\Http\Controllers\CmsActivityController::class, 'save'])->name('.update');
+});
+
 Route::get('/', [\App\Http\Controllers\CmsHomeController::class, 'show'])->name('home');
 Route::get('/que-faisons-nous', [\App\Http\Controllers\CmsWorkController::class, 'show'])->name('work');
 Route::redirect('/que-faisons-nous.html', '/que-faisons-nous', 301);

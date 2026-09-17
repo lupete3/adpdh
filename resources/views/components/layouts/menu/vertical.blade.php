@@ -12,6 +12,10 @@
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.home') }}">Accueil — sections et données</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.about') }}">Qui sommes-nous — sections et données</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.work') }}">Que faisons-nous — piliers et axes</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.activities') }}">Activités — articles et galeries</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.success') }}">Nos succès — témoignages et réseaux</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.impact') }}">Notre impact — indicateurs</a></li>
+    <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.partnership') }}">Devenir partenaire — contenus et PDF</a></li>
     <!-- Dashboards -->
     <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
       <a class="menu-link" href="{{ route('dashboard') }}" wire:navigate>{{ __('Tableau de bord') }}</a>

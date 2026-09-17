@@ -300,6 +300,16 @@
         "key": "text-11",
         "label": "Accroche 4 — partie 1",
         "value": "Réintégration socio-économique"
+      },
+      {
+        "key": "introduction",
+        "label": "Texte d’introduction sous le titre",
+        "value": "Découvrez nos activités au service des communautés, du développement et des droits humains."
+      },
+      {
+        "key": "list-heading",
+        "label": "Titre au-dessus de la liste des activités",
+        "value": "Nos dernières activités"
       }
     ]
   },

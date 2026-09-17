@@ -13,10 +13,10 @@ et la Promotion des Droits Humains</b></span></a>
     <nav id="main-nav" aria-label="Navigation principale">
       <details class="nav-more organization-menu"><summary>Qui sommes-nous ?</summary><div><a href="{{ route('organization') }}">Présentation de l’organisation</a><a href="{{ route('organization') }}#histoire">Notre histoire</a><a href="{{ route('organization') }}#vision-mission">Vision et mission</a><a href="{{ route('organization') }}#valeurs">Nos valeurs</a><a href="{{ route('organization') }}#statut">Statut juridique</a><a href="{{ route('organization') }}#zones">Zones d’intervention</a><a href="{{ route('organization') }}#equipe">Notre équipe</a></div></details>
       <a href="{{ route('work') }}" @if(request()->routeIs('work')) aria-current="page" @endif>Que faisons-nous ?</a>
-      <a href="{{ asset('adpdh/activites.html') }}">Activités</a>
-      <a href="{{ asset('adpdh/temoignages.html') }}">Nos succès</a>
-      <a href="{{ asset('adpdh/impact.html') }}">Notre impact</a>
-      <a href="{{ asset('adpdh/devenir-partenaire.html') }}">Devenir partenaire</a>
+      <a href="{{ route('activities') }}" @if(request()->routeIs('activities*')) aria-current="page" @endif>Activités</a>
+      <a href="{{ route('success') }}" @if(request()->routeIs('success')) aria-current="page" @endif>Nos succès</a>
+      <a href="{{ route('impact') }}" @if(request()->routeIs('impact')) aria-current="page" @endif>Notre impact</a>
+      <a href="{{ route('partnership') }}" @if(request()->routeIs('partnership')) aria-current="page" @endif>Devenir partenaire</a>
       <a href="{{ asset('adpdh/contact.html') }}">Contact</a>
       <a class="button button-small button-green" href="{{ asset('adpdh/faire-un-don.html') }}">Faire un don <span aria-hidden="true">↗</span></a>
     </nav>

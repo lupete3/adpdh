@@ -1,4 +1,5 @@
 <x-layouts.app>
+@if($section->key === 'temoignages')<a href="{{ route('admin.cms.success') }}">← Nos succès — témoignages et réseaux sociaux</a>@endif
 <a href="{{ route('admin.cms.home') }}">← Sections de l’accueil</a><h1 class="h3 mt-3">{{ $section->label }}</h1>
 <div class="d-flex gap-2 mb-4"><a class="btn {{ request('tab')==='titles'?'btn-primary':'btn-outline-primary' }}" href="{{ route('admin.cms.sections.edit',$section) }}?tab=titles">Titres et sous-titres</a><a class="btn {{ request('tab')!=='titles'?'btn-primary':'btn-outline-primary' }}" href="{{ route('admin.cms.sections.edit',$section) }}">Données de la section</a></div>
 @if(session('status'))<p class="alert alert-success" role="status">{{ session('status') }}</p>

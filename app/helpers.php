@@ -3,6 +3,15 @@
 if (!function_exists('adpdh_url')) {
     function adpdh_url(string $path): string
     {
+        if (preg_match('~^/?(?:adpdh/)?devenir-partenaire(?:\.html)?([?#].*)?$~D', $path, $match)) return route('partnership').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?devenir-partenaire(?:\.html)?([?#].*)?$~D', $path, $match)) return route('partnership').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?impact(?:\.html)?([?#].*)?$~D', $path, $match)) return route('impact').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?temoignages(?:\.html)?([?#].*)?$~D', $path, $match)) return route('success').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?activites(?:\.html)?([?#].*)?$~D', $path, $match)) return route('activities').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?activite-([a-z0-9-]+)\.html([?#].*)?$~D', $path, $match)) {
+            $activity = \App\Models\Project::forCms()->where('cms_key', $match[1])->first();
+            if ($activity) return route('activities.show', $activity->slug).($match[2] ?? '');
+        }
         if (preg_match('~^/?(?:adpdh/)?que-faisons-nous(?:\.html)?([?#].*)?$~D', $path, $match)) {
             return route('work').($match[1] ?? '');
         }

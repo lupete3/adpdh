@@ -1,5 +1,7 @@
 <x-layouts.app>
 @php($isLegal = $section->page->key === 'qui-sommes-nous' && $section->key === 'statut')
+@php($isTestimonial = $section->key === 'temoignages')
+@if($isTestimonial)<a href="{{ route('admin.cms.success') }}">← Nos succès et témoignages</a><p>Les témoignages visibles apparaissent sur l’accueil et sur la page Nos succès, sans lien de détail.</p>@endif
 <a href="{{ route('admin.cms.sections.edit',$section) }}">← Données de la section</a><h1 class="h3 mt-3">{{ $content->exists?'Modifier un élément':'Ajouter un élément' }}</h1><p>{{ $section->label }}</p>
 @if($errors->any())<div class="alert alert-danger" role="alert"><ul>
 @foreach($errors->all() as $error)<li>{{ $error }}</li>
@@ -15,7 +17,7 @@
 
 
 <div class="card"><div class="card-body">
-@foreach(($isLegal ? ['title'=>'Libellé (ex. Statut ou Siège)', 'description'=>'Information à afficher'] : ['title'=>'Titre de l’élément','subtitle'=>($section->key==='footer'?'Groupe du pied de page':'Sous-titre / statut / catégorie'),'description'=>'Description','detail_title'=>'Intitulé du texte dépliable','detail_text'=>'Texte dépliable','link_label'=>'Texte du lien','link_url'=>'Destination du lien']) as $field=>$label)
+@foreach(($isTestimonial ? ['title'=>'Titre du témoignage', 'subtitle'=>'Nom de la personne / qualité', 'description'=>'Témoignage à afficher'] : ($isLegal ? ['title'=>'Libellé (ex. Statut ou Siège)', 'description'=>'Information à afficher'] : ['title'=>'Titre de l’élément','subtitle'=>($section->key==='footer'?'Groupe du pied de page':'Sous-titre / statut / catégorie'),'description'=>'Description','detail_title'=>'Intitulé du texte dépliable','detail_text'=>'Texte dépliable','link_label'=>'Texte du lien','link_url'=>'Destination du lien'])) as $field=>$label)
 <div class="mb-3"><label class="form-label" for="{{ $field }}">{{ $label }}</label><textarea class="form-control" name="{{ $field }}" id="{{ $field }}" rows="{{ in_array($field,['description','detail_text'])?4:1 }}" @required($field==='title')>{{ old($field,$content->$field) }}</textarea></div>
 @endforeach
 

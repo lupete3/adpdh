@@ -4,6 +4,12 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteRule ^(?:adpdh/)?devenir-partenaire\.html$ /devenir-partenaire [R=301,L]
+    RewriteRule ^(?:adpdh/)?devenir-partenaire\.html$ /devenir-partenaire [R=301,L]
+    RewriteRule ^(?:adpdh/)?impact\.html$ /notre-impact [R=301,L]
+    RewriteRule ^(?:adpdh/)?temoignages\.html$ /nos-succes [R=301,L]
+    RewriteRule ^(?:adpdh/)?activites\.html$ /activites [R=301,L]
+    RewriteRule ^(?:adpdh/)?activite-[a-z0-9-]+\.html$ index.php [L]
     RewriteRule ^(?:adpdh/)?que-faisons-nous\.html$ /que-faisons-nous [R=301,L]
 
     # Old organization bookmarks now resolve to the Laravel page.
