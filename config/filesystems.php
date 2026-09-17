@@ -41,7 +41,8 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            // Keep uploaded images on the current site, including local previews.
+            'url' => '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

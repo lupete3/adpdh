@@ -104,7 +104,7 @@
                             <figure class="quote-card">
                                 <h3>{{ $item->title }}</h3>
                                 <blockquote>{{ $item->description }}</blockquote>
-                                <figcaption>{{ $item->subtitle }}</figcaption>@include('adpdh.content-link')
+                                <figcaption>{{ $item->subtitle }}</figcaption>
                             </figure>
                         @else
                             <article
@@ -166,7 +166,7 @@
                 class="hero-buttons {{ in_array($section->key, ['activites', 'actualites']) ? 'home-collection-footer' : '' }}">
                 @if (in_array($section->key, ['activites', 'actualites']))
                     <a class="button home-collection-link"
-                        href="{{ asset('adpdh/' . $section->key . '.html') }}">{{ $section->key === 'activites' ? 'Voir toutes les activités' : 'Voir toutes les actualités' }}
+                        href="{{ $section->key === 'activites' ? route('activities') : asset('adpdh/actualites.html') }}">{{ $section->key === 'activites' ? 'Voir toutes les activités' : 'Voir toutes les actualités' }}
                         <span aria-hidden="true">↗</span></a>
                 @else
                     @foreach ($section->buttons ?? [] as $button)
