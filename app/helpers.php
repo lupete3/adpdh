@@ -3,6 +3,8 @@
 if (!function_exists('adpdh_url')) {
     function adpdh_url(string $path): string
     {
+        if (preg_match('~^/?(?:adpdh/)?ressources(?:\.html)?([?#].*)?$~D', $path, $match)) return route('resources').($match[1] ?? '');
+        if (preg_match('~^/?(?:adpdh/)?actualites(?:\.html)?([?#].*)?$~D', $path, $match)) return route('news').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?devenir-partenaire(?:\.html)?([?#].*)?$~D', $path, $match)) return route('partnership').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?devenir-partenaire(?:\.html)?([?#].*)?$~D', $path, $match)) return route('partnership').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?impact(?:\.html)?([?#].*)?$~D', $path, $match)) return route('impact').($match[1] ?? '');

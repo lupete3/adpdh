@@ -13,12 +13,13 @@ new class extends Component {
     public function with(): array
     {
         return [
-            'publications' => Publication::latest()->paginate(10),
+            'publications' => Publication::whereNull('cms_key')->latest()->paginate(10),
         ];
     }
 
     public function delete(Publication $publication): void
     {
+        abort_if($publication->cms_key, 404);
         if ($publication->file_path) {
             Storage::disk('public')->delete($publication->file_path);
         }

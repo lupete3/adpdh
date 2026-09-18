@@ -13,9 +13,11 @@
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.about') }}">Qui sommes-nous — sections et données</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.work') }}">Que faisons-nous — piliers et axes</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.activities') }}">Activités — articles et galeries</a></li>
+    <li class="menu-item {{ request()->routeIs('admin.cms.news*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.news') }}">Actualités — articles et publication</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.success') }}">Nos succès — témoignages et réseaux</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.impact') }}">Notre impact — indicateurs</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.partnership') }}">Devenir partenaire — contenus et PDF</a></li>
+    <li class="menu-item {{ request()->routeIs('admin.cms.resources*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.resources') }}">Ressources — documents et téléchargements</a></li>
     <!-- Dashboards -->
     <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
       <a class="menu-link" href="{{ route('dashboard') }}" wire:navigate>{{ __('Tableau de bord') }}</a>

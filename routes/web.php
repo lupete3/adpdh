@@ -3,6 +3,34 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
+Route::get('/ressources', [\App\Http\Controllers\CmsResourceController::class, 'index'])->name('resources');
+Route::get('/ressources/{slug}/lire', [\App\Http\Controllers\CmsResourceController::class, 'read'])->name('resources.read');
+Route::get('/ressources/{slug}/telecharger', [\App\Http\Controllers\CmsResourceController::class, 'download'])->name('resources.download');
+Route::get('/ressources/{slug}', [\App\Http\Controllers\CmsResourceController::class, 'show'])->name('resources.show');
+Route::redirect('/ressources.html', '/ressources', 301);
+Route::redirect('/adpdh/ressources.html', '/ressources', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/resources')->name('admin.cms.resources')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsResourceController::class, 'manage']);
+    Route::get('/create', [\App\Http\Controllers\CmsResourceController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsResourceController::class, 'save'])->name('.store');
+    Route::get('/{resource}/edit', [\App\Http\Controllers\CmsResourceController::class, 'edit'])->name('.edit');
+    Route::put('/{resource}', [\App\Http\Controllers\CmsResourceController::class, 'save'])->name('.update');
+    Route::delete('/{resource}', [\App\Http\Controllers\CmsResourceController::class, 'destroy'])->name('.destroy');
+});
+
+
+Route::get('/actualites', [\App\Http\Controllers\CmsNewsController::class, 'index'])->name('news');
+Route::get('/actualites/{slug}', [\App\Http\Controllers\CmsNewsController::class, 'show'])->name('news.show');
+Route::redirect('/actualites.html', '/actualites', 301);
+Route::redirect('/adpdh/actualites.html', '/actualites', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/news')->name('admin.cms.news')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsNewsController::class, 'manage']);
+    Route::get('/create', [\App\Http\Controllers\CmsNewsController::class, 'edit'])->name('.create');
+    Route::post('/', [\App\Http\Controllers\CmsNewsController::class, 'save'])->name('.store');
+    Route::get('/{post}/edit', [\App\Http\Controllers\CmsNewsController::class, 'edit'])->name('.edit');
+    Route::put('/{post}', [\App\Http\Controllers\CmsNewsController::class, 'save'])->name('.update');
+});
+
 Route::get('/devenir-partenaire', [\App\Http\Controllers\CmsPartnershipController::class, 'show'])->name('partnership');
 Route::get('/devenir-partenaire/presentation.pdf', [\App\Http\Controllers\CmsPartnershipController::class, 'download'])->name('partnership.download');
 Route::redirect('/devenir-partenaire.html', '/devenir-partenaire', 301);
@@ -82,7 +110,7 @@ Route::get('/achievements', \App\Livewire\AchievementsPage::class)->name('achiev
 Route::get('/team', \App\Livewire\TeamPage::class)->name('team');
 Route::get('/blog', \App\Livewire\PostsPage::class)->name('blog');
 Route::get('/contact', \App\Livewire\ContactPage::class)->name('contact');
-Route::get('/publications/{category?}', \App\Livewire\PublicationsPage::class)->name('publications');
+Route::get('/publications/{category?}', fn (?string $category = null) => redirect()->route('resources', $category ? ['category' => $category] : [], 301))->name('publications');
 Route::get('/careers', \App\Livewire\CareersPage::class)->name('careers');
 Volt::route('/galerie', 'gallery-page')->name('gallery');
 
