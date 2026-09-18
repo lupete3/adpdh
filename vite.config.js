@@ -7,6 +7,7 @@ import {
   glob
 } from 'glob';
 import path from 'path';
+import { cpSync, mkdirSync } from 'node:fs';
 
 /**
  * Get Files from a directory
@@ -39,6 +40,15 @@ const FontsJsFiles = GetFilesArray('resources/assets/vendor/fonts/**/!(_)*.js');
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'resource-reader-assets',
+      closeBundle() {
+        mkdirSync('public/build/pdfjs', { recursive: true });
+        for (const folder of ['cmaps', 'standard_fonts', 'wasm']) {
+          cpSync(`node_modules/pdfjs-dist/${folder}`, `public/build/pdfjs/${folder}`, { recursive: true });
+        }
+      },
+    },
     laravel({
       input: [
         'resources/css/app.css',

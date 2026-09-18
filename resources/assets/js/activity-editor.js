@@ -9,13 +9,13 @@ function initialize() {
   container.hidden = false;
   const editor = new Quill(container, {
     theme: 'snow',
-    placeholder: 'Racontez votre activité…',
+    placeholder: container.dataset.placeholder || 'Racontez votre activité…',
     formats: ['header', 'bold', 'italic', 'underline', 'blockquote', 'list', 'link'],
     modules: { toolbar: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['blockquote', 'link'], ['clean']] },
   });
   editor.clipboard.dangerouslyPasteHTML(source.value);
   editor.root.style.minHeight = '320px';
-  editor.root.setAttribute('aria-label', 'Description détaillée de l’activité');
+  editor.root.setAttribute('aria-label', container.dataset.label || 'Description détaillée de l’activité');
   source.hidden = true;
   const sync = () => { source.value = editor.getText().trim() ? editor.getSemanticHTML() : ''; };
   editor.on('text-change', sync);
@@ -24,6 +24,7 @@ function initialize() {
   for (const [key, label] of Object.entries(labels)) container.previousElementSibling.querySelectorAll('.ql-' + key).forEach(button => { button.title = label; button.setAttribute('aria-label', label); });
   let urls = [];
   const photos = document.getElementById('photos');
+  if (!photos) return;
   const renderPhotos = () => {
     urls.forEach(URL.revokeObjectURL); urls = [];
     const previews = document.getElementById('photo-previews');
