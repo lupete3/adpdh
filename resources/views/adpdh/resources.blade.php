@@ -1,0 +1,14 @@
+@extends('adpdh.activity-layout', ['title' => 'Ressources', 'description' => 'Consultez les publications, rapports et documents de référence de l’ADPDH.'])
+@section('content')
+<div class="resource-page">
+<nav class="container breadcrumb" aria-label="Fil d’Ariane"><a href="{{ route('home') }}">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Ressources</span></nav>
+<section class="container about-heading"><p class="eyebrow">Ressources et publications</p><h1>Comprendre notre action.<br><em>Partager les savoirs.</em></h1><p>Consultez nos documents de référence, rapports et supports de formation directement sur le site.</p></section>
+<section class="container activity-list-section" aria-label="Catalogue des ressources">
+<form method="get" action="{{ route('resources') }}" class="resource-filters"><div><label for="q">Rechercher un document</label><input id="q" name="q" type="search" maxlength="200" value="{{ request('q') }}" placeholder="Titre, sujet…"></div><div><label for="category">Catégorie</label><select id="category" name="category"><option value="">Toutes les catégories</option>@foreach($categories as $category)<option value="{{ $category }}" @selected(request('category') === $category)>{{ $category }}</option>@endforeach</select></div><button class="button" type="submit">Rechercher</button>@if(request('q') || request('category'))<a href="{{ route('resources') }}">Réinitialiser</a>@endif</form>
+<div class="activities-heading"><h2>Nos publications</h2><span>{{ $resources->total() }} {{ $resources->total() > 1 ? 'ressources' : 'ressource' }}</span></div>
+<div class="activities-grid">
+@forelse($resources as $resource)<article class="ngo-activity-card"><a class="activity-cover" href="{{ route('resources.show', $resource->slug) }}" aria-label="Lire : {{ $resource->title }}">@if($resource->cover?->publicUrl())<img src="{{ $resource->cover->publicUrl() }}" alt="{{ $resource->cover->alt ?: $resource->title }}" width="720" height="480" loading="lazy">@else<div class="activity-placeholder" aria-hidden="true">ADPDH<span>Ressources et publications</span></div>@endif</a><div class="activity-copy"><p class="eyebrow">{{ $resource->category }} · PDF</p><h3><a href="{{ route('resources.show', $resource->slug) }}">{{ $resource->title }}</a></h3><p>{{ Str::limit($resource->description, 180) }}</p><a class="text-link" href="{{ route('resources.show', $resource->slug) }}">Lire sur le site →</a>@if($resource->canDownload())<a class="text-link" href="{{ route('resources.download', $resource->slug) }}">Télécharger le PDF ↓</a>@else<small>Lecture sur le site uniquement</small>@endif</div></article>
+@empty<p class="activities-empty">{{ request('q') || request('category') ? 'Aucune ressource ne correspond à votre recherche.' : 'Nos premières ressources seront disponibles prochainement.' }}</p>@endforelse
+</div>@include('adpdh.activity-pagination', ['paginator' => $resources])
+</section></div>
+@endsection

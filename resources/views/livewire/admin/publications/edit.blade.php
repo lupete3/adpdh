@@ -18,6 +18,7 @@ new class extends Component {
 
     public function mount(Publication $publication): void
     {
+        abort_if($publication->cms_key, 404);
         $this->publication = $publication;
         $this->title = $publication->title;
         $this->description = $publication->description;
@@ -26,6 +27,7 @@ new class extends Component {
 
     public function save()
     {
+        abort_if($this->publication->cms_key, 404);
         $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
