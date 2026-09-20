@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(Achievement $achievement): void
     {
-        if ($achievement->image) {
-            Storage::disk('public')->delete($achievement->image);
-        }
         $achievement->delete();
     }
 }; ?>

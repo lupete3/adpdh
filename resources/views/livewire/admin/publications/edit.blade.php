@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Publication $publication;
 
@@ -33,7 +34,7 @@ new class extends Component {
             'description' => 'nullable|string',
             'category' => 'required|string',
             'file' => 'nullable|file|max:10240',
-            'thumbnail' => 'nullable|image|max:2048',
+            'thumbnail' => $this->mediaRule('thumbnail', false),
         ]);
 
         $data = [
@@ -49,11 +50,8 @@ new class extends Component {
             $data['file_path'] = $this->file->store('publications', 'public');
         }
 
-        if ($this->thumbnail) {
-            if ($this->publication->thumbnail) {
-                Storage::disk('public')->delete($this->publication->thumbnail);
-            }
-            $data['thumbnail'] = $this->thumbnail->store('publications/thumbnails', 'public');
+        if ($this->mediaChanged('thumbnail')) {
+            $data['thumbnail'] = $this->mediaPath('thumbnail');
         }
 
         $this->publication->update($data);
@@ -107,10 +105,10 @@ new class extends Component {
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="thumbnail">Image de couverture (laisser vide pour conserver l'actuelle)</label>
-                        <input type="file" class="form-control" id="thumbnail" wire:model="thumbnail">
+                        <x-media-picker wire-field="thumbnail" :current-url="media_url($publication->thumbnail)" label="Image" />
                         @if($publication->thumbnail)
                             <div class="mt-2">
-                                <img src="{{ asset('storage/'.$publication->thumbnail) }}" style="height:60px; border-radius:6px;" alt="thumbnail">
+                                <img src="{{ media_url($publication->thumbnail) }}" style="height:60px; border-radius:6px;" alt="thumbnail">
                             </div>
                         @endif
                         @error('thumbnail') <div class="text-danger">{{ $message }}</div> @enderror

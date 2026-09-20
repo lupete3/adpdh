@@ -6,6 +6,7 @@ use App\Models\GalleryPhoto;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $title       = '';
     public string $description = '';
@@ -22,10 +23,10 @@ new class extends Component {
             'album'       => 'nullable|string|max:100',
             'is_featured' => 'boolean',
             'order'       => 'integer|min:0',
-            'image'       => 'required|image|max:4096',
+            'image'       => $this->mediaRule('image', true),
         ]);
 
-        $imagePath = $this->image->store('gallery', 'public');
+        $imagePath = $this->mediaPath('image');
 
         GalleryPhoto::create([
             'title'       => $this->title,
@@ -73,7 +74,7 @@ new class extends Component {
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="image">Photo <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" id="image" wire:model="image" accept="image/*">
+                        <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
                         @error('image') <div class="text-danger small">{{ $message }}</div> @enderror
                         @if($image)
                             <div class="mt-2">

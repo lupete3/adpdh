@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Cta $cta;
 
@@ -80,7 +81,7 @@ new class extends Component {
             'badge_2_icon' => ['nullable', 'string', 'max:255'],
             'badge_2_title' => ['nullable', 'string', 'max:255'],
             'badge_2_subtitle' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => $this->mediaRule('image', false),
         ]);
 
         $benefitsArray = array_filter(array_map('trim', explode("\n", $this->benefits_text)));
@@ -104,11 +105,8 @@ new class extends Component {
             'badge_2_subtitle' => $validated['badge_2_subtitle'],
         ];
 
-        if ($this->image) {
-            if ($this->cta->image) {
-                Storage::disk('public')->delete($this->cta->image);
-            }
-            $data['image'] = $this->image->store('cta', 'public');
+        if ($this->mediaChanged('image')) {
+            $data['image'] = $this->mediaPath('image');
             $this->existingImage = $data['image'];
         }
 
@@ -165,7 +163,7 @@ new class extends Component {
                             @elseif ($existingImage)
                                 <img src="{{ media_url($existingImage) }}" class="img-fluid rounded mb-2" style="max-height: 150px;">
                             @endif
-                            <input type="file" class="form-control" wire:model="image">
+                            <x-media-picker wire-field="image" :current-url="media_url($cta->image)" label="Image" />
                             @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
                     </div>

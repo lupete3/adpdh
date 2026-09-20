@@ -6,6 +6,7 @@ use App\Models\Publication;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public $title = '';
     public $description = '';
@@ -20,7 +21,7 @@ new class extends Component {
             'description' => 'nullable|string',
             'category' => 'required|string',
             'file' => 'nullable|file|max:10240', // 10MB
-            'thumbnail' => 'nullable|image|max:2048',
+            'thumbnail' => $this->mediaRule('thumbnail', false),
         ]);
 
         $data = [
@@ -33,8 +34,8 @@ new class extends Component {
             $data['file_path'] = $this->file->store('publications', 'public');
         }
 
-        if ($this->thumbnail) {
-            $data['thumbnail'] = $this->thumbnail->store('publications/thumbnails', 'public');
+        if ($this->mediaChanged('thumbnail')) {
+            $data['thumbnail'] = $this->mediaPath('thumbnail');
         }
 
         Publication::create($data);
@@ -85,7 +86,7 @@ new class extends Component {
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="thumbnail">Image de couverture</label>
-                        <input type="file" class="form-control" id="thumbnail" wire:model="thumbnail">
+                        <x-media-picker wire-field="thumbnail" :current-url="media_url(null)" label="Image" />
                         @error('thumbnail') <div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>

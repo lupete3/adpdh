@@ -1,0 +1,8 @@
+<dialog id="media-library-dialog" data-list-url="{{ route('admin.cms.media.index') }}" data-upload-url="{{ route('admin.cms.media.store') }}" data-token="{{ csrf_token() }}" style="width:min(950px,94vw);max-height:90vh;border:1px solid #ccd4df;border-radius:12px;padding:24px">
+<div class="d-flex align-items-center justify-content-between gap-3 mb-3"><h2 class="h4 mb-0">Choisir une image</h2><button type="button" class="btn btn-outline-secondary btn-sm" data-library-close aria-label="Fermer la médiathèque">Fermer</button></div>
+<div class="d-flex flex-wrap gap-2 mb-3"><label class="visually-hidden" for="library-picker-search">Rechercher une image</label><input id="library-picker-search" class="form-control" style="flex:1;min-width:180px" type="search" placeholder="Rechercher par nom" maxlength="150"><button type="button" class="btn btn-outline-primary" data-library-search>Rechercher</button></div>
+<div class="p-3 border rounded mb-3"><label for="library-picker-upload" class="form-label">Importer et sélectionner une image</label><input id="library-picker-upload" class="form-control" type="file" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG ou WebP · 5 Mo maximum. Un fichier identique est réutilisé.</small></div>
+<p data-library-status role="status" aria-live="polite"></p><div data-library-grid style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px"></div>
+<button type="button" class="btn btn-outline-primary mt-3" data-library-more hidden>Voir davantage</button>
+</dialog>
+<script src="{{ asset('adpdh/assets/media-library.js') }}?v={{ filemtime(public_path('adpdh/assets/media-library.js')) }}" defer data-navigate-once></script>

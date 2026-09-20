@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Achievement $achievement;
 
@@ -40,17 +41,14 @@ new class extends Component {
         $validated = $this->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'new_image' => ['nullable', 'image', 'max:2048'],
+            'new_image' => $this->mediaRule('new_image', false),
             'date' => ['required', 'date'],
             'location' => ['required', 'string', 'max:255'],
             'partner_id' => ['required', 'exists:partners,id'],
         ]);
 
-        if ($this->new_image) {
-            if ($this->achievement->image) {
-                Storage::disk('public')->delete($this->achievement->image);
-            }
-            $validated['image'] = $this->new_image->store('achievements', 'public');
+        if ($this->mediaChanged('new_image')) {
+            $validated['image'] = $this->mediaPath('new_image');
         } else {
             $validated['image'] = $this->achievement->image;
         }
@@ -99,7 +97,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="new_image" class="form-label">Nouvelle Image</label>
-                    <input class="form-control" type="file" id="new_image" wire:model="new_image">
+                    <x-media-picker wire-field="new_image" :current-url="media_url($achievement->image)" label="Image" />
                     @error('new_image') <div class="text-danger">{{ $message }}</div> @enderror
 
                     <div class="mt-3">
@@ -108,7 +106,7 @@ new class extends Component {
                             <img src="{{ $new_image->temporaryUrl() }}" class="img-fluid rounded" style="max-width: 200px;">
                         @elseif ($achievement->image)
                              <span class="d-block mb-2">Image actuelle :</span>
-                            <img src="{{ asset('storage/' . $achievement->image) }}" class="img-fluid rounded" style="max-width: 200px;">
+                            <img src="{{ media_url($achievement->image) }}" class="img-fluid rounded" style="max-width: 200px;">
                         @endif
                     </div>
                 </div>

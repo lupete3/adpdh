@@ -23,9 +23,6 @@ new class extends Component {
         if ($publication->file_path) {
             Storage::disk('public')->delete($publication->file_path);
         }
-        if ($publication->thumbnail) {
-            Storage::disk('public')->delete($publication->thumbnail);
-        }
         $publication->delete();
     }
 }; ?>

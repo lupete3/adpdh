@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Project $project;
     public string $title = '';
@@ -47,7 +48,7 @@ new class extends Component {
             'date'        => ['nullable', 'date'],
             'description' => ['required', 'string'],
             'content'     => ['nullable', 'string'],
-            'image'       => ['nullable', 'image', 'max:2048'],
+            'image'       => $this->mediaRule('image', false),
             'url'         => ['nullable', 'url'],
         ]);
 
@@ -62,11 +63,8 @@ new class extends Component {
             'url'         => $this->url,
         ];
 
-        if ($this->image) {
-            if ($this->project->image) {
-                Storage::disk('public')->delete($this->project->image);
-            }
-            $data['image'] = $this->image->store('projects', 'public');
+        if ($this->mediaChanged('image')) {
+            $data['image'] = $this->mediaPath('image');
         }
 
         $this->project->update($data);
@@ -130,7 +128,7 @@ new class extends Component {
                             <img src="{{ media_url($project->image) }}" class="img-fluid rounded" style="max-width: 200px;">
                         </div>
                     @endif
-                    <input class="form-control" type="file" id="image" wire:model="image">
+                    <x-media-picker wire-field="image" :current-url="media_url($project->image)" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded mt-2" style="max-width: 200px;">

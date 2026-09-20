@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(GalleryPhoto $galleryPhoto): void
     {
-        if ($galleryPhoto->image_path) {
-            Storage::disk('public')->delete($galleryPhoto->image_path);
-        }
         $galleryPhoto->delete();
     }
 }; ?>

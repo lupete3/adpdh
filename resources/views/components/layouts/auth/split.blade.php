@@ -5,7 +5,7 @@
       <div class="w-100 d-flex justify-content-center">
         <div class="text-center w-100">
           @if(isset($settings['logo']) && $settings['logo']->value)
-            <img src="{{ asset('storage/' . $settings['logo']->value) }}" class="img-fluid mb-4" alt="Logo" style="max-width: 450px;">
+            <img src="{{ media_url($settings['logo']->value) }}" class="img-fluid mb-4" alt="Logo" style="max-width: 450px;">
           @else
             <img src="{{ asset('flexbiz/assets/img/favicon.png') }}" class="img-fluid mb-4" alt="Logo" style="max-width: 200px;">
           @endif

@@ -39,6 +39,7 @@
     </div>
 
     <!-- Include Scripts -->
+    @if(auth()->user()?->is_admin)<x-media-library-dialog />@endif
     @include('partials.scripts')
     <!-- / Include Scripts -->
   </body>

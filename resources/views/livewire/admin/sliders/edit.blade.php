@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Slider $slider;
 
@@ -44,8 +45,8 @@ new class extends Component {
             'title' => ['required', 'string', 'max:255'],
             'subtitle' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'new_image' => ['nullable', 'image', 'max:2048'],
-            'new_secondary_image' => ['nullable', 'image', 'max:2048'],
+            'new_image' => $this->mediaRule('new_image', false),
+            'new_secondary_image' => $this->mediaRule('new_secondary_image', false),
             'floating_badge' => ['nullable', 'string', 'max:255'],
             'button1_text' => ['required', 'string', 'max:255'],
             'button1_url' => ['required', 'string', 'max:255'],
@@ -55,18 +56,12 @@ new class extends Component {
             'order' => ['required', 'integer'],
         ]);
 
-        if ($this->new_image) {
-            if ($this->slider->image && !str_starts_with($this->slider->image, 'flexbiz')) {
-                Storage::disk('public')->delete($this->slider->image);
-            }
-            $validated['image'] = $this->new_image->store('sliders', 'public');
+        if ($this->mediaChanged('new_image')) {
+            $validated['image'] = $this->mediaPath('new_image');
         }
 
-        if ($this->new_secondary_image) {
-            if ($this->slider->secondary_image && !str_starts_with($this->slider->secondary_image, 'flexbiz')) {
-                Storage::disk('public')->delete($this->slider->secondary_image);
-            }
-            $validated['secondary_image'] = $this->new_secondary_image->store('sliders', 'public');
+        if ($this->mediaChanged('new_secondary_image')) {
+            $validated['secondary_image'] = $this->mediaPath('new_secondary_image');
         }
 
         $miniStats = [];
@@ -118,27 +113,15 @@ new class extends Component {
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="new_image" class="form-label">Image Principale</label>
-                        <input class="form-control" type="file" id="new_image" wire:model="new_image">
+                        <x-media-picker wire-field="new_image" :current-url="media_url($slider->image)" label="Image" />
                         @error('new_image') <div class="text-danger">{{ $message }}</div> @enderror
-                        <div class="mt-2">
-                            @if ($new_image)
-                                <img src="{{ $new_image->temporaryUrl() }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @elseif ($slider->image)
-                                <img src="{{ media_url($slider->image) }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @endif
-                        </div>
+                        
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="new_secondary_image" class="form-label">Image Secondaire</label>
-                        <input class="form-control" type="file" id="new_secondary_image" wire:model="new_secondary_image">
+                        <x-media-picker wire-field="new_secondary_image" :current-url="media_url($slider->secondary_image)" label="Image" />
                         @error('new_secondary_image') <div class="text-danger">{{ $message }}</div> @enderror
-                        <div class="mt-2">
-                            @if ($new_secondary_image)
-                                <img src="{{ $new_secondary_image->temporaryUrl() }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @elseif ($slider->secondary_image)
-                                <img src="{{ media_url($slider->secondary_image) }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @endif
-                        </div>
+                        
                     </div>
                 </div>
 

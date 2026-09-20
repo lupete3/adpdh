@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Post $post;
 
@@ -31,16 +32,13 @@ new class extends Component {
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'new_image' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'new_image' => $this->mediaRule('new_image', false), // 2MB Max
             'status' => ['required', 'in:published,draft'],
         ]);
 
-        if ($this->new_image) {
+        if ($this->mediaChanged('new_image')) {
             // Delete old image if it exists
-            if ($this->post->image) {
-                Storage::disk('public')->delete($this->post->image);
-            }
-            $validated['image'] = $this->new_image->store('posts', 'public');
+            $validated['image'] = $this->mediaPath('new_image');
         } else {
             // Keep the old image
             $validated['image'] = $this->post->image;
@@ -87,7 +85,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="new_image" class="form-label">Nouvelle Image</label>
-                    <input class="form-control" type="file" id="new_image" wire:model="new_image">
+                    <x-media-picker wire-field="new_image" :current-url="media_url($post->image)" label="Image" />
                     @error('new_image') <div class="text-danger">{{ $message }}</div> @enderror
 
                     <div class="mt-3">
@@ -96,7 +94,7 @@ new class extends Component {
                             <img src="{{ $new_image->temporaryUrl() }}" class="img-fluid rounded" style="max-width: 200px;">
                         @elseif ($post->image)
                              <span class="d-block mb-2">Image actuelle :</span>
-                            <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid rounded" style="max-width: 200px;">
+                            <img src="{{ media_url($post->image) }}" class="img-fluid rounded" style="max-width: 200px;">
                         @endif
                     </div>
                 </div>

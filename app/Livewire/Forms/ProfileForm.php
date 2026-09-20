@@ -12,6 +12,7 @@ use Livewire\WithFileUploads;
 class ProfileForm extends Form
 {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $name = '';
     public string $email = '';
@@ -47,9 +48,11 @@ class ProfileForm extends Form
 
         $user->fill($this->only(['name', 'email']));
 
-        if ($this->photo) {
+        if (Auth::user()->is_admin && $this->mediaChanged('photo')) {
+            $user->photo = $this->mediaPath('photo');
+        } elseif ($this->photo) {
             if ($user->photo) {
-                Storage::disk('public')->delete($user->photo);
+                // Keep previously shared images; removal is managed by the media library.
             }
             $user->photo = $this->photo->store('photos', 'public');
         }
