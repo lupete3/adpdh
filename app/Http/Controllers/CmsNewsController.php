@@ -51,6 +51,22 @@ class CmsNewsController extends Controller
         return view('cms.news.edit', ['post' => $post ?? new Post(['status' => 'draft', 'published_at' => now()])]);
     }
 
+    public function destroy(Request $request, Post $post)
+    {
+        abort_unless($post->cms_key, 404);
+        $data = $request->validate(['revision' => 'required|string']);
+        DB::transaction(function () use ($post, $data) {
+            $record = Post::lockForUpdate()->findOrFail($post->id);
+            if (! hash_equals(self::revision($record), $data['revision'])) {
+                throw ValidationException::withMessages(['revision' => 'Ce contenu a changé. Rechargez la page avant de le supprimer.']);
+            }
+            // Media and galleries can be reused elsewhere; preserve their files.
+            $record->delete();
+        });
+
+        return redirect()->route('admin.cms.news')->with('status', 'Actualité supprimée.');
+    }
+
     public function save(Request $request, ?Post $post = null)
     {
         abort_if($post && ! $post->cms_key, 404);

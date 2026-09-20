@@ -17,6 +17,7 @@
         ['success', 'Succès et témoignages', 'bx-medal', 'admin.cms.success', ['admin.cms.success*']],
         ['impact', 'Impact et résultats', 'bx-bar-chart-alt-2', 'admin.cms.impact', ['admin.cms.impact*']],
         ['partnership', 'Partenariats', 'bx-link-alt', 'admin.cms.partnership', ['admin.cms.partnership*']],
+        ['donation', 'Faire un don', 'bx-heart', 'admin.cms.donation', ['admin.cms.donation*']],
         ['resources', 'Ressources', 'bx-book-content', 'admin.cms.resources', ['admin.cms.resources*']],
         ['media', 'Médiathèque', 'bx-images', 'admin.cms.media.index', ['admin.cms.media.*']],
     ];

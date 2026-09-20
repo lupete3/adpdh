@@ -19,8 +19,9 @@ class CmsTitlesController extends Controller {
   return $page;
  }
  public function index() { return view('cms.titles.index', ['pages'=>CmsPage::withCount('titles')->orderBy('id')->get()]); }
- public function edit(CmsPage $page) { if($page->key==='que-faisons-nous')return redirect()->route('admin.cms.work'); if($page->key==='qui-sommes-nous')return redirect()->route('admin.cms.about'); if($page->key==='index')return redirect()->route('admin.cms.home'); return view('cms.titles.edit', ['page'=>$this->editablePage($page)]); }
+ public function edit(CmsPage $page) { if($page->key==='faire-un-don')return redirect()->route('admin.cms.donation'); if($page->key==='que-faisons-nous')return redirect()->route('admin.cms.work'); if($page->key==='qui-sommes-nous')return redirect()->route('admin.cms.about'); if($page->key==='index')return redirect()->route('admin.cms.home'); return view('cms.titles.edit', ['page'=>$this->editablePage($page)]); }
  public function update(Request $request, CmsPage $page) {
+  if($page->key==='faire-un-don')return redirect()->route('admin.cms.donation');
   if($page->key==='que-faisons-nous')return redirect()->route('admin.cms.work');
   if($page->key==='qui-sommes-nous')return redirect()->route('admin.cms.about');
   if($page->key==='index')return redirect()->route('admin.cms.home')->with('status','L’accueil se gère désormais par sections. Aucune modification de l’ancien formulaire n’a été appliquée.');
@@ -39,6 +40,7 @@ class CmsTitlesController extends Controller {
   return redirect()->route('admin.cms.titles.edit',$page)->with('status','Titres enregistrés. Consultez l’aperçu pour voir le résultat.');
  }
  public function preview(CmsPage $page) {
+  if($page->key==='faire-un-don')return response(app(CmsDonationController::class)->show()->render())->header('X-Robots-Tag','noindex, nofollow')->header('Cache-Control','private, no-store');
   if($page->key==='devenir-partenaire')return response(app(CmsPartnershipController::class)->show()->render())->header('X-Robots-Tag','noindex, nofollow')->header('Cache-Control','private, no-store');
   if($page->key==='impact')return response(app(CmsImpactController::class)->show()->render())->header('X-Robots-Tag','noindex, nofollow')->header('Cache-Control','private, no-store');
   if($page->key==='temoignages')return response(app(CmsSuccessController::class)->show()->render())->header('X-Robots-Tag','noindex, nofollow')->header('Cache-Control','private, no-store');
