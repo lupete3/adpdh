@@ -3,6 +3,7 @@
 if (!function_exists('adpdh_url')) {
     function adpdh_url(string $path): string
     {
+        if (preg_match('~^/?(?:adpdh/)?faire-un-don(?:\.html)?([?#].*)?$~D', $path, $match)) return route('donation').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?contact(?:\.html)?([?#].*)?$~D', $path, $match)) return route('contact').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?ressources(?:\.html)?([?#].*)?$~D', $path, $match)) return route('resources').($match[1] ?? '');
         if (preg_match('~^/?(?:adpdh/)?actualites(?:\.html)?([?#].*)?$~D', $path, $match)) return route('news').($match[1] ?? '');

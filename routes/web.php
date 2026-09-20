@@ -19,6 +19,14 @@ Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->pr
 });
 
 
+Route::get('/faire-un-don', [\App\Http\Controllers\CmsDonationController::class, 'show'])->name('donation');
+Route::redirect('/faire-un-don.html', '/faire-un-don', 301);
+Route::redirect('/adpdh/faire-un-don.html', '/faire-un-don', 301);
+Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms/donation')->name('admin.cms.donation')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CmsDonationController::class, 'edit']);
+    Route::put('/', [\App\Http\Controllers\CmsDonationController::class, 'update'])->name('.update');
+});
+
 Route::get('/actualites', [\App\Http\Controllers\CmsNewsController::class, 'index'])->name('news');
 Route::get('/actualites/{slug}', [\App\Http\Controllers\CmsNewsController::class, 'show'])->name('news.show');
 Route::redirect('/actualites.html', '/actualites', 301);
@@ -29,6 +37,7 @@ Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->pr
     Route::post('/', [\App\Http\Controllers\CmsNewsController::class, 'save'])->name('.store');
     Route::get('/{post}/edit', [\App\Http\Controllers\CmsNewsController::class, 'edit'])->name('.edit');
     Route::put('/{post}', [\App\Http\Controllers\CmsNewsController::class, 'save'])->name('.update');
+    Route::delete('/{post}', [\App\Http\Controllers\CmsNewsController::class, 'destroy'])->name('.destroy');
 });
 
 Route::get('/devenir-partenaire', [\App\Http\Controllers\CmsPartnershipController::class, 'show'])->name('partnership');
@@ -93,6 +102,7 @@ Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->pr
     Route::post('/', [\App\Http\Controllers\CmsActivityController::class, 'save'])->name('.store');
     Route::get('/{activity}/edit', [\App\Http\Controllers\CmsActivityController::class, 'edit'])->name('.edit');
     Route::put('/{activity}', [\App\Http\Controllers\CmsActivityController::class, 'save'])->name('.update');
+    Route::delete('/{activity}', [\App\Http\Controllers\CmsActivityController::class, 'destroy'])->name('.destroy');
 });
 
 Route::get('/', [\App\Http\Controllers\CmsHomeController::class, 'show'])->name('home');
