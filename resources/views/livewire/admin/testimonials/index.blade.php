@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(Testimonial $testimonial): void
     {
-        if ($testimonial->author_photo) {
-            Storage::disk('public')->delete($testimonial->author_photo);
-        }
         $testimonial->delete();
     }
 }; ?>

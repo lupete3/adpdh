@@ -5,7 +5,7 @@
         {{-- Logo --}}
         <a href="{{ url('/') }}" class="logo d-flex align-items-center">
             @if(isset($settings['logo']) && $settings['logo']->value)
-                <img src="{{ asset('storage/' . $settings['logo']->value) }}" alt="{{ $settings['site_name']->value ?? 'WEZESHA FOUNDATION' }}">
+                <img src="{{ media_url($settings['logo']->value) }}" alt="{{ $settings['site_name']->value ?? 'WEZESHA FOUNDATION' }}">
             @else
                 <h1 class="sitename">{{ $settings['site_name']->value ?? 'ADPDH' }}</h1>
             @endif

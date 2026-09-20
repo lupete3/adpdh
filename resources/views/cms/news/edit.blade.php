@@ -13,8 +13,8 @@
 <div class="col-md-4 mb-3"><label class="form-label" for="status">Publication</label><select class="form-select" id="status" name="status">@foreach(['draft'=>'Brouillon (masqué du site)', 'published'=>'Publié'] as $value=>$label)<option value="{{ $value }}" @selected(old('status', $post->status) === $value)>{{ $label }}</option>@endforeach</select></div>
 <div class="col-md-4 mb-3"><label class="form-label" for="published_at">Date de publication</label><input class="form-control" type="datetime-local" id="published_at" name="published_at" value="{{ old('published_at', ($post->published_at ?? now())->format('Y-m-d\TH:i')) }}" required><small>Une date future programme la publication.</small></div>
 </div>
-@if($post->cover?->publicUrl())<img src="{{ $post->cover->publicUrl() }}" alt="Couverture actuelle" style="width:240px;max-width:100%;height:160px;object-fit:cover" class="rounded mb-2"><label class="mb-3"><input type="checkbox" name="remove_cover" value="1" @checked(old('remove_cover'))> Retirer la couverture actuelle</label>@endif
-<label class="form-label" for="cover">Image de couverture</label><input class="form-control" id="cover" name="cover" type="file" accept="image/jpeg,image/png,image/webp"><p class="text-muted">JPEG, PNG ou WebP, 5 Mo maximum. Après une erreur, sélectionnez à nouveau le fichier.</p>
+
+<x-media-picker name="cover_media_id" :value="old('cover_media_id', $post->cover_media_id)" label="Image de couverture" />
 <label class="form-label" for="content">Contenu de l’actualité</label><textarea class="form-control" id="content" name="content" rows="14">{{ old('content', $post->content) }}</textarea><div id="activity-editor" data-label="Contenu de l’actualité" data-placeholder="Racontez votre actualité…" hidden></div>
 <button class="btn btn-primary mt-4" type="submit">Enregistrer l’actualité</button>
 </form>

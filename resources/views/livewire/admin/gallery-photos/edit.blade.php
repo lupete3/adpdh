@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public GalleryPhoto $galleryPhoto;
 
@@ -35,7 +36,7 @@ new class extends Component {
             'album'       => 'nullable|string|max:100',
             'is_featured' => 'boolean',
             'order'       => 'integer|min:0',
-            'image'       => 'nullable|image|max:4096',
+            'image'       => $this->mediaRule('image', false),
         ]);
 
         $data = [
@@ -46,9 +47,9 @@ new class extends Component {
             'order'       => $this->order,
         ];
 
-        if ($this->image) {
-            Storage::disk('public')->delete($this->galleryPhoto->image_path);
-            $data['image_path'] = $this->image->store('gallery', 'public');
+        if ($this->mediaChanged('image')) {
+            // Shared images are deleted only from the media library.
+            $data['image_path'] = $this->mediaPath('image');
         }
 
         $this->galleryPhoto->update($data);
@@ -95,7 +96,7 @@ new class extends Component {
                                  class="rounded" style="max-height:140px; object-fit:cover;">
                         </div>
                         <label class="form-label" for="image">Changer la photo (optionnel)</label>
-                        <input type="file" class="form-control" id="image" wire:model="image" accept="image/*">
+                        <x-media-picker wire-field="image" :current-url="media_url($galleryPhoto->image_path)" label="Image" />
                         @error('image') <div class="text-danger small">{{ $message }}</div> @enderror
                         @if($image)
                             <div class="mt-2">

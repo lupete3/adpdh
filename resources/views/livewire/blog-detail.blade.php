@@ -19,7 +19,7 @@
                 <div class="col-lg-8">
                     <!-- Blog Detail Start -->
                     <div class="mb-5">
-                        <img class="img-fluid w-100 rounded mb-5" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                        <img class="img-fluid w-100 rounded mb-5" src="{{ media_url($post->image) }}" alt="{{ $post->title }}">
                         <h1 class="mb-4">{{ $post->title }}</h1>
                         <div class="d-flex mb-3">
                             <small class="me-3"><i class="far fa-user text-primary me-2"></i>{{ $post->user->name }}</small>
@@ -41,7 +41,7 @@
                         </div>
                         @foreach(\App\Models\Post::where('id', '!=', $post->id)->latest()->take(5)->get() as $recentPost)
                         <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="{{ asset('storage/'.$recentPost->image) }}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                            <img class="img-fluid" src="{{ media_url($recentPost->image) }}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
                             <a href="{{ route('blog.detail', $recentPost->id) }}" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{{ $recentPost->title }}
                             </a>
                         </div>

@@ -23,11 +23,7 @@
 
 
 @unless($isLegal)
-<label class="form-label" for="media_asset_id">Image facultative</label><select class="form-select mb-3" id="media_asset_id" name="media_asset_id"><option value="">Sans image</option>
-@foreach($media as $asset)<option value="{{ $asset->id }}" @selected(old('media_asset_id',$content->media_asset_id)==$asset->id)>{{ $asset->name }}</option>
-@endforeach
-
-</select>
+<x-media-picker name="media_asset_id" :value="old('media_asset_id', $content->media_asset_id)" label="Image facultative" />
 @endunless
 @if(in_array($section->key,['chiffres-cles','impact']))
 <label class="form-label" for="indicator_id">Indicateur à afficher</label><select class="form-select mb-3" id="indicator_id" name="indicator_id" required><option value="">Choisir un indicateur</option>

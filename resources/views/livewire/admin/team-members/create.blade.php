@@ -6,6 +6,7 @@ use App\Models\TeamMember;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $name = '';
     public string $position = '';
@@ -20,14 +21,14 @@ new class extends Component {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'photo' => ['required', 'image', 'max:2048'], // 2MB Max
+            'photo' => $this->mediaRule('photo', true), // 2MB Max
             'twitter_url' => ['nullable', 'url', 'max:255'],
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
             'description' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $validated['photo'] = $this->photo->store('team', 'public');
+        $validated['photo'] = $this->mediaPath('photo');
 
         TeamMember::create($validated);
 
@@ -66,7 +67,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="photo" class="form-label">Photo</label>
-                    <input class="form-control" type="file" id="photo" wire:model="photo">
+                    <x-media-picker wire-field="photo" :current-url="media_url(null)" label="Image" />
                     @error('photo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($photo)

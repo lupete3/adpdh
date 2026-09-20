@@ -7,6 +7,7 @@ use App\Models\Partner;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $title = '';
     public string $description = '';
@@ -27,13 +28,13 @@ new class extends Component {
         $validated = $this->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => $this->mediaRule('image', true),
             'date' => ['required', 'date'],
             'location' => ['required', 'string', 'max:255'],
             'partner_id' => ['required', 'exists:partners,id'],
         ]);
 
-        $validated['image'] = $this->image->store('achievements', 'public');
+        $validated['image'] = $this->mediaPath('image');
 
         Achievement::create($validated);
 
@@ -77,7 +78,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
-                    <input class="form-control" type="file" id="image" wire:model="image">
+                    <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($image)

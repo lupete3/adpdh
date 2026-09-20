@@ -120,11 +120,8 @@ class CmsAboutController extends Controller
             $rules['zone_status'] = 'required|in:current,planned';
         }
         $data = $request->validate($rules);
-        if (! empty($data['photo_media_id'])) {
-            $media = MediaAsset::findOrFail($data['photo_media_id']);
-            if ($media->kind !== 'image' || ! $media->isPubliclyAvailable()) {
-                throw ValidationException::withMessages(['photo_media_id' => 'Choisissez une image disponible pour le site.']);
-            }
+        if ($kind === 'equipe') {
+            $data['photo_media_id'] = app(\App\Services\MediaLibrary::class)->selection($request, 'photo_media_id', 'portrait_upload');
         }
         DB::transaction(function () use ($data, $kind, $id, $request) {
             $record = $id ? $this->query($kind)->lockForUpdate()->findOrFail($id) : new (self::COLLECTIONS[$kind]);
@@ -134,15 +131,6 @@ class CmsAboutController extends Controller
             unset($data['revision'], $data['portrait_upload']);
             if (! $id) {
                 $data[$kind === 'equipe' ? 'cms_key' : 'key'] = (string) Str::uuid();
-            }
-            if ($request->hasFile('portrait_upload')) {
-                $file = $request->file('portrait_upload');
-                $path = $file->store('team', 'public');
-                if (! $path) {
-                    throw ValidationException::withMessages(['portrait_upload' => 'Impossible d’enregistrer la photo. Vérifiez les droits du dossier de stockage.']);
-                }
-                $asset = MediaAsset::create(['name' => $data['name'], 'kind' => 'image', 'disk' => 'public', 'path' => $path, 'visibility' => 'public', 'mime_type' => $file->getMimeType(), 'size' => $file->getSize(), 'alt' => $data['name'], 'publication_allowed' => true, 'uploaded_by' => $request->user()->id]);
-                $data['photo_media_id'] = $asset->id;
             }
             $record->fill($data)->save();
         });

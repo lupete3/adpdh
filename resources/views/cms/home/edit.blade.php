@@ -46,12 +46,7 @@
 
 
 </div><div class="col-md-4"><label class="form-label" for="visible-{{ $section->id }}">Affichage</label><select class="form-select mb-3" name="is_visible" id="visible-{{ $section->id }}"><option value="1" @selected($editing?old('is_visible'):$section->is_visible)>Visible</option><option value="0" @selected(!($editing?old('is_visible'):$section->is_visible))>Masquée</option></select><label class="form-label" for="order-{{ $section->id }}">Ordre d’affichage</label><input class="form-control mb-3" id="order-{{ $section->id }}" type="number" name="sort_order" min="0" max="1000" value="{{ $editing?old('sort_order'):$section->sort_order }}" required>
-@if($section->key==='hero')<label class="form-label" for="media-{{ $section->id }}">Image principale</label><select class="form-select mb-3" id="media-{{ $section->id }}" name="media_asset_id"><option value="">Image actuelle de la maquette</option>
-@foreach($media as $asset)<option value="{{ $asset->id }}" @selected(($editing?old('media_asset_id'):$section->media_asset_id)==$asset->id)>{{ $asset->name }}</option>
-@endforeach
-
-
-</select>
+@if($section->key==='hero')<x-media-picker name="media_asset_id" :value="$editing ? old('media_asset_id') : $section->media_asset_id" label="Image de la section" />
 @endif
 
 

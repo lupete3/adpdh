@@ -65,9 +65,12 @@ class CmsNewsController extends Controller
         if (! trim(html_entity_decode(strip_tags($content)))) {
             throw ValidationException::withMessages(['content' => 'Rédigez le contenu de l’actualité.']);
         }
+        $library = app(\App\Services\MediaLibrary::class);
+        $coverId = $library->selection($request, 'cover_media_id', 'cover', $post?->cover_media_id);
+        if ($request->boolean('remove_cover') && ! $request->hasFile('cover')) $coverId = null;
         $path = null;
         try {
-            $record = DB::transaction(function () use ($request, $post, $data, $content, &$path) {
+            $record = DB::transaction(function () use ($request, $post, $data, $content, &$path, $coverId) {
                 $record = $post ? Post::lockForUpdate()->findOrFail($post->id) : new Post([
                     'cms_key' => 'actualite-'.Str::uuid(), 'slug' => (Str::slug($data['title']) ?: 'actualite').'-'.Str::lower(Str::random(8)),
                     'user_id' => $request->user()->id, 'is_demo' => false,
@@ -77,19 +80,7 @@ class CmsNewsController extends Controller
                 }
                 $record->fill(collect($data)->only(['title', 'excerpt', 'category', 'status', 'published_at'])->all());
                 $record->content = $content;
-                if ($request->boolean('remove_cover')) {
-                    $record->cover_media_id = null;
-                }
-                if ($request->hasFile('cover')) {
-                    $file = $request->file('cover');
-                    $path = $file->store('news', 'public');
-                    $record->cover_media_id = MediaAsset::create([
-                        'key' => 'news-'.Str::uuid(), 'name' => $file->getClientOriginalName(), 'kind' => 'image',
-                        'disk' => 'public', 'path' => $path, 'visibility' => 'public', 'mime_type' => $file->getMimeType(),
-                        'size' => $file->getSize(), 'alt' => $record->title, 'publication_allowed' => true,
-                        'is_demo' => false, 'uploaded_by' => $request->user()->id,
-                    ])->id;
-                }
+                $record->cover_media_id = $coverId;
                 $record->save();
 
                 return $record;

@@ -2,7 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class MediaAsset extends Model {
- protected $fillable = ['key', 'media_folder_id', 'name', 'kind', 'disk', 'path', 'visibility', 'mime_type', 'size', 'width', 'height', 'alt', 'caption', 'credit', 'source', 'is_illustration', 'is_demo', 'publication_allowed', 'uploaded_by'];
+ protected $fillable = ['checksum', 'key', 'media_folder_id', 'name', 'kind', 'disk', 'path', 'visibility', 'mime_type', 'size', 'width', 'height', 'alt', 'caption', 'credit', 'source', 'is_illustration', 'is_demo', 'publication_allowed', 'uploaded_by'];
  protected $casts = ['is_illustration'=>'boolean','is_demo'=>'boolean','publication_allowed'=>'boolean'];
 
  public function folder(){return $this->belongsTo(MediaFolder::class,'media_folder_id');}

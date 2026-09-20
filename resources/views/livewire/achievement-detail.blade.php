@@ -7,7 +7,7 @@
                 <div class="col-lg-8">
                     <!-- Achievement Detail Start -->
                     <div class="mb-5">
-                        <img class="img-fluid w-100 rounded mb-5" src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}">
+                        <img class="img-fluid w-100 rounded mb-5" src="{{ media_url($achievement->image) }}" alt="{{ $achievement->title }}">
                         <h1 class="mb-4">{{ $achievement->title }}</h1>
                         <div class="d-flex mb-3">
                             <small class="me-3"><i class="far fa-user text-primary me-2"></i>{{ $achievement->partner->name }}</small>
@@ -28,7 +28,7 @@
                         </div>
                         @foreach(\App\Models\Achievement::where('id', '!=', $achievement->id)->latest('date')->take(5)->get() as $recentAchievement)
                         <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="{{ asset('storage/'. $recentAchievement->image) }}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                            <img class="img-fluid" src="{{ media_url($recentAchievement->image) }}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
                             <a href="{{ route('achievement.detail', $recentAchievement->id) }}" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{{ $recentAchievement->title }}
                             </a>
                         </div>

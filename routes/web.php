@@ -109,7 +109,10 @@ Route::get('/features', \App\Livewire\FeaturesPage::class)->name('features');
 Route::get('/achievements', \App\Livewire\AchievementsPage::class)->name('achievements');
 Route::get('/team', \App\Livewire\TeamPage::class)->name('team');
 Route::get('/blog', \App\Livewire\PostsPage::class)->name('blog');
-Route::get('/contact', \App\Livewire\ContactPage::class)->name('contact');
+Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.send');
+Route::redirect('/contact.html', '/contact', 301);
+Route::redirect('/adpdh/contact.html', '/contact', 301);
 Route::get('/publications/{category?}', fn (?string $category = null) => redirect()->route('resources', $category ? ['category' => $category] : [], 301))->name('publications');
 Route::get('/careers', \App\Livewire\CareersPage::class)->name('careers');
 Volt::route('/galerie', 'gallery-page')->name('gallery');
@@ -232,6 +235,13 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\EnsureAdministrator:
 
 
 Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->prefix('admin/cms')->name('admin.cms.')->group(function () {
+ Route::get('media', [\App\Http\Controllers\MediaLibraryController::class, 'index'])->name('media.index');
+ Route::post('media', [\App\Http\Controllers\MediaLibraryController::class, 'store'])->middleware('throttle:60,1')->name('media.store');
+ Route::get('media/{asset}', [\App\Http\Controllers\MediaLibraryController::class, 'show'])->name('media.show');
+ Route::put('media/{asset}', [\App\Http\Controllers\MediaLibraryController::class, 'update'])->name('media.update');
+ Route::delete('media/{asset}', [\App\Http\Controllers\MediaLibraryController::class, 'destroy'])->name('media.destroy');
+ Route::get('mail', [\App\Http\Controllers\MailSettingsController::class, 'edit'])->name('mail');
+ Route::put('mail', [\App\Http\Controllers\MailSettingsController::class, 'update'])->middleware('throttle:10,1')->name('mail.update');
  Route::get('work', [\App\Http\Controllers\CmsWorkController::class, 'index'])->name('work');
  Route::put('work/seo', [\App\Http\Controllers\CmsWorkController::class, 'seo'])->name('work.seo');
  Route::get('work/sections/{section}', [\App\Http\Controllers\CmsWorkController::class, 'section'])->name('work.section');

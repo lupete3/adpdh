@@ -60,6 +60,7 @@
                             @if ($errors->any())
                                 <div class="error-message d-block">Veuillez corriger les erreurs dans le formulaire.</div>
                             @endif
+                            @error('delivery')<div class="error-message d-block" role="alert">{{ $message }}</div>@enderror
 
                             <button type="submit" wire:loading.attr="disabled">Envoyer</button>
                         </div>

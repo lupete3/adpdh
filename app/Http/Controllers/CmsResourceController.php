@@ -98,9 +98,12 @@ class CmsResourceController extends Controller
             'document' => 'nullable|file|mimes:pdf|mimetypes:application/pdf|max:20480',
             'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120', 'remove_cover' => 'nullable|boolean',
         ]);
+        $library = app(\App\Services\MediaLibrary::class);
+        $coverId = $library->selection($request, 'cover_media_id', 'cover', $resource?->cover_media_id);
+        if ($request->boolean('remove_cover') && ! $request->hasFile('cover')) $coverId = null;
         $uploads = [];
         try {
-            $record = DB::transaction(function () use ($request, $resource, $data, &$uploads) {
+            $record = DB::transaction(function () use ($request, $resource, $data, &$uploads, $coverId) {
                 $record = $resource ? Publication::lockForUpdate()->findOrFail($resource->id) : new Publication([
                     'cms_key' => 'resource-'.Str::uuid(), 'slug' => (Str::slug($data['title']) ?: 'ressource').'-'.Str::lower(Str::random(8)), 'is_demo' => false,
                 ]);
@@ -108,7 +111,7 @@ class CmsResourceController extends Controller
                     throw ValidationException::withMessages(['revision' => 'Cette ressource a changé. Rechargez la fiche avant de réessayer.']);
                 }
                 $record->fill(collect($data)->only(['title', 'description', 'category', 'publication_state', 'distribution_allowed'])->all());
-                foreach (['document' => ['local', 'file_media_id', 'document'], 'cover' => ['public', 'cover_media_id', 'image']] as $field => [$disk, $column, $kind]) {
+                foreach (['document' => ['local', 'file_media_id', 'document']] as $field => [$disk, $column, $kind]) {
                     if (! $request->hasFile($field)) {
                         continue;
                     }
@@ -125,9 +128,7 @@ class CmsResourceController extends Controller
                         'publication_allowed' => true, 'is_demo' => false, 'uploaded_by' => $request->user()->id,
                     ])->id;
                 }
-                if ($request->boolean('remove_cover') && ! $request->hasFile('cover')) {
-                    $record->cover_media_id = null;
-                }
+                $record->cover_media_id = $coverId;
                 $record->unsetRelation('file');
                 $record->availability = $record->hasReadableFile() ? 'available' : 'pending';
                 if ($record->publication_state === 'published' && $record->availability !== 'available') {

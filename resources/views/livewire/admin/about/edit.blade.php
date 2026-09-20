@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
     public About $about;
 
     public string $title = '';
@@ -46,7 +47,7 @@ new class extends Component {
             'subtitle' => ['required', 'string', 'max:255'],
             'kicker' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
-            'new_image' => ['nullable', 'image', 'max:2048'],
+            'new_image' => $this->mediaRule('new_image', false),
             'badge_title' => ['nullable', 'string', 'max:255'],
             'badge_text' => ['nullable', 'string', 'max:255'],
             'video_url' => ['required', 'string'],
@@ -56,11 +57,8 @@ new class extends Component {
             'button_url' => ['required', 'string', 'max:255'],
         ]);
 
-        if ($this->new_image) {
-            if ($this->about->image && !str_starts_with($this->about->image, 'flexbiz')) {
-                Storage::disk('public')->delete($this->about->image);
-            }
-            $validated['image'] = $this->new_image->store('about', 'public');
+        if ($this->mediaChanged('new_image')) {
+            $validated['image'] = $this->mediaPath('new_image');
         }
 
         $featuresArray = array_filter(array_map('trim', explode("\n", $this->features_text)));
@@ -152,15 +150,9 @@ new class extends Component {
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="new_image" class="form-label">Image de présentation</label>
-                        <input class="form-control" type="file" id="new_image" wire:model="new_image">
+                        <x-media-picker wire-field="new_image" :current-url="media_url($about->image)" label="Image" />
                         @error('new_image') <div class="text-danger">{{ $message }}</div> @enderror
-                        <div class="mt-2">
-                            @if ($new_image)
-                                <img src="{{ $new_image->temporaryUrl() }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @elseif ($about->image)
-                                <img src="{{ media_url($about->image) }}" class="img-fluid rounded" style="max-height: 100px;">
-                            @endif
-                        </div>
+                        
                     </div>
                     <div class="col-md-3 mb-3">
                         <label class="form-label" for="badge_title">Titre du badge</label>

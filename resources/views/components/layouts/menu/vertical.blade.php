@@ -18,6 +18,10 @@
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.impact') }}">Notre impact — indicateurs</a></li>
     <li class="menu-item"><a class="menu-link" href="{{ route('admin.cms.partnership') }}">Devenir partenaire — contenus et PDF</a></li>
     <li class="menu-item {{ request()->routeIs('admin.cms.resources*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.resources') }}">Ressources — documents et téléchargements</a></li>
+    @if(auth()->user()?->is_admin)
+    <li class="menu-item {{ request()->routeIs('admin.cms.media.*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.media.index') }}">Médiathèque — images</a></li>
+    <li class="menu-item {{ request()->routeIs('admin.cms.mail*') ? 'active' : '' }}"><a class="menu-link" href="{{ route('admin.cms.mail') }}">Messagerie — configuration et test</a></li>
+    @endif
     <!-- Dashboards -->
     <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
       <a class="menu-link" href="{{ route('dashboard') }}" wire:navigate>{{ __('Tableau de bord') }}</a>

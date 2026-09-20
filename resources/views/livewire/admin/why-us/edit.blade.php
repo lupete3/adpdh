@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public WhyUs $whyUs;
 
@@ -70,7 +71,7 @@ new class extends Component {
             'button2_url' => ['nullable', 'string', 'max:255'],
             'banner_button_text' => ['nullable', 'string', 'max:255'],
             'banner_button_url' => ['nullable', 'string', 'max:255'],
-            'intro_image' => ['nullable', 'image', 'max:2048'],
+            'intro_image' => $this->mediaRule('intro_image', false),
         ]);
 
         $highlightsArray = array_filter(array_map('trim', explode("\n", $this->highlights_text)));
@@ -91,11 +92,8 @@ new class extends Component {
             'banner_button_url' => $validated['banner_button_url'],
         ];
 
-        if ($this->intro_image) {
-            if ($this->whyUs->intro_image) {
-                Storage::disk('public')->delete($this->whyUs->intro_image);
-            }
-            $data['intro_image'] = $this->intro_image->store('why-us', 'public');
+        if ($this->mediaChanged('intro_image')) {
+            $data['intro_image'] = $this->mediaPath('intro_image');
             $this->existingImage = $data['intro_image'];
         }
 
@@ -166,7 +164,7 @@ new class extends Component {
                             @elseif ($existingImage)
                                 <img src="{{ media_url($existingImage) }}" class="img-fluid rounded mb-2" style="max-height: 200px;">
                             @endif
-                            <input type="file" class="form-control" wire:model="intro_image">
+                            <x-media-picker wire-field="intro_image" :current-url="media_url($whyUs->intro_image)" label="Image" />
                             @error('intro_image') <div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>

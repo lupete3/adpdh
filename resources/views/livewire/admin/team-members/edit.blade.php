@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public TeamMember $teamMember;
 
@@ -34,18 +35,15 @@ new class extends Component {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'new_photo' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'new_photo' => $this->mediaRule('new_photo', false), // 2MB Max
             'twitter_url' => ['nullable', 'url', 'max:255'],
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
             'description' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        if ($this->new_photo) {
-            if ($this->teamMember->photo) {
-                Storage::disk('public')->delete($this->teamMember->photo);
-            }
-            $validated['photo'] = $this->new_photo->store('team', 'public');
+        if ($this->mediaChanged('new_photo')) {
+            $validated['photo'] = $this->mediaPath('new_photo');
         } else {
             $validated['photo'] = $this->teamMember->photo;
         }
@@ -89,7 +87,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="new_photo" class="form-label">Nouvelle Photo</label>
-                    <input class="form-control" type="file" id="new_photo" wire:model="new_photo">
+                    <x-media-picker wire-field="new_photo" :current-url="media_url($teamMember->photo)" label="Image" />
                     @error('new_photo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     <div class="mt-3">

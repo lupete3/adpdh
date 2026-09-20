@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $title = '';
     public string $content = '';
@@ -20,12 +21,12 @@ new class extends Component {
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'image' => $this->mediaRule('image', false), // 2MB Max
             'status' => ['required', 'in:published,draft'],
         ]);
 
-        if ($this->image) {
-            $validated['image'] = $this->image->store('posts', 'public');
+        if ($this->mediaChanged('image')) {
+            $validated['image'] = $this->mediaPath('image');
         }
 
         $validated['user_id'] = auth()->id();
@@ -68,7 +69,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
-                    <input class="form-control" type="file" id="image" wire:model="image">
+                    <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($image)

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Partner $partner;
 
@@ -25,15 +26,12 @@ new class extends Component {
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'new_logo' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'new_logo' => $this->mediaRule('new_logo', false), // 2MB Max
             'website_url' => ['nullable', 'url', 'max:255'],
         ]);
 
-        if ($this->new_logo) {
-            if ($this->partner->logo) {
-                Storage::disk('public')->delete($this->partner->logo);
-            }
-            $validated['logo'] = $this->new_logo->store('partners', 'public');
+        if ($this->mediaChanged('new_logo')) {
+            $validated['logo'] = $this->mediaPath('new_logo');
         } else {
             $validated['logo'] = $this->partner->logo;
         }
@@ -65,7 +63,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="new_logo" class="form-label">Nouveau Logo</label>
-                    <input class="form-control" type="file" id="new_logo" wire:model="new_logo">
+                    <x-media-picker wire-field="new_logo" :current-url="media_url($partner->logo)" label="Image" />
                     @error('new_logo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     <div class="mt-3">

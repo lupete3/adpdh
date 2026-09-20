@@ -15,12 +15,7 @@
 
 
 </div><div class="col-md-4"><label class="form-label" for="visible-{{ $section->id }}">Affichage</label><select class="form-select mb-3" name="is_visible" id="visible-{{ $section->id }}"><option value="1" @selected($editing?old('is_visible'):$section->is_visible)>Visible</option><option value="0" @selected(!($editing?old('is_visible'):$section->is_visible))>Masquée</option></select>@if($section->page->key==='que-faisons-nous')<input type="hidden" name="sort_order" value="{{ $section->sort_order }}">@else<label class="form-label" for="order-{{ $section->id }}">Ordre d’affichage</label><input class="form-control mb-3" id="order-{{ $section->id }}" type="number" name="sort_order" min="0" max="1000" value="{{ $editing?old('sort_order'):$section->sort_order }}" required>@endif
-@if($section->key==='hero' || in_array($section->page->key,['qui-sommes-nous','que-faisons-nous']))<label class="form-label" for="media-{{ $section->id }}">Image de la section</label><select class="form-select mb-3" id="media-{{ $section->id }}" name="media_asset_id"><option value="">Aucune image sélectionnée</option>
-@foreach($media as $asset)<option value="{{ $asset->id }}" @selected(($editing?old('media_asset_id'):$section->media_asset_id)==$asset->id)>{{ $asset->name }}</option>
-@endforeach
-
-
-</select>
+@if($section->key==='hero' || in_array($section->page->key,['qui-sommes-nous','que-faisons-nous']))<x-media-picker name="media_asset_id" :value="$editing ? old('media_asset_id') : $section->media_asset_id" label="Image de la section" />
 @if(in_array($section->page->key,['qui-sommes-nous','que-faisons-nous']))
 <label class="form-label" for="image-caption-{{ $section->id }}">Légende en bas de l’image</label>
 <textarea class="form-control mb-3" id="image-caption-{{ $section->id }}" name="image_caption" maxlength="1000" rows="3">{{ $editing?old('image_caption',$section->image_caption):$section->image_caption }}</textarea>

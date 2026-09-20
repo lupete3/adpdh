@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteRule ^(?:adpdh/)?contact\.html$ /contact [R=301,L]
     RewriteRule ^(?:adpdh/)?ressources\.html$ /ressources [R=301,L]
     RewriteRule ^(?:adpdh/)?actualites\.html$ /actualites [R=301,L]
     RewriteRule ^(?:adpdh/)?devenir-partenaire\.html$ /devenir-partenaire [R=301,L]
