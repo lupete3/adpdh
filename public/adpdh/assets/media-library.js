@@ -48,11 +48,11 @@
       data.items.forEach(item => {
         const button = document.createElement('button'); button.type = 'button';
         button.className = 'btn btn-outline-secondary text-start';
-        button.style.cssText = 'padding:8px;overflow:hidden';
+        button.style.cssText = 'display:flex;flex-direction:column;align-items:stretch;padding:8px;overflow:hidden;min-width:0;white-space:normal';
         const img = document.createElement('img'); img.src = item.url; img.alt = ''; img.loading = 'lazy';
-        img.style.cssText = 'width:100%;height:105px;object-fit:contain;background:#f1f4f7';
+        img.style.cssText = 'width:100%;height:105px;flex-shrink:0;object-fit:contain;background:#f1f4f7';
         const name = document.createElement('span'); name.textContent = item.name;
-        name.style.cssText = 'display:block;overflow-wrap:anywhere;margin-top:6px';
+        name.style.cssText = 'display:block;overflow-wrap:anywhere;margin-top:6px;line-height:1.4;font-size:13px';
         button.append(img, name); button.setAttribute('aria-label', 'Choisir ' + item.name);
         button.addEventListener('click', () => choose(item)); grid.append(button);
       });

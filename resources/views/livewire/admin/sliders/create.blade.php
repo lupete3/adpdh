@@ -93,7 +93,7 @@ new class extends Component {
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="image" class="form-label">Image Principale</label>
-                        <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
+                        <x-media-picker wire-field="image" :current-url="null" label="Image" />
                         @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                         @if ($image)
                             <div class="mt-2">
@@ -103,7 +103,7 @@ new class extends Component {
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="secondary_image" class="form-label">Image Secondaire</label>
-                        <x-media-picker wire-field="secondary_image" :current-url="media_url(null)" label="Image" />
+                        <x-media-picker wire-field="secondary_image" :current-url="null" label="Image" />
                         @error('secondary_image') <div class="text-danger">{{ $message }}</div> @enderror
                         @if ($secondary_image)
                             <div class="mt-2">

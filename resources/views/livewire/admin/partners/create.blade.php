@@ -47,7 +47,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="logo" class="form-label">Logo</label>
-                    <x-media-picker wire-field="logo" :current-url="media_url(null)" label="Image" />
+                    <x-media-picker wire-field="logo" :current-url="null" label="Image" />
                     @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($logo)

@@ -150,7 +150,7 @@ new class extends Component {
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="new_image" class="form-label">Image de présentation</label>
-                        <x-media-picker wire-field="new_image" :current-url="media_url($about->image)" label="Image" />
+                        <x-media-picker wire-field="new_image" :current-url="($about->image ?? null) ? media_url($about->image) : null" label="Image" />
                         @error('new_image') <div class="text-danger">{{ $message }}</div> @enderror
                         
                     </div>

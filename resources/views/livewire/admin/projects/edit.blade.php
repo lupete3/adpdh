@@ -128,7 +128,7 @@ new class extends Component {
                             <img src="{{ media_url($project->image) }}" class="img-fluid rounded" style="max-width: 200px;">
                         </div>
                     @endif
-                    <x-media-picker wire-field="image" :current-url="media_url($project->image)" label="Image" />
+                    <x-media-picker wire-field="image" :current-url="($project->image ?? null) ? media_url($project->image) : null" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded mt-2" style="max-width: 200px;">

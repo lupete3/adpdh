@@ -55,18 +55,12 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="logo" class="form-label">Logo</label>
-                                    <x-media-picker wire-field="logo" :current-url="media_url($existing_logo)" label="Image" />
-                                    @if ($existing_logo)
-                                        <img src="{{ media_url($existing_logo) }}" alt="Logo" class="img-thumbnail mt-2" width="150">
-                                    @endif
+                                    <x-media-picker wire-field="logo" :current-url="($existing_logo ?? null) ? media_url($existing_logo) : null" label="Image" />
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="feature_image" class="form-label">Image "Features"</label>
-                                    <x-media-picker wire-field="feature_image" :current-url="media_url($existing_feature_image)" label="Image" />
-                                    @if ($existing_feature_image)
-                                        <img src="{{ media_url($existing_feature_image) }}" alt="Feature Image" class="img-thumbnail mt-2" width="150">
-                                    @endif
+                                    <x-media-picker wire-field="feature_image" :current-url="($existing_feature_image ?? null) ? media_url($existing_feature_image) : null" label="Image" />
                                 </div>
                             </div>
 

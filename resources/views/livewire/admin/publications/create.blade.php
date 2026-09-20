@@ -86,7 +86,7 @@ new class extends Component {
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="thumbnail">Image de couverture</label>
-                        <x-media-picker wire-field="thumbnail" :current-url="media_url(null)" label="Image" />
+                        <x-media-picker wire-field="thumbnail" :current-url="null" label="Image" />
                         @error('thumbnail') <div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>
