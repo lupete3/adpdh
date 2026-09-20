@@ -54,6 +54,7 @@ if (!function_exists('media_url')) {
         // Public directory assets (FlexBiz template files, etc.)
         if (
             str_starts_with($path, 'flexbiz/') ||
+            str_starts_with($path, 'adpdh/') ||
             str_starts_with($path, 'assets/') ||
             str_starts_with($path, 'images/') ||
             str_starts_with($path, 'template/')

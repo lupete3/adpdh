@@ -96,7 +96,7 @@ new class extends Component {
                                  class="rounded" style="max-height:140px; object-fit:cover;">
                         </div>
                         <label class="form-label" for="image">Changer la photo (optionnel)</label>
-                        <x-media-picker wire-field="image" :current-url="media_url($galleryPhoto->image_path)" label="Image" />
+                        <x-media-picker wire-field="image" :current-url="($galleryPhoto->image_path ?? null) ? media_url($galleryPhoto->image_path) : null" label="Image" />
                         @error('image') <div class="text-danger small">{{ $message }}</div> @enderror
                         @if($image)
                             <div class="mt-2">

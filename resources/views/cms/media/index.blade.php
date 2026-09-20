@@ -19,5 +19,9 @@
     </a></div>
 @empty<p>Aucune image trouvée.</p>@endforelse
 </div>
-<div class="mt-4">{{ $assets->links() }}</div>
+<nav class="d-flex justify-content-between align-items-center gap-3 mt-4" aria-label="Pages de la médiathèque">
+    @if($assets->previousPageUrl())<a class="btn btn-outline-primary" href="{{ $assets->previousPageUrl() }}">← Précédent</a>@else<span></span>@endif
+    <span>Page {{ $assets->currentPage() }} sur {{ $assets->lastPage() }}</span>
+    @if($assets->nextPageUrl())<a class="btn btn-outline-primary" href="{{ $assets->nextPageUrl() }}">Suivant →</a>@else<span></span>@endif
+</nav>
 </x-layouts.app>

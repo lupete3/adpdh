@@ -75,7 +75,10 @@ test('CMS associations and history protect media from deletion', function () {
     $asset = libraryImage();
     $post = Post::create(['title' => 'Actualité', 'category' => 'Terrain', 'slug' => 'test-photo', 'cms_key' => 'test-photo', 'user_id' => auth()->id(), 'content' => 'Texte', 'cover_media_id' => $asset->id]);
     $this->delete('/admin/cms/media/'.$asset->id)->assertSessionHasErrors('image');
-    expect(app(MediaLibrary::class)->usages($asset))->toContain('posts #'.$post->id);
+    expect(app(MediaLibrary::class)->usages($asset))->toContain('Actualité n° '.$post->id);
+    $post->update(['cover_media_id' => null]);
+    DB::table('content_revisions')->insert(['revisable_type' => Post::class, 'revisable_id' => $post->id, 'snapshot' => json_encode(['cover_media_id' => $asset->id])]);
+    $this->delete('/admin/cms/media/'.$asset->id)->assertSessionHasErrors('image');
 });
 
 test('builtin theme images cannot be physically deleted', function () {
