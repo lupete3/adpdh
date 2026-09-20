@@ -105,7 +105,7 @@ new class extends Component {
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="thumbnail">Image de couverture (laisser vide pour conserver l'actuelle)</label>
-                        <x-media-picker wire-field="thumbnail" :current-url="media_url($publication->thumbnail)" label="Image" />
+                        <x-media-picker wire-field="thumbnail" :current-url="($publication->thumbnail ?? null) ? media_url($publication->thumbnail) : null" label="Image" />
                         @if($publication->thumbnail)
                             <div class="mt-2">
                                 <img src="{{ media_url($publication->thumbnail) }}" style="height:60px; border-radius:6px;" alt="thumbnail">

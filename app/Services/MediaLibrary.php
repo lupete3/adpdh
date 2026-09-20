@@ -45,7 +45,9 @@ class MediaLibrary
                 if ($existing->isPubliclyAvailable()) return $existing;
                 if ($existing->disk === 'public') {
                     $this->safePath($existing->path);
-                    Storage::disk('public')->put($existing->path, file_get_contents($file->getRealPath()));
+                    if (! Storage::disk('public')->put($existing->path, file_get_contents($file->getRealPath()))) {
+                        throw ValidationException::withMessages(['image' => 'Impossible de restaurer le fichier de cette image.']);
+                    }
                     return $existing;
                 }
             }
@@ -84,7 +86,7 @@ class MediaLibrary
 
     public function legacyPath(MediaAsset $asset): string
     {
-        return $asset->disk === 'builtin' ? $asset->publicUrl() : $asset->path;
+        return $asset->path;
     }
 
     public function safePath(string $path): void
@@ -97,15 +99,16 @@ class MediaLibrary
     public function usages(MediaAsset $asset): array
     {
         $usages = [];
+        $labels = ['cms_sections' => 'Section', 'cms_section_contents' => 'Contenu de section', 'gallery_items' => 'Photo de galerie', 'projects' => 'Activité', 'posts' => 'Actualité', 'team_members' => 'Membre de l’équipe', 'testimonials' => 'Témoignage', 'publications' => 'Ressource', 'services' => 'Service', 'partners' => 'Partenaire', 'sliders' => 'Bannière', 'achievements' => 'Réalisation', 'abouts' => 'Présentation', 'ctas' => 'Appel à l’action', 'why_us' => 'Présentation des atouts', 'gallery_photos' => 'Photo de galerie', 'users' => 'Profil utilisateur'];
         foreach (self::REFERENCES as $table => $columns) {
             foreach ($columns as $column) {
-                foreach (DB::table($table)->where($column, $asset->id)->pluck('id') as $id) $usages[] = "$table #$id";
+                foreach (DB::table($table)->where($column, $asset->id)->pluck('id') as $id) $usages[] = $labels[$table].' n° '.$id;
             }
         }
         $paths = [$asset->path, 'storage/'.$asset->path, '/storage/'.$asset->path, Storage::disk('public')->url($asset->path), asset($asset->path)];
         foreach (self::LEGACY_IMAGES + ['users' => ['photo']] as $table => $columns) {
             foreach ($columns as $column) {
-                foreach (DB::table($table)->whereIn($column, $paths)->pluck('id') as $id) $usages[] = "$table #$id";
+                foreach (DB::table($table)->whereIn($column, $paths)->pluck('id') as $id) $usages[] = $labels[$table].' n° '.$id;
             }
         }
         foreach (DB::table('settings')->whereIn('value', $paths)->pluck('key') as $key) $usages[] = 'Réglage : '.$key;

@@ -51,8 +51,8 @@ class ProfileForm extends Form
         if (Auth::user()->is_admin && $this->mediaChanged('photo')) {
             $user->photo = $this->mediaPath('photo');
         } elseif ($this->photo) {
-            if ($user->photo) {
-                // Keep previously shared images; removal is managed by the media library.
+            if ($user->photo && str_starts_with($user->photo, 'photos/') && ! str_contains($user->photo, '..') && ! \App\Models\MediaAsset::where('disk', 'public')->where('path', $user->photo)->exists()) {
+                Storage::disk('public')->delete($user->photo);
             }
             $user->photo = $this->photo->store('photos', 'public');
         }

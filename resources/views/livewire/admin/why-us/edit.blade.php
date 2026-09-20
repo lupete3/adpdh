@@ -164,7 +164,7 @@ new class extends Component {
                             @elseif ($existingImage)
                                 <img src="{{ media_url($existingImage) }}" class="img-fluid rounded mb-2" style="max-height: 200px;">
                             @endif
-                            <x-media-picker wire-field="intro_image" :current-url="media_url($whyUs->intro_image)" label="Image" />
+                            <x-media-picker wire-field="intro_image" :current-url="($whyUs->intro_image ?? null) ? media_url($whyUs->intro_image) : null" label="Image" />
                             @error('intro_image') <div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>
