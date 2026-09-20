@@ -6,6 +6,7 @@ use App\Models\Slider;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $title = '';
     public string $subtitle = '';
@@ -26,8 +27,8 @@ new class extends Component {
             'title' => ['required', 'string', 'max:255'],
             'subtitle' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'image' => ['required', 'image', 'max:2048'],
-            'secondary_image' => ['nullable', 'image', 'max:2048'],
+            'image' => $this->mediaRule('image', true),
+            'secondary_image' => $this->mediaRule('secondary_image', false),
             'floating_badge' => ['nullable', 'string', 'max:255'],
             'button1_text' => ['required', 'string', 'max:255'],
             'button1_url' => ['required', 'string', 'max:255'],
@@ -37,10 +38,10 @@ new class extends Component {
             'order' => ['required', 'integer'],
         ]);
 
-        $validated['image'] = $this->image->store('sliders', 'public');
+        $validated['image'] = $this->mediaPath('image');
         
-        if ($this->secondary_image) {
-            $validated['secondary_image'] = $this->secondary_image->store('sliders', 'public');
+        if ($this->mediaChanged('secondary_image')) {
+            $validated['secondary_image'] = $this->mediaPath('secondary_image');
         }
 
         $miniStats = [];
@@ -92,7 +93,7 @@ new class extends Component {
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="image" class="form-label">Image Principale</label>
-                        <input class="form-control" type="file" id="image" wire:model="image">
+                        <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
                         @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                         @if ($image)
                             <div class="mt-2">
@@ -102,7 +103,7 @@ new class extends Component {
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="secondary_image" class="form-label">Image Secondaire</label>
-                        <input class="form-control" type="file" id="secondary_image" wire:model="secondary_image">
+                        <x-media-picker wire-field="secondary_image" :current-url="media_url(null)" label="Image" />
                         @error('secondary_image') <div class="text-danger">{{ $message }}</div> @enderror
                         @if ($secondary_image)
                             <div class="mt-2">

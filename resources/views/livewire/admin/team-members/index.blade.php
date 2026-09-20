@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(TeamMember $teamMember): void
     {
-        if ($teamMember->photo) {
-            Storage::disk('public')->delete($teamMember->photo);
-        }
         $teamMember->delete();
     }
 }; ?>

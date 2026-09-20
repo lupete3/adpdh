@@ -6,6 +6,7 @@ use App\Models\Partner;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $name = '';
     public $logo;
@@ -15,11 +16,11 @@ new class extends Component {
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'logo' => ['required', 'image', 'max:2048'], // 2MB Max
+            'logo' => $this->mediaRule('logo', true), // 2MB Max
             'website_url' => ['nullable', 'url', 'max:255'],
         ]);
 
-        $validated['logo'] = $this->logo->store('partners', 'public');
+        $validated['logo'] = $this->mediaPath('logo');
 
         Partner::create($validated);
 
@@ -46,7 +47,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="logo" class="form-label">Logo</label>
-                    <input class="form-control" type="file" id="logo" wire:model="logo">
+                    <x-media-picker wire-field="logo" :current-url="media_url(null)" label="Image" />
                     @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($logo)

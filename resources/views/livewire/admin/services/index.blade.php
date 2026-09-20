@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(Service $service): void
     {
-        if ($service->image) {
-            Storage::disk('public')->delete($service->image);
-        }
         $service->delete();
     }
 }; ?>

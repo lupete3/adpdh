@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(Slider $slider): void
     {
-        if ($slider->image) {
-            Storage::disk('public')->delete($slider->image);
-        }
         $slider->delete();
     }
 }; ?>

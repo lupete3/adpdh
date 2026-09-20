@@ -53,9 +53,7 @@ class CmsSectionContentController extends Controller
                 $fail('Saisissez un lien valide (page du site, https, email ou téléphone).');
             }
         }], 'media_asset_id' => 'nullable|integer|exists:media_assets,id', 'indicator_id' => 'nullable|integer|exists:indicators,id', 'is_visible' => 'required|boolean', 'is_demo' => 'required|boolean', 'sort_order' => 'required|integer|min:0|max:100000']);
-        if (! empty($data['media_asset_id']) && ! MediaAsset::findOrFail($data['media_asset_id'])->isPubliclyAvailable()) {
-            throw ValidationException::withMessages(['media_asset_id' => 'Choisissez une image autorisée à la diffusion.']);
-        }
+        if (! empty($data['media_asset_id'])) app(\App\Services\MediaLibrary::class)->image($data['media_asset_id'], 'media_asset_id');
         if ($data['is_demo'] && $data['is_visible']) {
             throw ValidationException::withMessages(['is_visible' => 'Un exemple fictif doit rester masqué.']);
         }

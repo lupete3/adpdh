@@ -50,7 +50,7 @@
                 <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                     <article class="blog-card w-100">
                         <div class="blog-card-img">
-                            <img src="{{ $post->image ? asset('storage/'.$post->image) : asset('flexbiz/assets/img/blog/blog-1.jpg') }}"
+                            <img src="{{ $post->image ? media_url($post->image) : asset('flexbiz/assets/img/blog/blog-1.jpg') }}"
                                  alt="{{ $post->title }}">
                             <span class="blog-card-category">{{ $post->category ?? 'Actualités' }}</span>
                         </div>

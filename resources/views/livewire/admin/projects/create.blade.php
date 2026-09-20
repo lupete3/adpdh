@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $title = '';
     public string $category = 'services';
@@ -33,7 +34,7 @@ new class extends Component {
             'date'        => ['nullable', 'date'],
             'description' => ['required', 'string'],
             'content'     => ['nullable', 'string'],
-            'image'       => ['nullable', 'image', 'max:2048'],
+            'image'       => $this->mediaRule('image', false),
             'url'         => ['nullable', 'url'],
         ]);
 
@@ -48,8 +49,8 @@ new class extends Component {
             'url'         => $this->url,
         ];
 
-        if ($this->image) {
-            $data['image'] = $this->image->store('projects', 'public');
+        if ($this->mediaChanged('image')) {
+            $data['image'] = $this->mediaPath('image');
         }
 
         Project::create($data);
@@ -108,7 +109,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image du projet</label>
-                    <input class="form-control" type="file" id="image" wire:model="image">
+                    <x-media-picker wire-field="image" :current-url="media_url(null)" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded mt-2" style="max-width: 200px;">

@@ -59,9 +59,7 @@ class CmsHomeController extends Controller
                 'image_note_text' => 'nullable|string|max:500',
             ]);
         }
-        if (! empty($data['media_asset_id']) && ! MediaAsset::findOrFail($data['media_asset_id'])->isPubliclyAvailable()) {
-            throw ValidationException::withMessages(['media_asset_id' => 'Cette image ne peut pas être diffusée.']);
-        }
+        if (! empty($data['media_asset_id'])) app(\App\Services\MediaLibrary::class)->image($data['media_asset_id'], 'media_asset_id');
         DB::transaction(function () use ($section, $data, $request) {
             $locked = CmsSection::whereKey($section->id)->lockForUpdate()->firstOrFail();
             if ($locked->version != (int) $data['version']) {

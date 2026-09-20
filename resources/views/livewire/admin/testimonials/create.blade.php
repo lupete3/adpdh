@@ -6,6 +6,7 @@ use App\Models\Testimonial;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public string $author_name = '';
     public string $author_position = '';
@@ -17,11 +18,11 @@ new class extends Component {
         $validated = $this->validate([
             'author_name' => ['required', 'string', 'max:255'],
             'author_position' => ['required', 'string', 'max:255'],
-            'author_photo' => ['required', 'image', 'max:2048'], // 2MB Max
+            'author_photo' => $this->mediaRule('author_photo', true), // 2MB Max
             'content' => ['required', 'string'],
         ]);
 
-        $validated['author_photo'] = $this->author_photo->store('testimonials', 'public');
+        $validated['author_photo'] = $this->mediaPath('author_photo');
 
         Testimonial::create($validated);
 
@@ -54,7 +55,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="author_photo" class="form-label">Photo de l'auteur</label>
-                    <input class="form-control" type="file" id="author_photo" wire:model="author_photo">
+                    <x-media-picker wire-field="author_photo" :current-url="media_url(null)" label="Image" />
                     @error('author_photo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     @if ($author_photo)

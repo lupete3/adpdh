@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Service $service;
     public string $title = '';
@@ -34,7 +35,7 @@ new class extends Component {
             'icon'        => ['required', 'string', 'max:100'],
             'description' => ['required', 'string'],
             'content'     => ['nullable', 'string'],
-            'image'       => ['nullable', 'image', 'max:2048'],
+            'image'       => $this->mediaRule('image', false),
             'order'       => ['integer'],
         ]);
 
@@ -47,11 +48,8 @@ new class extends Component {
             'order'       => $this->order,
         ];
 
-        if ($this->image) {
-            if ($this->service->image) {
-                Storage::disk('public')->delete($this->service->image);
-            }
-            $data['image'] = $this->image->store('services', 'public');
+        if ($this->mediaChanged('image')) {
+            $data['image'] = $this->mediaPath('image');
         }
 
         $this->service->update($data);
@@ -98,10 +96,10 @@ new class extends Component {
                     <label for="image" class="form-label">Image (optionnel)</label>
                     @if ($service->image)
                         <div class="mb-2">
-                            <img src="{{ asset('storage/' . $service->image) }}" class="img-fluid rounded" style="max-width: 200px;">
+                            <img src="{{ media_url($service->image) }}" class="img-fluid rounded" style="max-width: 200px;">
                         </div>
                     @endif
-                    <input class="form-control" type="file" id="image" wire:model="image">
+                    <x-media-picker wire-field="image" :current-url="media_url($service->image)" label="Image" />
                     @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img-fluid rounded mt-2" style="max-width: 200px;">

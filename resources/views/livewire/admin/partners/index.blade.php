@@ -19,9 +19,6 @@ new class extends Component {
 
     public function delete(Partner $partner): void
     {
-        if ($partner->logo) {
-            Storage::disk('public')->delete($partner->logo);
-        }
         $partner->delete();
     }
 }; ?>

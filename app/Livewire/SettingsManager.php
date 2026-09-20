@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 class SettingsManager extends Component
 {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public $site_name;
     public $slogan;
@@ -40,6 +41,8 @@ class SettingsManager extends Component
 
     public function save()
     {
+        abort_unless(auth()->user()?->is_admin, 403);
+        $this->validate(['logo' => $this->mediaRule('logo'), 'feature_image' => $this->mediaRule('feature_image')]);
         $settings = [
             'site_name' => $this->site_name,
             'slogan' => $this->slogan,
@@ -55,14 +58,14 @@ class SettingsManager extends Component
             Setting::where('key', $key)->update(['value' => $value]);
         }
 
-        if ($this->logo) {
-            $logoPath = $this->logo->store('logos', 'public');
+        if ($this->mediaChanged('logo')) {
+            $logoPath = $this->mediaPath('logo');
             Setting::where('key', 'logo')->update(['value' => $logoPath]);
             $this->existing_logo = $logoPath;
         }
 
-        if ($this->feature_image) {
-            $featureImagePath = $this->feature_image->store('features', 'public');
+        if ($this->mediaChanged('feature_image')) {
+            $featureImagePath = $this->mediaPath('feature_image');
             Setting::where('key', 'feature_image')->update(['value' => $featureImagePath]);
             $this->existing_feature_image = $featureImagePath;
         }

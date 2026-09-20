@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use WithFileUploads;
+    use \App\Livewire\Concerns\UsesMediaLibrary;
 
     public Testimonial $testimonial;
 
@@ -28,15 +29,12 @@ new class extends Component {
         $validated = $this->validate([
             'author_name' => ['required', 'string', 'max:255'],
             'author_position' => ['required', 'string', 'max:255'],
-            'new_photo' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'new_photo' => $this->mediaRule('new_photo', false), // 2MB Max
             'content' => ['required', 'string'],
         ]);
 
-        if ($this->new_photo) {
-            if ($this->testimonial->author_photo) {
-                Storage::disk('public')->delete($this->testimonial->author_photo);
-            }
-            $validated['author_photo'] = $this->new_photo->store('testimonials', 'public');
+        if ($this->mediaChanged('new_photo')) {
+            $validated['author_photo'] = $this->mediaPath('new_photo');
         } else {
             $validated['author_photo'] = $this->testimonial->author_photo;
         }
@@ -74,7 +72,7 @@ new class extends Component {
 
                 <div class="mb-3">
                     <label for="new_photo" class="form-label">Nouvelle Photo</label>
-                    <input class="form-control" type="file" id="new_photo" wire:model="new_photo">
+                    <x-media-picker wire-field="new_photo" :current-url="media_url($testimonial->author_photo)" label="Image" />
                     @error('new_photo') <div class="text-danger">{{ $message }}</div> @enderror
 
                     <div class="mt-3">

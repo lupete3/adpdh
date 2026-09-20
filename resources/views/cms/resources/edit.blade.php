@@ -14,8 +14,8 @@
 @if($resource->file)<p>Document actuel : {{ $resource->file->name }}@if(!$resource->hasReadableFile()) — ajoutez un PDF pour activer la lecture.@endif</p>@endif
 <label for="document" class="form-label">{{ $resource->file ? 'Remplacer le document' : 'Ajouter le document' }}</label><input class="form-control" type="file" id="document" name="document" accept="application/pdf,.pdf"><p class="text-muted">PDF uniquement, 20 Mo maximum. Obligatoire pour publier. Après une erreur, sélectionnez à nouveau le fichier.</p>
 <h2 class="h5 mt-3">Couverture (facultative)</h2>
-@if($resource->cover?->publicUrl())<img src="{{ $resource->cover->publicUrl() }}" alt="Couverture actuelle" style="width:180px;max-width:100%;height:220px;object-fit:contain"><label class="my-2"><input type="checkbox" name="remove_cover" value="1" @checked(old('remove_cover'))> Retirer la couverture</label>@endif
-<label for="cover" class="form-label">Ajouter ou remplacer l’image de couverture</label><input class="form-control" id="cover" name="cover" type="file" accept="image/jpeg,image/png,image/webp"><small class="text-muted">JPEG, PNG ou WebP, 5 Mo maximum.</small>
+
+<x-media-picker name="cover_media_id" :value="old('cover_media_id', $resource->cover_media_id)" label="Image de couverture" />
 <button class="btn btn-primary mt-4" type="submit">Enregistrer la ressource</button>
 </form>
 </x-layouts.app>
