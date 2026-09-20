@@ -25,7 +25,7 @@ et la Promotion des Droits Humains</b></span></a>
       <a href="{{ route('impact') }}" @if(request()->routeIs('impact')) aria-current="page" @endif>Notre impact</a>
       <a href="{{ route('partnership') }}" @if(request()->routeIs('partnership')) aria-current="page" @endif>Devenir partenaire</a>
       <a href="{{ route('contact') }}" @if(request()->routeIs('contact')) aria-current="page" @endif>Contact</a>
-      <a class="button button-small button-green" href="{{ asset('adpdh/faire-un-don.html') }}">Faire un don <span aria-hidden="true">↗</span></a>
+      <a class="button button-small button-green" href="{{ route('donation') }}">Faire un don <span aria-hidden="true">↗</span></a>
     </nav>
   </div>
 </header>

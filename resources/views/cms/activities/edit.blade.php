@@ -24,5 +24,10 @@
 <x-media-picker name="photo_ids[]" :multiple="true" :value="old('photo_ids', [])" label="Ajouter des images à la galerie" /><p class="text-muted">Sélectionnez jusqu’à 12 images. Les images déjà présentes ne seront pas dupliquées.</p>
 <button class="btn btn-primary mt-3" type="submit">Enregistrer l’activité</button>
 </form>
+@if($activity->exists)<div class="mt-3"><form method="post" action="{{ route('admin.cms.activities.destroy', $activity) }}" class="d-inline" onsubmit="return confirm('Supprimer définitivement ce contenu ? Cette action est irréversible. Les images restent dans la médiathèque.');">
+@csrf @method('DELETE')
+<input type="hidden" name="revision" value="{{ \App\Http\Controllers\CmsActivityController::revision($activity) }}">
+<button type="submit" class="btn btn-outline-danger btn-sm" aria-label="Supprimer : {{ $activity->title }}">Supprimer</button>
+</form></div>@endif
 @vite('resources/assets/js/activity-editor.js')
 </x-layouts.app>

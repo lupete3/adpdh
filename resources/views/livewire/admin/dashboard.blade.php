@@ -1,275 +1,47 @@
 <?php
 
 use Livewire\Volt\Component;
-use App\Models\Post;
-use App\Models\TeamMember;
-use App\Models\Partner;
-use App\Models\ContactMessage;
-use App\Models\Service;
-use App\Models\Project;
-use App\Models\Faq;
-use App\Models\Stat;
+use App\Services\Cms\DashboardSummary;
 
 new class extends Component {
-    public $postCount;
-    public $teamMemberCount;
-    public $partnerCount;
-    public $contactMessageCount;
-    public $serviceCount;
-    public $projectCount;
-    public $faqCount;
-    public $statCount;
-    public $publicationCount;
-    public $jobOpeningCount;
-    public $recentPosts;
-    public $recentMessages;
-
-    public function mount()
+    public function with(): array
     {
-        $this->postCount = Post::count();
-        $this->teamMemberCount = TeamMember::count();
-        $this->partnerCount = Partner::count();
-        $this->contactMessageCount = ContactMessage::count();
-        $this->serviceCount = Service::count();
-        $this->projectCount = Project::count();
-        $this->faqCount = Faq::count();
-        $this->statCount = Stat::count();
-        $this->publicationCount = \App\Models\Publication::count();
-        $this->jobOpeningCount = \App\Models\JobOpening::count();
-        $this->recentPosts = Post::latest()->take(5)->get();
-        $this->recentMessages = ContactMessage::latest()->take(5)->get();
+        return app(DashboardSummary::class)->data();
     }
 }; ?>
 
 <div>
-    <div class="py-5">
-        <div class="row g-4">
-            <!-- Stat Cards -->
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-newspaper fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $postCount }}</h3>
-                            </div>
-                            <span>Articles Publiés</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.posts.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-users fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $teamMemberCount }}</h3>
-                            </div>
-                            <span>Membres de l'équipe</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.team-members.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-handshake fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $partnerCount }}</h3>
-                            </div>
-                            <span>Partenaires</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.partners.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-envelope fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $contactMessageCount }}</h3>
-                            </div>
-                            <span>Messages Reçus</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.messages.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4 mt-2">
-            <!-- Stat Cards - Second Row -->
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-info text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-briefcase fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $serviceCount }}</h3>
-                            </div>
-                            <span>Services</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.services.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-secondary text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-folder-open fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $projectCount }}</h3>
-                            </div>
-                            <span>Projets</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.projects.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-dark text-white mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-question-circle fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $faqCount }}</h3>
-                            </div>
-                            <span>FAQs</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.faqs.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4" style="background-color: #6f42c1 !important;">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-chart-bar fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $statCount }}</h3>
-                            </div>
-                            <span>Statistiques</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.stats.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4 mt-2">
-            <!-- Stat Cards - Third Row -->
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4" style="background-color: #fd7e14 !important;">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-file-pdf fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $publicationCount }}</h3>
-                            </div>
-                            <span>Publications</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.publications.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="col-xl-3 col-md-6">
-                <div class="card bg-info text-white mb-4" style="background-color: #20c997 !important;">
-                    <div class="card-body d-flex align-items-center">
-                        <i class="fa fa-id-badge fa-3x me-3"></i>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h3 class="text-white">{{ $jobOpeningCount }}</h3>
-                            </div>
-                            <span>Offres d'Emploi</span>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.job-openings.index') }}">Voir les détails</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-
-        <div class="row mt-4">
-            <!-- Recent Posts -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-newspaper me-1"></i>
-                        Derniers Articles
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            @forelse($recentPosts as $post)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <a href="{{ route('admin.posts.edit', $post) }}">{{ $post->title }}</a>
-                                    <span class="badge bg-primary rounded-pill">{{ $post->created_at->diffForHumans() }}</span>
-                                </li>
-                            @empty
-                                <li class="list-group-item">Aucun article pour le moment.</li>
-                            @endforelse
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Messages -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-envelope me-1"></i>
-                        Derniers Messages de Contact
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            @forelse($recentMessages as $message)
-                                <a href="{{ route('admin.messages.show', $message) }}" class="list-group-item list-group-item-action">
-                                    <strong>{{ $message->name }}</strong> ({{ $message->email }})
-                                    <p class="mb-1 mt-1">{{ Str::limit($message->message, 50) }}</p>
-                                    <small class="text-muted">{{ $message->created_at->diffForHumans() }}</small>
-                                </a>
-                            @empty
-                                <li class="list-group-item">Aucun message pour le moment.</li>
-                            @endforelse
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+        <div><p class="text-primary text-uppercase small fw-semibold mb-1">Administration ADPDH</p><h1 class="h3">Tableau de bord</h1><p class="text-muted mb-0">Les contenus et les résultats de votre site, en un regard.</p></div>
+        <a class="btn btn-outline-primary" href="{{ route('home') }}">Voir le site</a>
     </div>
+    <div class="row g-4 mb-4">
+        @foreach($cards as $card)
+        <div class="col-12 col-md-6 col-xl-4"><div class="card h-100"><div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3"><h2 class="h6 mb-0">{{ $card['label'] }}</h2><i class="bx {{ $card['icon'] }} text-primary fs-3" aria-hidden="true"></i></div>
+            <p class="display-6 fw-semibold mb-2">{{ number_format($card['count'], 0, ',', ' ') }}</p>
+            <p class="text-muted small mb-3">{{ $card['detail'] }}</p>
+            <a class="stretched-link" href="{{ route($card['route']) }}">Gérer <span class="visually-hidden">{{ $card['label'] }}</span> →</a>
+        </div></div></div>
+        @endforeach
+    </div>
+    <p class="small text-muted">Les actualités, activités et ressources de démonstration et de l’ancienne version sont exclues des compteurs éditoriaux.</p>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        <a class="btn btn-primary" href="{{ route('admin.cms.news.create') }}">Ajouter une actualité</a>
+        <a class="btn btn-outline-primary" href="{{ route('admin.cms.activities.create') }}">Ajouter une activité</a>
+        <a class="btn btn-outline-primary" href="{{ route('admin.cms.donation') }}">Modifier la page de don</a>
+    </div>
+    <div class="row g-4 mb-4">
+        @foreach([['Actualités récentes', $recentPosts, 'admin.cms.news.edit', 'status'], ['Activités récentes', $recentActivities, 'admin.cms.activities.edit', 'publication_state']] as [$heading, $records, $editRoute, $state])
+        <div class="col-lg-6"><section class="card h-100"><div class="card-header"><h2 class="h5 mb-0">{{ $heading }}</h2></div><ul class="list-group list-group-flush">
+            @forelse($records as $record)
+            <li class="list-group-item d-flex flex-wrap justify-content-between align-items-center gap-2 py-3"><div><a href="{{ route($editRoute, $record) }}">{{ $record->title }}</a><small class="d-block text-muted">Modifiée le {{ $record->updated_at?->format('d/m/Y à H:i') }}</small></div><span class="badge bg-label-primary">{{ $record->$state !== 'published' ? 'Brouillon' : ($record->published_at?->isFuture() ? 'Programmée' : ($state === 'status' && !$record->published_at ? 'Sans date (masquée)' : 'Publiée')) }}</span></li>
+            @empty<li class="list-group-item py-4 text-muted">Aucun contenu pour le moment.</li>@endforelse
+        </ul></section></div>
+        @endforeach
+    </div>
+    <section class="card"><div class="card-header d-flex flex-wrap justify-content-between gap-2"><h2 class="h5 mb-0">Chiffres d’impact publiés</h2><a href="{{ route('admin.cms.impact') }}">Gérer les résultats →</a></div><div class="card-body"><div class="row g-4">
+        @forelse($indicators as $indicator)<div class="col-md-6 col-xl-4"><h3 class="h6">{{ $indicator->title }}</h3><p class="h3 text-primary">{{ number_format((float) $indicator->currentValue->value, $indicator->unit === 'percent' ? 1 : 0, ',', ' ') }}{{ $indicator->unit === 'percent' ? ' %' : '' }}</p>@if($indicator->currentValue->period_label)<p class="small text-muted mb-0">{{ $indicator->currentValue->period_label }}</p>@endif</div>
+        @empty<p class="text-muted mb-0">Aucun indicateur publié avec une valeur pour le moment.</p>@endforelse
+    </div></div></section>
 </div>

@@ -18,5 +18,10 @@
 <label class="form-label" for="content">Contenu de l’actualité</label><textarea class="form-control" id="content" name="content" rows="14">{{ old('content', $post->content) }}</textarea><div id="activity-editor" data-label="Contenu de l’actualité" data-placeholder="Racontez votre actualité…" hidden></div>
 <button class="btn btn-primary mt-4" type="submit">Enregistrer l’actualité</button>
 </form>
+@if($post->exists)<div class="mt-3"><form method="post" action="{{ route('admin.cms.news.destroy', $post) }}" class="d-inline" onsubmit="return confirm('Supprimer définitivement ce contenu ? Cette action est irréversible. Les images restent dans la médiathèque.');">
+@csrf @method('DELETE')
+<input type="hidden" name="revision" value="{{ \App\Http\Controllers\CmsNewsController::revision($post) }}">
+<button type="submit" class="btn btn-outline-danger btn-sm" aria-label="Supprimer : {{ $post->title }}">Supprimer</button>
+</form></div>@endif
 @vite('resources/assets/js/activity-editor.js')
 </x-layouts.app>

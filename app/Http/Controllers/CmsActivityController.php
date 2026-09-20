@@ -52,7 +52,7 @@ class CmsActivityController extends Controller
 
     public function manage()
     {
-        return view('cms.activities.index', ['page' => CmsPage::where('key', 'activites')->first(), 'activities' => Project::forCms()->latest('id')->paginate(20)]);
+        return view('cms.activities.index', ['page' => CmsPage::where('key', 'activites')->first(), 'activities' => Project::forCms()->with('gallery.items')->latest('id')->paginate(20)]);
     }
 
     public function edit(?Project $activity = null)
@@ -77,6 +77,22 @@ class CmsActivityController extends Controller
         }
 
         return view('cms.activities.edit', compact('activity', 'editorContent'));
+    }
+
+    public function destroy(Request $request, Project $activity)
+    {
+        abort_unless($activity->cms_key, 404);
+        $data = $request->validate(['revision' => 'required|string']);
+        DB::transaction(function () use ($activity, $data) {
+            $record = Project::lockForUpdate()->findOrFail($activity->id);
+            if (! hash_equals(self::revision($record), $data['revision'])) {
+                throw ValidationException::withMessages(['revision' => 'Ce contenu a changé. Rechargez la page avant de le supprimer.']);
+            }
+            // Media and galleries can be reused elsewhere; preserve their files.
+            $record->delete();
+        });
+
+        return redirect()->route('admin.cms.activities')->with('status', 'Activité supprimée.');
     }
 
     public function save(Request $request, ?Project $activity = null)
