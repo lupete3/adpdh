@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('adpdh/assets/adpdh.css') }}">
     <link rel="stylesheet" href="{{ asset('adpdh/assets/refinements.css') }}">
     <link rel="stylesheet" href="{{ asset('adpdh/assets/pages.css') }}?v=13">
-    <link rel="stylesheet" href="{{ asset('adpdh/assets/cms-home.css') }}?v=4">
+    <link rel="stylesheet" href="{{ asset('adpdh/assets/cms-home.css') }}?v={{ filemtime(public_path('adpdh/assets/cms-home.css')) }}">
     <link rel="stylesheet" href="{{ asset('adpdh/assets/cms-about.css') }}?v=4">
     <script src="{{ asset('adpdh/assets/adpdh.js') }}?v=12" defer></script>
 </head>
