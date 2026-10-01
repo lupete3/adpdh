@@ -7,8 +7,7 @@
 <header class="header">
   <div class="container navigation">
     <a class="brand" href="{{ route('home') }}" aria-label="ADPDH, accueil"><img src="{{ asset('adpdh/assets/logo-small.webp') }}" width="72" height="72" alt=""><span><strong>ADPDH<span class="brand-dot">.</span></strong>
-      <b class="brand-name" style="font-size: 16px"><span class="brand-name-line">Action pour le Développement</span>
-<span class="brand-name-line">et la Promotion des Droits Humains</span></b></span></a>
+      <b class="brand-name" style="font-size: 16px">@foreach(\App\Support\BrandSlogan::lines(\App\Models\Setting::where('key', 'slogan')->value('value')) as $line)<span class="brand-name-line">{{ $line }}</span>{{ $loop->last ? '' : ' ' }}@endforeach</b></span></a>
     <button class="menu-toggle" aria-label="Menu principal" aria-expanded="false" aria-controls="main-nav"><span aria-hidden="true">☰</span></button>
     <nav id="main-nav" aria-label="Navigation principale">
       <details class="nav-more organization-menu"><summary>Qui sommes-nous ?</summary><div><a href="{{ route('organization') }}">Présentation de l’organisation</a><a href="{{ route('organization') }}#histoire">Notre histoire</a><a href="{{ route('organization') }}#vision-mission">Vision et mission</a><a href="{{ route('organization') }}#valeurs">Nos valeurs</a><a href="{{ route('organization') }}#statut">Statut juridique</a><a href="{{ route('organization') }}#zones">Zones d’intervention</a><a href="{{ route('organization') }}#equipe">Notre équipe</a></div></details>

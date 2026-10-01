@@ -29,8 +29,10 @@
                                     <input type="text" class="form-control" id="phone" wire:model="phone">
                                 </div>
                                 <div class="mb-3 col-md-12">
-                                    <label for="slogan" class="form-label">Slogan</label>
-                                    <textarea class="form-control" id="slogan" rows="3" wire:model="slogan"></textarea>
+                                    <label for="slogan" class="form-label">Slogan — texte sous ADPDH dans le menu</label>
+                                    <textarea class="form-control" id="slogan" rows="2" maxlength="180" wire:model="slogan" aria-describedby="slogan-help"></textarea>
+                                    <small id="slogan-help" class="form-text">Sur PC, le texte s’affiche sur deux lignes. Appuyez sur Entrée pour choisir la séparation ; sinon elle est calculée automatiquement.</small>
+                                    @error('slogan')<div class="text-danger">{{ $message }}</div>@enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="address" class="form-label">Adresse</label>

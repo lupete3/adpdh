@@ -28,7 +28,7 @@ class SettingsManager extends Component
     {
         $settings = Setting::all()->keyBy('key');
         $this->site_name = $settings['site_name']->value ?? '';
-        $this->slogan = $settings['slogan']->value ?? '';
+        $this->slogan = $settings['slogan']->value ?? \App\Support\BrandSlogan::DEFAULT;
         $this->address = $settings['address']->value ?? '';
         $this->email = $settings['email']->value ?? '';
         $this->phone = $settings['phone']->value ?? '';
@@ -42,7 +42,7 @@ class SettingsManager extends Component
     public function save()
     {
         abort_unless(auth()->user()?->is_admin, 403);
-        $this->validate(['logo' => $this->mediaRule('logo'), 'feature_image' => $this->mediaRule('feature_image')]);
+        $this->validate(['slogan' => 'required|string|max:180', 'logo' => $this->mediaRule('logo'), 'feature_image' => $this->mediaRule('feature_image')]);
         $settings = [
             'site_name' => $this->site_name,
             'slogan' => $this->slogan,
@@ -55,7 +55,7 @@ class SettingsManager extends Component
         ];
 
         foreach ($settings as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
+            Setting::query()->updateOrInsert(['key' => $key], ['value' => $value, 'updated_at' => now()]);
         }
 
         if ($this->mediaChanged('logo')) {

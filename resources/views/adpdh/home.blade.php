@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ asset('adpdh/assets/refinements.css') }}">
   <link rel="stylesheet" href="{{ asset('adpdh/assets/pages.css') }}?v=13">
   <script src="{{ asset('adpdh/assets/adpdh.js') }}?v=11" defer></script>
-<link rel="stylesheet" href="{{ asset('adpdh/assets/cms-home.css') }}?v=4">
+<link rel="stylesheet" href="{{ asset('adpdh/assets/cms-home.css') }}?v={{ filemtime(public_path('adpdh/assets/cms-home.css')) }}">
 <script src="{{ asset('adpdh/assets/cms-home.js') }}?v=1" defer></script></head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
