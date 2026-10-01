@@ -1,0 +1,68 @@
+<?php
+if(PHP_SAPI!=='cli')exit(1);
+require dirname(__DIR__,2).'/wordpress-runtime/wordpress/wp-load.php';
+require_once ABSPATH.'wp-admin/includes/user.php';
+$failures=[];$checks=0;
+$check=function($condition,$message)use(&$failures,&$checks){$checks++;if(!$condition)$failures[]=$message;};
+$ids=[];$users=[];
+wp_set_current_user(1);
+try{
+    foreach(adpdh_types()as$key=>$info){$type=get_post_type_object('adpdh_'.$key);$check($type&&$type->map_meta_cap&&$type->cap->edit_posts==='edit_adpdh_'.$key.'s','Capacités distinctes : '.$key);}
+    $pageA=wp_insert_post(['post_type'=>'page','post_title'=>'ADPDH TEST Page A','post_status'=>'publish']);$ids[]=$pageA;
+    $pageB=wp_insert_post(['post_type'=>'page','post_title'=>'ADPDH TEST Page B','post_status'=>'publish']);$ids[]=$pageB;
+    $limited=wp_insert_user(['user_login'=>'adpdh_test_'.bin2hex(random_bytes(5)),'user_pass'=>wp_generate_password(32),'role'=>'adpdh_page_editor']);$users[]=$limited;
+    update_user_meta($limited,'_adpdh_allowed_pages',[$pageA]);wp_set_current_user($limited);
+    $check(current_user_can('edit_post',$pageA),'Modification de la page attribuée');
+    $check(!current_user_can('edit_post',$pageB),'Refus de la page non attribuée');
+    $check(!current_user_can('delete_post',$pageA),'Refus de suppression de la page attribuée');
+    $check(!current_user_can('create_pages'),'Refus de création de nouvelles pages');
+    $check(!current_user_can('edit_post_meta',$pageB,'adpdh_copy'),'Refus des champs de la page non attribuée');
+    $check(!current_user_can('manage_adpdh_bank')&&!current_user_can('manage_options'),'Réglages globaux et bancaires protégés');
+    $request=new WP_REST_Request('GET','/wp/v2/pages');$request->set_param('context','edit');
+    $response=rest_do_request($request);$body=$response->get_data();
+    $check($response->get_status()===200&&array_column($body,'id')===[$pageA],'Liste REST limitée à la page attribuée');
+    $request=new WP_REST_Request('POST','/wp/v2/pages/'.$pageB);$request->set_param('title','Unauthorized');
+    $check(rest_do_request($request)->get_status()===403,'Écriture REST refusée sur autre page');
+    $request=new WP_REST_Request('POST','/wp/v2/pages/'.$pageA);$request->set_param('title','ADPDH TEST Page A autorisée');
+    $check(rest_do_request($request)->get_status()===200,'Écriture REST autorisée sur la page attribuée');
+    $_POST=['adpdh_fields_nonce'=>wp_create_nonce('adpdh_save_fields'),'adpdh_fields'=>['copy'=>[['key'=>'test.field','label'=>'Test','value'=>'Valeur modifiée']]]];
+    do_action('save_post',$pageA,get_post($pageA),true);
+    $check((adpdh_get($pageA,'copy',[])[0]['value']??'')==='Valeur modifiée','Enregistrement des champs depuis le formulaire natif');
+    $_POST['adpdh_fields']['copy']='';do_action('save_post',$pageA,get_post($pageA),true);
+    $check(adpdh_get($pageA,'copy')===[],'Suppression de tous les éléments d’un groupe');
+    $_POST=[];
+    wp_set_current_user(1);
+    $editor=wp_insert_user(['user_login'=>'adpdh_news_test_'.bin2hex(random_bytes(5)),'user_pass'=>wp_generate_password(32),'role'=>'adpdh_actualite_editor']);$users[]=$editor;
+    wp_set_current_user($editor);$check(current_user_can('edit_adpdh_actualites'),'Éditeur Actualités autorisé');$check(!current_user_can('edit_adpdh_activites'),'Éditeur Actualités exclu des Activités');
+    wp_set_current_user(1);
+    $document=wp_insert_post(['post_type'=>'adpdh_ressource','post_title'=>'ADPDH TEST Document','post_status'=>'publish']);$ids[]=$document;
+    $check(adpdh_clean_field('pending',adpdh_schema('adpdh_ressource')['availability'])==='pending','État des documents à venir conservé à l’import');
+    wp_mkdir_p(adpdh_private_dir());$file='test-'.bin2hex(random_bytes(8)).'.pdf';file_put_contents(adpdh_private_dir().'/'.$file,"%PDF-1.4\n%%EOF\n");
+    update_post_meta($document,'_adpdh_document',$file);adpdh_set($document,'availability','available');adpdh_set($document,'reading_allowed',1);adpdh_set($document,'distribution_allowed',0);
+    $check(adpdh_document_allowed($document),'Lecture autorisée du PDF');$check(!adpdh_document_allowed($document,true),'Téléchargement refusé indépendamment de la lecture');
+    adpdh_set($document,'distribution_allowed',1);$check(adpdh_document_allowed($document,true),'Téléchargement autorisé explicitement');
+    wp_update_post(['ID'=>$document,'post_status'=>'draft']);$check(!adpdh_document_allowed($document),'PDF brouillon non public');
+    update_post_meta($document,'_adpdh_document','../wp-config.php');$check(adpdh_document_path($document)===null,'Traversée de répertoire refusée');
+    $check(adpdh_contact_errors(['name'=>'Test ADPDH','email'=>'test@example.invalid','subject'=>'Test local','message'=>'Message de validation uniquement.'])===[],'Validation du formulaire valide');
+    $check((bool)adpdh_contact_errors(['name'=>'Test','email'=>"test@example.invalid\r\nBcc: bad@example.invalid",'subject'=>'Test','message'=>'Message de validation uniquement.']),'Injection d’en-têtes refusée');
+    $before=get_post_meta($pageA,'adpdh_copy',true);adpdh_set($pageA,'copy',[['key'=>'test.key','label'=>'Test','value'=>'Première version']]);wp_save_post_revision($pageA);
+    adpdh_set($pageA,'copy',[['key'=>'test.key','label'=>'Test','value'=>'Deuxième version']]);wp_save_post_revision($pageA);
+    $revisions=wp_get_post_revisions($pageA);$check(count($revisions)>=2,'Révisions des champs personnalisés');
+    $initial=count(get_posts(['post_type'=>array_merge(['page'],array_map(fn($k)=>'adpdh_'.$k,array_keys(adpdh_types()))),'post_status'=>'any','numberposts'=>-1,'fields'=>'ids']));
+    $imported=(int)get_option('page_on_front');$originalCopy=adpdh_get($imported,'copy',[]);
+    $changed=$originalCopy;$changed[]=['key'=>'test.import','label'=>'Test','value'=>'Conserver cette modification'];adpdh_set($imported,'copy',$changed);
+    $report=adpdh_import(dirname(__DIR__,2).'/wordpress-private/migration/content.json');
+    $after=count(get_posts(['post_type'=>array_merge(['page'],array_map(fn($k)=>'adpdh_'.$k,array_keys(adpdh_types()))),'post_status'=>'any','numberposts'=>-1,'fields'=>'ids']));
+    $check($report['created']===0&&$initial===$after,'Import réexécutable sans doublons');
+    $check(adpdh_get($imported,'copy')===$changed,'Modifications éditoriales du contenu importé conservées');
+}finally{
+    wp_set_current_user(1);
+    $_POST=[];if(isset($originalCopy,$imported))adpdh_set($imported,'copy',$originalCopy);
+    foreach($ids as$id)if(get_post($id)&&str_starts_with(get_the_title($id),'ADPDH TEST '))wp_delete_post($id,true);
+    foreach($users as$id)if(is_int($id))wp_delete_user($id);
+    if(isset($file)&&is_file(adpdh_private_dir().'/'.$file))unlink(adpdh_private_dir().'/'.$file);
+}
+$result=['checks'=>$checks,'failures'=>$failures,'wordpress'=>get_bloginfo('version'),'active_plugins'=>get_option('active_plugins')];
+file_put_contents(dirname(__DIR__,2).'/wordpress-artifacts/integration-report.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+echo json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE).PHP_EOL;
+exit($failures?1:0);

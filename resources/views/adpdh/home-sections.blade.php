@@ -131,7 +131,7 @@
 
                                     <h3>{{ $item->title }}</h3>
                                     @if ($item->description)
-                                        <p style="white-space:pre-line">{{ $item->description }}</p>
+                                        <p style="white-space:pre-line">{{ $section->key === 'contact' ? \App\Support\ContactAddresses::text($item->description) : $item->description }}</p>
                                     @endif
 
                                     @if ($item->detail_text)

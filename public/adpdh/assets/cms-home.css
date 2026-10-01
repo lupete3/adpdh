@@ -108,8 +108,9 @@
 /* Keep the full navigation visible on desktop, aligned to the right. */
 @media(min-width:901px) {
  .header .navigation,.header.is-scrolled .navigation {gap:16px;}
- .header .navigation .brand {flex:0 1 380px;max-width:30%;}
+ .header .navigation .brand {flex:0 0 auto;max-width:none;}
  .header .brand .brand-name {font-size:clamp(.78rem,1vw,1rem);}
+ .header .brand .brand-name-line {display:block;white-space:nowrap;}
  .header .menu-toggle {display:none;}
  .header .navigation #main-nav {
   display:flex;position:static;flex:1;min-width:0;width:auto;

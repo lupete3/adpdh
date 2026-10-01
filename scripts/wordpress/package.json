@@ -1,0 +1,6 @@
+{
+  "name": "adpdh-wordpress-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node verify-cdp.mjs", "test:links": "node audit-links.mjs"}
+}
