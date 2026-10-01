@@ -61,7 +61,7 @@
         </div>
         @foreach($section->body['blocks'] ?? [] as $block)<p @class(['about-copy'])>{{ $block['text'] ?? '' }}</p>@endforeach
         @include('adpdh.about-buttons')
-        <div @class(['{{', '$section->media?->publicUrl()', '?', ''values-layout'', ':', '''', '}}'])>@include('adpdh.about-image')
+        <div @class(['values-layout' => $section->media?->publicUrl()])>@include('adpdh.about-image')
         <ol @class(['values-list'])>@foreach($collections['valeurs'] as $value)<li><span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><div><h3>{{ $value->title }}</h3><p @class(['about-copy'])>{{ $value->description }}</p></div></li>@endforeach</ol></div>
     </section>
 @elseif($section->key === 'statut')
