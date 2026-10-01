@@ -21,7 +21,7 @@ class CmsSectionContentController extends Controller
 
     public function index()
     {
-        return view('cms.home.sections', ['page' => CmsPage::where('key', 'index')->firstOrFail()->load('sections.contents')]);
+        return view('cms.home.sections', ['page' => CmsPage::where('key', 'index')->firstOrFail()->load('sections.contents'), 'settings' => DB::table('settings')->where('key', 'like', 'adpdh.contact.%')->pluck('value', 'key')]);
     }
 
     public function section(CmsSection $section)

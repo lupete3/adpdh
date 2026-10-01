@@ -107,12 +107,22 @@ class CmsHomeController extends Controller
         return redirect()->route('admin.cms.home')->with('status','Les éléments de l’accueil se gèrent désormais dans les données de chaque section.');
     }
 
+    public function topbar(Request $request)
+    {
+        $data = $request->validate(['topbar' => 'required|string|max:500']);
+        $text = trim(preg_replace('/\s+/u', ' ', preg_replace('/\s*[:·•]\s*/u', ' • ', $data['topbar'])));
+        DB::table('settings')->updateOrInsert(['key' => 'adpdh.contact.topbar'], ['value' => $text, 'updated_at' => now()]);
+
+        return redirect()->to(route('admin.cms.home').'#bandeau-contact')->with('status', 'Bandeau de contact enregistré.');
+    }
+
     public function contact(Request $request)
     {
         $data = $request->validate(['email' => 'required|email|max:255', 'phone' => ['required', 'string', 'max:50', 'regex:/^\+?[0-9 ()-]+$/'], 'address' => 'required|string|max:2000']);
+        $data['address'] = \App\Support\ContactAddresses::text($data['address']);
         DB::transaction(function () use ($data) {
             foreach ($data as $key => $value) {
-                DB::table('settings')->where('key', 'adpdh.contact.'.$key)->update(['value' => $value, 'updated_at' => now()]);
+                DB::table('settings')->updateOrInsert(['key' => 'adpdh.contact.'.$key], ['value' => $value, 'updated_at' => now()]);
             }
         });
 

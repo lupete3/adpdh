@@ -1,0 +1,6 @@
+.work-copy { white-space: pre-line; overflow-wrap: anywhere; }
+.about-heading h1, .cross-action h2 { white-space: pre-line; }
+.cross-action h2 em { color: var(--blue); }
+.pillar-jumps a, .domain-section > * { min-width: 0; overflow-wrap: anywhere; }
+.cross-action .button { margin-top: 12px; }
+.about-heading .editorial-photo { max-height: 420px; margin-top: 28px; }

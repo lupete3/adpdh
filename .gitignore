@@ -21,3 +21,9 @@ yarn-error.log
 /.vscode
 /.zed
 .env
+
+# Isolated WordPress runtime, migration exports and local test artifacts.
+/wordpress-runtime/
+/wordpress-private/
+/wordpress-artifacts/
+/scripts/wordpress/node_modules/

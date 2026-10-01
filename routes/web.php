@@ -286,6 +286,7 @@ Route::middleware(['auth', \App\Http\Middleware\EnsureAdministrator::class])->pr
  Route::put('/sections/{section}', [\App\Http\Controllers\CmsHomeController::class, 'updateSection'])->name('.section');
  Route::put('/collections/{kind}/{id}', [\App\Http\Controllers\CmsHomeController::class, 'collection'])->name('.collection');
  Route::put('/contact', [\App\Http\Controllers\CmsHomeController::class, 'contact'])->name('.contact');
+ Route::put('/topbar', [\App\Http\Controllers\CmsHomeController::class, 'topbar'])->name('.topbar');
  Route::put('/seo', [\App\Http\Controllers\CmsHomeController::class, 'updateSeo'])->name('.seo');
  Route::post('/indicators/{indicator}', [\App\Http\Controllers\CmsHomeController::class, 'indicator'])->name('.indicator');
 });
