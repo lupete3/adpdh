@@ -17,6 +17,11 @@ class ContactDelivery
 
     public function send(array $data): void
     {
+        if (\Illuminate\Support\Facades\DB::table('settings')->where('key', 'adpdh.contact.mail_transport')->value('value') === 'php_mail') {
+            app(ContactPhpMail::class)->send($data);
+            return;
+        }
+
         if ($settings = \App\Models\MailSetting::find(1)) {
             app(ContactSmtp::class)->mailer($settings)->send(new ContactSubmission($data));
             return;

@@ -1,7 +1,18 @@
 <x-layouts.app>
 <div class="mb-4"><h1 class="h3">Messagerie — formulaire de contact</h1><p>Configurez le service qui envoie les messages du formulaire à <strong>contact@adpdh.org</strong>.</p></div>
 @include('cms.work.feedback')
+<p class="alert alert-info">Mode actif : <strong>{{ $contactTransport === 'php_mail' ? 'Mail PHP de l’hébergement' : ($mailSettings ? 'SMTP enregistré' : 'Configuration mail du serveur (.env)') }}</strong>.</p>
+<section class="card card-body mb-4">
+    <h2 class="h5">Envoi par l’hébergement — PHP mail()</h2>
+    <p>Utilise le même principe que le formulaire testé sur pftecho.com, sans connexion SMTP ni mot de passe de boîte mail. L’expéditeur et le destinataire sont <strong>contact@adpdh.org</strong>. Les réponses sont adressées au visiteur.</p>
+    <form method="post" action="{{ route('admin.cms.mail.update') }}">
+        @csrf @method('PUT')
+        <div class="d-flex flex-wrap gap-3"><button class="btn btn-primary" name="action" value="php_mail_save">Activer l’envoi PHP</button><button class="btn btn-outline-primary" name="action" value="php_mail_test">Envoyer un e-mail de test à contact@adpdh.org</button></div>
+    </form>
+    <p class="mt-3 mb-0">Le test envoie un vrai message sans changer le mode actif. L’acceptation par le serveur ne garantit pas sa réception : vérifiez aussi les indésirables. Après réception du test, activez ce mode pour le formulaire public.</p>
+</section>
 <div class="card"><div class="card-body">
+    <h2 class="h5">Envoi par SMTP</h2>
     <p>{{ $mailSettings ? 'Une configuration est enregistrée. Les modifications prennent effet après enregistrement.' : 'Aucune configuration enregistrée. Les valeurs proposées correspondent à Hostinger Email.' }}</p>
     <form method="POST" action="{{ route('admin.cms.mail.update') }}">
         @csrf
@@ -15,7 +26,7 @@
             <div class="col-md-6"><label class="form-label" for="smtp-from-address">Adresse d’expédition</label><input class="form-control" id="smtp-from-address" name="from_address" type="email" value="{{ old('from_address', $values['from_address']) }}" required maxlength="254"><small>Utilisez une adresse autorisée par votre fournisseur de messagerie.</small></div>
             <div class="col-md-6"><label class="form-label" for="smtp-from-name">Nom d’expéditeur</label><input class="form-control" id="smtp-from-name" name="from_name" value="{{ old('from_name', $values['from_name']) }}" required maxlength="120"></div>
         </div>
-        <div class="d-flex flex-wrap gap-3 mt-4"><button class="btn btn-primary" type="submit" name="action" value="save">Enregistrer les paramètres</button><button class="btn btn-outline-primary" type="submit" name="action" value="test">Tester la connexion</button></div>
+        <div class="d-flex flex-wrap gap-3 mt-4"><button class="btn btn-primary" type="submit" name="action" value="save">Enregistrer et activer SMTP</button><button class="btn btn-outline-primary" type="submit" name="action" value="test">Tester la connexion</button></div>
         <p class="mt-3 mb-0">Le test utilise les valeurs du formulaire, sans les enregistrer ni envoyer de mail. Si le mot de passe est laissé vide, il utilise celui déjà enregistré. Une connexion réussie ne garantit pas la réception : après enregistrement, vérifiez aussi l’envoi depuis le formulaire de contact.</p>
     </form>
 </div></div>
