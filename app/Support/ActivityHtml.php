@@ -13,7 +13,10 @@ class ActivityHtml
         libxml_use_internal_errors($previous);
         $render = function ($node) use (&$render): string {
             if ($node instanceof \DOMText) {
-                return htmlspecialchars($node->textContent, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                // Pasted documents may use non-breaking spaces between every word.
+                // Restore natural wrapping without altering paragraphs or explicit breaks.
+                $text = str_replace(["\u{00A0}", "\u{202F}"], ' ', $node->textContent);
+                return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             }
             if (! $node instanceof \DOMElement) {
                 return '';
